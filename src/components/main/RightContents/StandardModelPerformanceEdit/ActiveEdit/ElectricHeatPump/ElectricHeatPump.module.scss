@@ -8,6 +8,33 @@
   box-sizing: border-box;
 }
 
+.typeTextWrapper {
+  color: #ffffff;
+  border-radius: 18px;
+  font-size: 10px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.typeTextEfficiency {
+  position: absolute;
+  color: #2a4e51;
+  background: #ffffff;
+  border: 1px solid #2a4e51;
+  top: 73%;
+  left: 0;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.multiSlider {
+  > div {
+    width: 100%;
+  }
+}
+
 .editTitle {
   font-size: 15px;
   font-weight: 500;

@@ -17,7 +17,7 @@ const CollapseItem = (props: any) => {
           label: (
             <div className={styles.collapseTitle}>
               <span>{props.title}</span>
-              <div>{`${props.itemSize} 항목`}</div>
+              <div>{`(${props.itemSize} 항목)`}</div>
             </div>
           ),
           children: <>{props.children}</>,

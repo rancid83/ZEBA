@@ -1,16 +1,25 @@
 import { useState } from 'react';
-import { Flex, InputNumber, Rate, Slider, SliderSingleProps } from 'antd';
-import styles from '@/components/main/RightContents/StandardModelPerformanceEdit/PassiveEdit/WindowThermalTransmittance/WindowThermalTransmittance.module.scss';
+import {
+  ConfigProvider,
+  Flex,
+  Input,
+  InputNumber,
+  Radio,
+  Rate,
+  Select,
+  Slider,
+  SliderSingleProps,
+} from 'antd';
+import styles from './SolarDomesticHotWaterSystem.module.scss';
 import { CaretDownOutlined, SyncOutlined } from '@ant-design/icons';
-import PassiveEdit from '@/components/main/RightContents/StandardModelPerformanceEdit/PassiveEdit/PassiveEdit';
+import { CheckboxGroupProps } from 'antd/es/checkbox';
 
-interface WindowThermalTransmittanceProps {
-  title: string;
-}
+const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
+  { label: '평판형', value: 'Apple', className: 'label-1' },
+  { label: '진공관형', value: 'Pear', className: 'label-2' },
+];
 
-const WindowThermalTransmittance = ({
-  title,
-}: WindowThermalTransmittanceProps) => {
+const SolarDomesticHotWaterSystem = (props: any) => {
   const [value, setValue] = useState([0, 26, 37]);
 
   const start = value[0] / 100;
@@ -31,9 +40,33 @@ const WindowThermalTransmittance = ({
 
   return (
     <div className={styles.editWrap}>
-      <Flex justify="space-between" align={'center'}>
-        <span className={styles.editTitle}>{title}</span>
+      <Flex
+        justify="space-between"
+        align={'center'}
+        style={{ position: 'relative' }}
+      >
+        <span className={styles.editTitle}>태양열 급탕 시스템</span>
         <Rate disabled defaultValue={3} count={3} />
+        <div className={styles.fuelCellRadio}>
+          <ConfigProvider
+            theme={{
+              components: {
+                Radio: {
+                  colorPrimary: '#00B2A9',
+                  fontSize: 10,
+                },
+              },
+            }}
+          >
+            <Radio.Group
+              options={optionsWithDisabled}
+              optionType="button"
+              value={'Apple'}
+              buttonStyle="solid"
+              size="small"
+            />
+          </ConfigProvider>
+        </div>
       </Flex>
       <Flex className={styles.sliderWrapper}>
         <div>
@@ -67,6 +100,19 @@ const WindowThermalTransmittance = ({
             <span>0.24</span>개선
           </div>
         </Flex>
+        <div className={styles.positionSelect}>
+          <span>방위</span>
+          <Select
+            defaultValue="lucy"
+            style={{ width: 120 }}
+            options={[
+              { value: 'jack', label: '남동' },
+              { value: 'lucy', label: '남서' },
+              { value: 'Yiminghe', label: '북서' },
+              { value: 'disabled', label: '북동' },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
@@ -85,4 +131,4 @@ const getGradientColor = (percentage: number) => {
   return `rgb(${midColor.join(',')})`;
 };
 
-export default WindowThermalTransmittance;
+export default SolarDomesticHotWaterSystem;

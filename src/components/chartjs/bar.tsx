@@ -16,7 +16,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 export const options = {
@@ -38,23 +38,25 @@ export const options = {
 };
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
+const getRandomNumber = () => {
+  return Math.floor(Math.random() * 300) + 1;
+};
 export const data = {
   labels,
   datasets: [
     {
       label: 'Dataset 1',
-      data: labels.map(() => 1000),
+      data: labels.map(() => getRandomNumber()),
       backgroundColor: 'rgb(255, 99, 132)',
     },
     {
       label: 'Dataset 2',
-      data: labels.map(() => 2000),
+      data: labels.map(() => getRandomNumber()),
       backgroundColor: 'rgb(75, 192, 192)',
     },
     {
       label: 'Dataset 3',
-      data: labels.map(() => 3000),
+      data: labels.map(() => getRandomNumber()),
       backgroundColor: 'rgb(53, 162, 235)',
     },
   ],

@@ -4,6 +4,8 @@ import styles from './StandardModelPerformanceEdit.module.scss';
 import { Flex, Tabs } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import PassiveEdit from '@/components/main/RightContents/StandardModelPerformanceEdit/PassiveEdit/PassiveEdit';
+import ActiveEdit from '@/components/main/RightContents/StandardModelPerformanceEdit/ActiveEdit/ActiveEdit';
+import RenewableEdit from '@/components/main/RightContents/StandardModelPerformanceEdit/RenewableEdit/RenewableEdit';
 
 const StandardModelPerformanceEdit = (props: any) => {
   return (
@@ -13,7 +15,7 @@ const StandardModelPerformanceEdit = (props: any) => {
       size="large"
       items={[
         {
-          label: `ZEB 의무 등급`,
+          label: `ZEB 성능 조합`,
           key: '1',
           children: (
             <div className={styles.standardModelPerformanceEdit}>
@@ -33,6 +35,8 @@ const StandardModelPerformanceEdit = (props: any) => {
                     가능합니다.
                   </span>
                   <PassiveEdit />
+                  <ActiveEdit />
+                  <RenewableEdit />
                 </div>
               </div>
             </div>

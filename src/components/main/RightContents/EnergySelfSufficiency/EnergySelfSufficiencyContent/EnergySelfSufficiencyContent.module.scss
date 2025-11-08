@@ -1,21 +1,21 @@
 // EnergySelfSufficiencyContent에서 사용하는 스타일 복사
-.mandatoryGradeContainer{
-  background: #FFFFFF;
+.mandatoryGradeContainer {
+  background: #ffffff;
   padding: 41px 35px;
   box-sizing: border-box;
   mix-blend-mode: normal;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
   border-radius: 0px 12px 12px 12px;
 
-  .mandatoryGrade{
-    border: 1px solid #CECECE;
+  .mandatoryGrade {
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     padding: 42px 34px;
     box-sizing: border-box;
   }
 
-  .mandatoryGradeHeader{
+  .mandatoryGradeHeader {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -30,16 +30,16 @@
     }
   }
 
-  .chartContainer{
+  .chartContainer {
     margin-top: 52px;
   }
 
-  .gradeWrap{
+  .gradeWrap {
     margin-top: 141.81px;
   }
 
-  .gradeBox{
-    border: 1px solid #CECECE;
+  .gradeBox {
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     width: 229px;
@@ -48,135 +48,135 @@
     box-sizing: border-box;
   }
 
-  .gradePieWrap{
+  .gradePieWrap {
     position: relative;
   }
 
-  .gradePie{
+  .gradePie {
     position: relative;
-    border: 1px solid #CECECE;
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     width: 229px;
     height: 400px;
   }
 
-  .gradeLabel{
-    > div{
+  .gradeLabel {
+    > div {
       text-align: center;
-      span:first-child{
+      span:first-child {
+        font-weight: bold;
         font-size: 17px;
-        color: #4E4E4E;
+        color: #4e4e4e;
       }
-      span:last-child{
-        font-size: 14px;
-        color: #7E7E7E;
+      span:last-child {
+        font-size: 12px;
+        color: #7e7e7e;
       }
     }
   }
 
-  .gradeValue{
+  .gradeValue {
     text-align: center;
   }
 
-  .gradeFlex{
+  .gradeFlex {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
   }
 
-  .gradeFlexText{
+  .gradeFlexText {
     padding: 30px 16px 0 24px;
-    > span{
+    > span {
       font-size: 14px;
-      color: #7E7E7E;
+      color: #7e7e7e;
     }
-    > span:nth-child(2){
+    > span:nth-child(2) {
       font-size: 19px;
-      color: #2A4E51;
+      color: #2a4e51;
       font-weight: bold;
-      > span{
+      > span {
         font-size: 14px;
-        color: #7E7E7E;
+        color: #7e7e7e;
         font-weight: normal;
-        margin-left:5px;
+        margin-left: 5px;
       }
     }
   }
 
-  .gradeText{
+  .gradeText {
     display: block;
     font-weight: bold;
-    font-size:29px;
-    color: #2A4E51;
+    font-size: 29px;
+    color: #2a4e51;
   }
 
-  .won{
+  .won {
     font-size: 14px;
-    color: #7E7E7E;
+    color: #7e7e7e;
     margin-left: 2px;
   }
 
-  .zebGrade{
+  .zebGrade {
     border-radius: 18px;
     background: #007676;
-    padding:1.5px 14px;
-    color:#fff;
+    padding: 1.5px 14px;
+    color: #fff;
     line-height: 28.95px;
   }
 
-  .zebGradeNum{
+  .zebGradeNum {
     color: #007676;
     font-weight: bold;
-    font-size:19px;
+    font-size: 19px;
     margin-left: 5px;
   }
 
-  .zebGradeText{
-    margin:16px 0;
+  .zebGradeText {
+    margin: 16px 0;
   }
 
-  .creatorText{
-    color: #7E7E7E;
-    font-size:14px;
+  .creatorText {
+    color: #7e7e7e;
+    font-size: 14px;
     margin-top: 15px;
-    > div{
-      > span{
-        color: #2A4E51;
+    > div {
+      > span {
+        color: #2a4e51;
         font-size: 19px;
         font-weight: bold;
       }
     }
   }
 
-  .zebGradeTextSub{
-    margin-top:3px;
-    color: #7E7E7E;
+  .zebGradeTextSub {
+    margin-top: 3px;
+    color: #7e7e7e;
     font-size: 14px;
     align-items: center;
-    gap:5px;
-    > span:nth-child(2){
+    gap: 5px;
+    > span:nth-child(2) {
       text-align: right;
       flex: 1;
       font-size: 19px;
-      color: #2A4E51;
+      color: #2a4e51;
       font-weight: bold;
     }
   }
 
-  .divider{
+  .divider {
     position: absolute;
     bottom: -55px;
   }
 
-  .descriptionText{
+  .descriptionText {
     position: absolute;
     font-size: 17px;
-    color: #7E7E7E;
+    color: #7e7e7e;
     text-align: center;
     width: 100%;
     bottom: -100px;
   }
 }
-

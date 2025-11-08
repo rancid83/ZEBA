@@ -26,8 +26,8 @@ const EnergySelfSufficiencyContent = (props: any) => {
           <div className={styles.mandatoryGrade}>
             <div className={styles.mandatoryGradeHeader}>
               <img
-                src='/assets/images/icon/icon-mark.png'
-                alt='icon'
+                src="/assets/images/icon/icon-mark.png"
+                alt="icon"
                 className={styles.icon}
               />
               <span className={styles.title}>
@@ -41,20 +41,28 @@ const EnergySelfSufficiencyContent = (props: any) => {
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
                   >
-                    <Radio.Button value='won'>금액[만원]</Radio.Button>
-                    <Radio.Button value='percent'>구성비[%]</Radio.Button>
+                    <Radio.Button value="won">금액[만원]</Radio.Button>
+                    <Radio.Button value="percent">구성비[%]</Radio.Button>
                   </Radio.Group>
                 </div>
               )}
             </div>
             <div className={styles.chartContainer}>
               {isEnergyTap ? (
-                <div><BarChart/></div>
+                <div>
+                  <BarChart />
+                </div>
               ) : size === 'won' ? (
-                <div>원그래프</div>
+                <div>
+                  <BarChart />
+                </div>
               ) : (
                 <>
-                  <Flex justify={'center'} gap={35} className={styles.gradePieWrap}>
+                  <Flex
+                    justify={'center'}
+                    gap={35}
+                    className={styles.gradePieWrap}
+                  >
                     {GradeDataPercent.map((item) => {
                       return (
                         <div className={styles.gradePie}>
@@ -65,7 +73,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                             {item.label}
                           </div>
                           <div className={styles.gradeFlex}>
-                            <DoughnutChart/>
+                            <DoughnutChart />
                           </div>
                           <Flex
                             className={styles.gradeFlexText}
@@ -74,9 +82,9 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           >
                             <span>합계 : </span>
                             <span>
-                            {item.totalMoney}
+                              {item.totalMoney}
                               <span>만원</span>
-                          </span>
+                            </span>
                           </Flex>
                           <div className={styles.descriptionText}>
                             {item.description}
@@ -84,10 +92,9 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         </div>
                       );
                     })}
-                    <Divider  className={styles.divider}/>
+                    <Divider className={styles.divider} />
                   </Flex>
                 </>
-
               )}
             </div>
             <Flex

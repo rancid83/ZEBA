@@ -3,8 +3,7 @@
 import { ConfigProvider } from 'antd';
 import MandatoryZEBLevel from './MandatoryZEBLevel/MandatoryZEBLevel';
 import EnergySelfSufficiency from './EnergySelfSufficiency/EnergySelfSufficiency';
-import StandardModelPerformanceEdit
-  from '@/components/main/RightContents/StandardModelPerformanceEdit/StandardModelPerformanceEdit';
+import StandardModelPerformanceEdit from '@/components/main/RightContents/StandardModelPerformanceEdit/StandardModelPerformanceEdit';
 
 const SectionRight = () => {
   return (
@@ -19,9 +18,9 @@ const SectionRight = () => {
         },
       }}
     >
-      <StandardModelPerformanceEdit/>
       <MandatoryZEBLevel />
       <EnergySelfSufficiency />
+      <StandardModelPerformanceEdit />
     </ConfigProvider>
   );
 };
