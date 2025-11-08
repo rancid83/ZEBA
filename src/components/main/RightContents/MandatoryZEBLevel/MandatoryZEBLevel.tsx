@@ -1,6 +1,7 @@
 import { Button, Flex, Form, Input, InputNumber, Select, Tabs } from 'antd';
 import styles from './mandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';
+import GoogleMaps from '@/components/main/RightContents/MandatoryZEBLevel/Google.Maps';
 
 const MandatoryZEBLevel = (props: any) => {
   return (
@@ -46,7 +47,7 @@ const MandatoryGrade = () => {
             </div>
             <Flex gap={40}>
               <div className={styles.mapContainer}>
-                구글맵
+                <GoogleMaps/>
               </div>
               <div className={styles.addressContainer}>
                 <div className={styles.addressSection}>
