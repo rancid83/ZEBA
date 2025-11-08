@@ -1,0 +1,258 @@
+// 애니메이션 키프레임
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// 애니메이션 클래스
+.animateFadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animateFadeInLeft {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animateFadeInRight {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.animateFadeInDown {
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.animateScaleIn {
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+.animateDelay1 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.animateDelay2 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.animateDelay3 {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.animateDelay4 {
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+// 레이아웃 스타일
+.content {
+  background-color: white;
+  min-height: 100vh;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0;
+  height: 80px;
+  box-shadow: none;
+  border-bottom: none;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+}
+
+.logo {
+  height: 40px;
+}
+
+.menu {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.menuItem {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+}
+
+.appStoreIcon {
+  height: 40px;
+  cursor: pointer;
+}
+
+.mainContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contentFlex {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.textArea {
+  flex: 1;
+  max-width: 700px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.descriptionSpan {
+  display: block;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.buttonContainer {
+  margin-bottom: 160px;
+}
+
+.primaryButton {
+  height: 56px;
+  padding: 0 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.secondaryButton {
+  height: 56px;
+  padding: 0 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  color: #6366f1;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.imageArea {
+  width: 471px;
+  flex-shrink: 0;
+}
+
+.imageContainer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.carouselContainer {
+  width: 471px;
+  height: 471px;
+  margin: 0 auto;
+}
+
+.carousel {
+  width: 471px;
+  height: 471px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.carouselSlide {
+  height: 471px;
+}
+
+.carouselImage {
+  width: 471px;
+  height: 471px;
+  object-fit: cover;
+  display: block;
+}
+
+.modalVideo {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+

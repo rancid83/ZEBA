@@ -1,0 +1,114 @@
+// 1728px 기준 중앙 배치 flex 레이아웃
+.mainContent {
+  background: #f8f9fa;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  width: 100%;
+}
+
+.contentContainer {
+  width: 1728px;
+  max-width: 100%;
+  display: flex;
+  gap: 98px;
+  margin: 0 auto;
+}
+
+.leftSection {
+  width: 251px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  padding: 24px;
+  height: fit-content;
+}
+
+.rightSection {
+  width: 1255px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  padding: 24px;
+  height: fit-content;
+}
+
+// Header 스타일
+.styledHeader {
+  background: linear-gradient(135deg, #6C2BD9 0%, #8B47E6 100%);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(108, 43, 217, 0.15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 92px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navItem {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.rightHeaderSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.iconButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+  }
+
+  &:focus {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+  }
+}
+
+.mainLayout {
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+}
+
