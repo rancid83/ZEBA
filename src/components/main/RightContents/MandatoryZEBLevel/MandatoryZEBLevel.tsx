@@ -1,14 +1,14 @@
 import { Button, Flex, Form, Input, InputNumber, Select, Tabs } from 'antd';
-import styles from './mandatoryZEBLevel.module.scss';
+import styles from './MandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';
 import GoogleMaps from '@/components/main/RightContents/MandatoryZEBLevel/Google.Maps';
 
 const MandatoryZEBLevel = (props: any) => {
   return (
     <Tabs
-      defaultActiveKey='1'
-      type='card'
-      size='large'
+      defaultActiveKey="1"
+      type="card"
+      size="large"
       items={[
         {
           label: `ZEB 의무 등급`,
@@ -29,8 +29,8 @@ const MandatoryGrade = () => {
           <div className={styles.mandatoryGrade}>
             <div className={styles.mandatoryGradeHeader}>
               <img
-                src='/assets/images/icon/icon-mark.png'
-                alt='icon'
+                src="/assets/images/icon/icon-mark.png"
+                alt="icon"
                 className={styles.icon}
               />
               <span className={styles.title}>건축물 개요</span>
@@ -47,27 +47,27 @@ const MandatoryGrade = () => {
             </div>
             <Flex gap={40}>
               <div className={styles.mapContainer}>
-                <GoogleMaps/>
+                <GoogleMaps />
               </div>
               <div className={styles.addressContainer}>
                 <div className={styles.addressSection}>
                   <div className={styles.addressTitle}>주소</div>
                   <div className={styles.inputGroup}>
                     <div className={styles.inputLabel}>도로명</div>
-                    <Form.Item name='roadName' style={{ flex: 1, margin: 0 }}>
+                    <Form.Item name="roadName" style={{ flex: 1, margin: 0 }}>
                       <Input
                         size={'small'}
-                        placeholder='인천광역시 서구 이음로 65'
+                        placeholder="인천광역시 서구 이음로 65"
                         className={styles.addressInput}
                       />
                     </Form.Item>
                   </div>
                   <div className={styles.inputGroup}>
                     <div className={styles.inputLabel}>지번</div>
-                    <Form.Item name='lotNumber' style={{ flex: 1, margin: 0 }}>
+                    <Form.Item name="lotNumber" style={{ flex: 1, margin: 0 }}>
                       <Input
                         size={'small'}
-                        placeholder='인천광역시 서구 원당동 1024'
+                        placeholder="인천광역시 서구 원당동 1024"
                         className={styles.addressInput}
                       />
                     </Form.Item>
@@ -79,13 +79,13 @@ const MandatoryGrade = () => {
                     <div className={styles.infoRow}>
                       <div className={styles.infoLabel}>구분 1</div>
                       <Form.Item
-                        name='category1'
+                        name="category1"
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Select
-                          placeholder='교육시설'
+                          placeholder="교육시설"
                           className={styles.infoSelect}
-                          size='small'
+                          size="small"
                           options={[
                             { value: 'educational', label: '교육시설' },
                             { value: 'residential', label: '주거시설' },
@@ -98,13 +98,13 @@ const MandatoryGrade = () => {
                     <div className={styles.infoRow}>
                       <div className={styles.infoLabel}>구분 2</div>
                       <Form.Item
-                        name='category2'
+                        name="category2"
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Select
-                          placeholder='초중고'
+                          placeholder="초중고"
                           className={styles.infoSelect}
-                          size='small'
+                          size="small"
                           options={[
                             { value: 'elementary', label: '초중고' },
                             { value: 'university', label: '대학교' },
@@ -120,13 +120,13 @@ const MandatoryGrade = () => {
                     <div className={styles.infoRow}>
                       <div className={styles.infoLabel}>연면적</div>
                       <Form.Item
-                        name='totalArea'
+                        name="totalArea"
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Input
-                          placeholder='17,000'
+                          placeholder="17,000"
                           className={styles.infoInput}
-                          size='small'
+                          size="small"
                         />
                       </Form.Item>
                       <span className={styles.unitText}>㎡</span>
@@ -134,13 +134,13 @@ const MandatoryGrade = () => {
                     <div className={styles.infoRow}>
                       <div className={styles.infoLabel}>건축면적</div>
                       <Form.Item
-                        name='buildingArea'
+                        name="buildingArea"
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Input
-                          placeholder='3,400'
+                          placeholder="3,400"
                           className={styles.infoInput}
-                          size='small'
+                          size="small"
                         />
                       </Form.Item>
                       <span className={styles.unitText}>㎡</span>
@@ -152,11 +152,11 @@ const MandatoryGrade = () => {
                     <div className={styles.infoRow}>
                       <div className={styles.infoLabel}>지상 층수</div>
                       <Form.Item
-                        name='aboveGroundFloors'
+                        name="aboveGroundFloors"
                         style={{ flex: 1, margin: 0 }}
                       >
                         <InputNumber
-                          placeholder='5'
+                          placeholder="5"
                           className={styles.infoInput}
                         />
                       </Form.Item>

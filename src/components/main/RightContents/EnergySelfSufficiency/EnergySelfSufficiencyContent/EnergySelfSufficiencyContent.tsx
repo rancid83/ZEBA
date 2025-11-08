@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Flex, Form, Radio } from 'antd';
+import { Divider, Flex, Form, Radio } from 'antd';
 import styles from './EnergySelfSufficiencyContent.module.scss';
 import { GradeDataPercent } from './data/GradeDataPercent';
 import { GradeData } from './data/GradeData';
 import { GradeBuildingData } from './data/GradeBuildingData';
+import { BarChart } from '@/components/chartjs/bar';
+import { Doughnut } from 'react-chartjs-2';
+import { DoughnutChart } from '@/components/chartjs/doughnut';
 
 const EnergySelfSufficiencyContent = (props: any) => {
   const [size, setSize] = useState('won'); // default is 'middle'
@@ -46,38 +49,45 @@ const EnergySelfSufficiencyContent = (props: any) => {
             </div>
             <div className={styles.chartContainer}>
               {isEnergyTap ? (
-                <div>막대</div>
+                <div><BarChart/></div>
               ) : size === 'won' ? (
                 <div>원그래프</div>
               ) : (
-                <Flex justify={'center'} gap={10}>
-                  {GradeDataPercent.map((item) => {
-                    return (
-                      <div className={styles.gradePie}>
-                        <div
-                          className={styles.gradeLabel}
-                          style={{ marginTop: '21px' }}
-                        >
-                          {item.label}
-                        </div>
-                        <div className={styles.gradeFlex}>
-                          원그래프
-                        </div>
-                        <Flex
-                          className={styles.gradeFlexText}
-                          justify={'space-between'}
-                          align={'center'}
-                        >
-                          <span>합계 : </span>
-                          <span>
+                <>
+                  <Flex justify={'center'} gap={35} className={styles.gradePieWrap}>
+                    {GradeDataPercent.map((item) => {
+                      return (
+                        <div className={styles.gradePie}>
+                          <div
+                            className={styles.gradeLabel}
+                            style={{ marginTop: '21px' }}
+                          >
+                            {item.label}
+                          </div>
+                          <div className={styles.gradeFlex}>
+                            <DoughnutChart/>
+                          </div>
+                          <Flex
+                            className={styles.gradeFlexText}
+                            justify={'space-between'}
+                            align={'center'}
+                          >
+                            <span>합계 : </span>
+                            <span>
                             {item.totalMoney}
-                            <span>만원</span>
+                              <span>만원</span>
                           </span>
-                        </Flex>
-                      </div>
-                    );
-                  })}
-                </Flex>
+                          </Flex>
+                          <div className={styles.descriptionText}>
+                            {item.description}
+                          </div>
+                        </div>
+                      );
+                    })}
+                    <Divider  className={styles.divider}/>
+                  </Flex>
+                </>
+
               )}
             </div>
             <Flex

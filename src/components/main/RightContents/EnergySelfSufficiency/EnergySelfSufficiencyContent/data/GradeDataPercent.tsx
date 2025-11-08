@@ -15,6 +15,7 @@ export const GradeDataPercent = [
       { name: 'Group C', value: 16.9 },
     ],
     totalMoney: '387,938',
+    description: <span>지자체 에너지 절약<br/>법규 기준</span>,
   },
   {
     label: (
@@ -30,6 +31,7 @@ export const GradeDataPercent = [
       { name: 'Group C', value: 16.9 },
     ],
     totalMoney: '387,938',
+    description: <span>[STEP-1]<br/>의무 등급</span>,
   },
   {
     label: (
@@ -41,6 +43,7 @@ export const GradeDataPercent = [
     ),
     data: [],
     totalMoney: '-',
+    description: <span>[STEP-2]<br/>목표 등급</span>,
   },
   {
     label: (
@@ -52,5 +55,6 @@ export const GradeDataPercent = [
     ),
     data: [],
     totalMoney: '-',
+    description: <span>[STEP-3]<br/>성능 조합 등급</span>,
   },
 ];
