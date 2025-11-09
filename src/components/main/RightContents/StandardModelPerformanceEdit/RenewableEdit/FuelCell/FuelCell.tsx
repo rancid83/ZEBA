@@ -51,24 +51,13 @@ const FuelCell = (props: any) => {
         <span className={styles.editTitle}>연료전지</span>
         <Rate disabled defaultValue={3} count={3} />
         <div className={styles.fuelCellRadio}>
-          <ConfigProvider
-            theme={{
-              components: {
-                Radio: {
-                  colorPrimary: '#00B2A9',
-                  fontSize: 10,
-                },
-              },
-            }}
-          >
-            <Radio.Group
-              options={optionsWithDisabled}
-              optionType="button"
-              value={'Apple'}
-              buttonStyle="solid"
-              size="small"
-            />
-          </ConfigProvider>
+          <Radio.Group
+            options={optionsWithDisabled}
+            optionType="button"
+            value={'Apple'}
+            buttonStyle="solid"
+            size="small"
+          />
         </div>
       </Flex>
 

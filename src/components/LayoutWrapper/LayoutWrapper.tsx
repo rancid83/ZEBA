@@ -20,6 +20,7 @@ const LayoutWrapper = (props: any) => {
           colorPrimary: '#007676',
           colorInfo: '#007676',
           fontSize: 12,
+          fontFamily: 'Inter, sans-serif',
         },
       }}
     >

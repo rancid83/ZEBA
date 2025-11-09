@@ -11,20 +11,10 @@ import { useStore } from '@/store';
 const SectionRight = () => {
   const { pageStep } = useStore();
   return (
-    <ConfigProvider
-      theme={{
-        token: {},
-        components: {
-          Tabs: {
-            horizontalMargin: '0',
-          },
-          Button: {},
-        },
-      }}
-    >
+    <>
       {pageStep < 2 ? <MandatoryZEBLevel /> : <StandardModelPerformanceEdit />}
       <EnergySelfSufficiency />
-    </ConfigProvider>
+    </>
   );
 };
 

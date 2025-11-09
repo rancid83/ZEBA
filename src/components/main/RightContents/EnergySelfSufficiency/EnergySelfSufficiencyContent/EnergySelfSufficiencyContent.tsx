@@ -153,7 +153,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         </Flex>
                         <div
                           className={styles.creatorText}
-                          style={{ marginTop: '35px' }}
+                          style={{ marginTop: '40px' }}
                         >
                           <Flex justify={'left'}>1차 에너지 생산량</Flex>
                           <Flex justify={'right'} align={'flex-end'} gap={5}>
