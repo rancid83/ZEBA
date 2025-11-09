@@ -12,7 +12,7 @@
   width: 1728px;
   max-width: 100%;
   display: flex;
-  gap: 98px;
+  /*gap: 98px;*/
   margin: 0 auto;
 }
 
@@ -60,6 +60,7 @@
   display: flex;
   align-items: center;
   gap: 32px;
+  min-width: 284px;
 }
 
 .navItem {
@@ -81,7 +82,7 @@
 }
 
 .iconButton {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   border: none;
   color: white;
   width: 40px;
