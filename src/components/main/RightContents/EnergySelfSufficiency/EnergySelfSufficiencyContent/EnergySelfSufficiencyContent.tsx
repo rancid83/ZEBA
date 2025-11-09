@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Divider, Flex, Form, Radio } from 'antd';
 import styles from './EnergySelfSufficiencyContent.module.scss';
-import { GradeDataPercent } from './data/GradeDataPercent';
-import { GradeData } from './data/GradeData';
-import { GradeBuildingData } from './data/GradeBuildingData';
+
 import { BarChart } from '@/components/chartjs/bar';
 import { Doughnut } from 'react-chartjs-2';
 import { DoughnutChart } from '@/components/chartjs/doughnut';
+import { useStore } from '@/store';
 
 const EnergySelfSufficiencyContent = (props: any) => {
   const [size, setSize] = useState('won'); // default is 'middle'
@@ -14,9 +13,16 @@ const EnergySelfSufficiencyContent = (props: any) => {
   const { tap } = props;
   const isEnergyTap = tap === 1;
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const { gradeData, gradeBuildingData, gradeDataPercent } = useStore();
 
   const onPieEnter = (data: any, index: number) => {
     setActiveIndex(index);
+  };
+
+  const numberWithCommas = (value: number | string) => {
+    const num = typeof value === 'number' ? value : Number(value);
+    if (isNaN(num)) return '';
+    return num.toLocaleString('ko-KR');
   };
 
   return (
@@ -50,11 +56,14 @@ const EnergySelfSufficiencyContent = (props: any) => {
             <div className={styles.chartContainer}>
               {isEnergyTap ? (
                 <div>
-                  <BarChart />
+                  <BarChart isEnergyTap={isEnergyTap} gradeData={gradeData} />
                 </div>
               ) : size === 'won' ? (
                 <div>
-                  <BarChart />
+                  <BarChart
+                    isEnergyTap={isEnergyTap}
+                    gradeData={gradeBuildingData}
+                  />
                 </div>
               ) : (
                 <>
@@ -63,17 +72,24 @@ const EnergySelfSufficiencyContent = (props: any) => {
                     gap={35}
                     className={styles.gradePieWrap}
                   >
-                    {GradeDataPercent.map((item) => {
+                    {gradeDataPercent.map((item) => {
                       return (
                         <div className={styles.gradePie}>
                           <div
                             className={styles.gradeLabel}
                             style={{ marginTop: '21px' }}
                           >
-                            {item.label}
+                            <div>
+                              <span>{item.label.title}</span>
+                              <br />
+                              <span>{item.label.subTitle}</span>
+                            </div>
                           </div>
                           <div className={styles.gradeFlex}>
-                            <DoughnutChart />
+                            <DoughnutChart
+                              isEnergyTap={isEnergyTap}
+                              gradeData={item}
+                            />
                           </div>
                           <Flex
                             className={styles.gradeFlexText}
@@ -82,12 +98,18 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           >
                             <span>합계 : </span>
                             <span>
-                              {item.totalMoney}
+                              {item.totalMoney
+                                ? numberWithCommas(item.totalMoney)
+                                : '-'}
                               <span>만원</span>
                             </span>
                           </Flex>
                           <div className={styles.descriptionText}>
-                            {item.description}
+                            <div>
+                              <span>{item.description.description}</span>
+                              <br />
+                              <span>{item.description.subDescription}</span>
+                            </div>
                           </div>
                         </div>
                       );
@@ -104,11 +126,21 @@ const EnergySelfSufficiencyContent = (props: any) => {
               className={styles.gradeWrap}
             >
               {isEnergyTap
-                ? GradeData.map((item, index) => (
+                ? gradeData.map((item, index) => (
                     <div className={styles.gradeBox} key={index}>
-                      <div className={styles.gradeLabel}>{item.label}</div>
+                      <div className={styles.gradeLabel}>
+                        {' '}
+                        <div>
+                          <span>{item.label.title}</span>
+                          <br />
+                          <span>{item.label.subTitle}</span>
+                        </div>
+                      </div>
                       <div className={styles.gradeValue}>
-                        <span className={styles.gradeText}>{item.grade}</span>
+                        <span className={styles.gradeText}>
+                          {item.grade ? item.grade : '-'}
+                          {item.grade ? <span>%</span> : ''}
+                        </span>
                         <Flex
                           className={styles.zebGradeText}
                           justify={'space-between'}
@@ -116,7 +148,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           <span className={styles.zebGrade}>ZEB 등급</span>
                           {''}
                           <span className={styles.zebGradeNum}>
-                            {item.zebGrade} 등급
+                            {item.zebGrade ? item.zebGrade : '-'} 등급
                           </span>
                         </Flex>
                         <div
@@ -125,24 +157,34 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         >
                           <Flex justify={'left'}>1차 에너지 생산량</Flex>
                           <Flex justify={'right'} align={'flex-end'} gap={5}>
-                            <span>{item.creator}</span> kWh/㎡
+                            <span>{item.creator ? item.creator : '-'}</span>{' '}
+                            kWh/㎡
                           </Flex>
                         </div>
                         <div className={styles.creatorText}>
                           <Flex justify={'left'}>1차 에너지 소요량</Flex>
                           <Flex justify={'right'} align={'flex-end'} gap={5}>
-                            <span>{item.consume}</span> kWh/㎡
+                            <span>{item.consume ? item.consume : '-'}</span>{' '}
+                            kWh/㎡
                           </Flex>
                         </div>
                       </div>
                     </div>
                   ))
-                : GradeBuildingData.map((item, index) => (
+                : gradeBuildingData.map((item, index) => (
                     <div className={styles.gradeBox} key={index}>
-                      <div className={styles.gradeLabel}>{item.label}</div>
+                      <div className={styles.gradeLabel}>
+                        <div>
+                          <span>{item.label.title}</span>
+                          <br />
+                          <span>{item.label.subTitle}</span>
+                        </div>
+                      </div>
                       <div className={styles.gradeValue}>
                         <Flex align={'center'} justify={'center'}>
-                          <span className={styles.gradeText}>{item.grade}</span>
+                          <span className={styles.gradeText}>
+                            {numberWithCommas(item.grade)}
+                          </span>
                           <span
                             className={styles.won}
                             style={{ marginTop: '9px' }}
@@ -165,7 +207,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           className={styles.zebGradeTextSub}
                         >
                           <span>신재생 : </span>
-                          <span>{item.renewable}</span>
+                          <span>{numberWithCommas(item.renewable)}</span>
                           <span className={styles.won}>만원</span>
                         </Flex>
                         <Flex
@@ -173,7 +215,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           className={styles.zebGradeTextSub}
                         >
                           <span>액티브 : </span>
-                          <span>{item.active}</span>
+                          <span>{numberWithCommas(item.active)}</span>
                           <span className={styles.won}>만원</span>
                         </Flex>
                         <Flex
@@ -181,7 +223,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           className={styles.zebGradeTextSub}
                         >
                           <span>패시브 : </span>
-                          <span>{item.passive}</span>
+                          <span>{numberWithCommas(item.passive)}</span>
                           <span className={styles.won}>만원</span>
                         </Flex>
                         <Flex
@@ -189,7 +231,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           className={styles.zebGradeTextSub}
                         >
                           <span>증액 : </span>
-                          <span>{item.increase}</span>
+                          <span>{numberWithCommas(item.increase)}</span>
                           <span className={styles.won}>만원</span>
                         </Flex>
                         <Flex
@@ -197,7 +239,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           className={styles.zebGradeTextSub}
                         >
                           <span>혜택 : </span>
-                          <span>{item.benefit}</span>
+                          <span>{numberWithCommas(item.benefit)}</span>
                           <span className={styles.won}>만원</span>
                         </Flex>
                       </div>

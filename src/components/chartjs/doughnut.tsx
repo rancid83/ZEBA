@@ -1,29 +1,54 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-  labels: ['Red', 'Blue', 'Yellow'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)'
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
+interface ChartData {
+  labels: string[];
+  datasets: {
+    data: number[];
+    backgroundColor: string[];
+    borderColor: string[];
+    borderWidth: number;
+  }[];
+}
 
-export function DoughnutChart() {
+export function DoughnutChart(props: any) {
+  const [data, setData] = useState<ChartData>({
+    labels: ['액티브', '패시브', '신재생'],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: [
+          'rgba(29, 181, 190, 0.79)',
+          'rgba(117, 227, 234, 0.79)',
+          'rgba(213, 250, 252, 0.79)',
+        ],
+        borderColor: ['rgba(255, 255, 255, 1)'],
+        borderWidth: 0,
+      },
+    ],
+  });
+
+  const { isEnergyTap, gradeData } = props;
+
+  useEffect(() => {
+    const dataSet: ChartData = {
+      ...data,
+      datasets: [...data.datasets],
+    };
+
+    if (gradeData) {
+      dataSet.datasets[0].data = [
+        Number(gradeData.active) || 0,
+        Number(gradeData.passive) || 0,
+        Number(gradeData.renewable) || 0,
+      ];
+    }
+
+    setData(dataSet);
+  }, [isEnergyTap, gradeData]);
+
   return <Doughnut data={data} />;
 }

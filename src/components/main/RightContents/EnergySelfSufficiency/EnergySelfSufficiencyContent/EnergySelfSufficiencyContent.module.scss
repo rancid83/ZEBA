@@ -111,6 +111,12 @@
     font-weight: bold;
     font-size: 29px;
     color: #2a4e51;
+    > span {
+      font-size: 18px;
+      color: #7e7e7e;
+      font-weight: normal;
+      margin-left: 3px;
+    }
   }
 
   .won {
