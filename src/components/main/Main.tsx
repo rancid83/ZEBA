@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Button, Steps } from 'antd';
 import {
   UserOutlined,

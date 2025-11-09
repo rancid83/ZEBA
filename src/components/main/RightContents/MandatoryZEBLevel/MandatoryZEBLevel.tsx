@@ -2,6 +2,7 @@ import { Button, Flex, Form, Input, InputNumber, Select, Tabs } from 'antd';
 import styles from './MandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';
 import GoogleMaps from '@/components/main/RightContents/MandatoryZEBLevel/Google.Maps';
+import { useStore } from '@/store';
 
 const MandatoryZEBLevel = (props: any) => {
   return (
@@ -22,6 +23,15 @@ const MandatoryZEBLevel = (props: any) => {
 };
 
 const MandatoryGrade = () => {
+  const { setLoading } = useStore();
+
+  const handleRequestAnalysis = () => {
+    setLoading(true);
+    // Simulate analysis request
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
   return (
     <>
       <Form>
@@ -167,7 +177,11 @@ const MandatoryGrade = () => {
             </Flex>
           </div>
           <Flex justify={'right'} className={styles.requestButton}>
-            <Button type={'primary'} icon={<DingtalkOutlined />}>
+            <Button
+              type={'primary'}
+              icon={<DingtalkOutlined />}
+              onClick={handleRequestAnalysis}
+            >
               ZEB [의무 등급] 분석 요청
             </Button>
           </Flex>

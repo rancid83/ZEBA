@@ -1,0 +1,66 @@
+.loadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #20d5dd; /* 터콰이즈 배경색 */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 3rem;
+  box-sizing: border-box;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4rem;
+  bottom: 5rem;
+  left: 5rem;
+}
+
+.zebaTitle {
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 0.1em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 600;
+  max-width: 500px;
+}
+
+.address {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+.loadingContainerSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  :global(.ant-spin .ant-spin-dot i) {
+    background-color: white;
+  }
+}
