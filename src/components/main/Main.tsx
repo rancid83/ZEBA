@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Layout, Button, Steps } from 'antd';
 import {
   UserOutlined,
@@ -10,10 +10,38 @@ import {
 } from '@ant-design/icons';
 import styles from './Main.module.scss';
 import SectionRight from '@/components/main/RightContents/RightContents';
+import { useStore } from '@/store';
 
 const { Header, Content } = Layout;
 
 const MainPage = () => {
+  const [current, setCurrent] = useState(0);
+
+  const {
+    setPageStep,
+    pageStep,
+    updateGradeBuildingData,
+    updateGradeDataPercent,
+  } = useStore();
+
+  const onChange = (value: number) => {
+    setCurrent(value);
+    setPageStep(value);
+
+    switch (value) {
+      case 0:
+        break;
+      case 1:
+        // Perform actions for step 1
+        break;
+      case 2:
+        // Perform actions for step 2
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <Layout>
       <Header className={styles.styledHeader}>
@@ -51,21 +79,21 @@ const MainPage = () => {
           <div className={styles.contentContainer}>
             <div className={styles.leftSection}>
               <Steps
-                progressDot
+                current={current}
+                onChange={onChange}
                 direction="vertical"
-                current={1}
                 items={[
                   {
-                    title: 'Finished',
-                    description: 'This is a description.',
+                    title: '의무 등급 분석',
+                    description: '[ AI 성능 분석 ]',
                   },
                   {
-                    title: 'In Progress',
-                    description: 'This is a description.',
+                    title: '표준 등급 분석',
+                    description: '[ AI 분석 ]',
                   },
                   {
-                    title: 'Waiting',
-                    description: 'This is a description.',
+                    title: '성능 조합 등급 분석',
+                    description: '[ AI 성능 분석 ]',
                   },
                 ]}
               />

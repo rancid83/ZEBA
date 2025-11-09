@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import styles from './LoadingAnalyzing.module.scss';
-import { Spin } from 'antd';
+import { Flex, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const LoadingAnalyzing = () => {
@@ -28,9 +28,15 @@ const LoadingAnalyzing = () => {
           </p>
         </div>
       </div>
-      <div className={styles.loadingContainerSpinner}>
+      <Flex
+        className={styles.loadingContainerSpinner}
+        justify={'center'}
+        align={'center'}
+        wrap={'wrap'}
+      >
+        <span>분석 중</span>
         <Spin indicator={<LoadingOutlined spin />} size="large" />
-      </div>
+      </Flex>
     </div>
   );
 };

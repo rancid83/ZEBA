@@ -1,21 +1,21 @@
 // right.module.scss에서 MandatoryZEBLevel에서 사용하는 스타일을 옮김
-.mandatoryGradeContainer{
-  background: #FFFFFF;
+.mandatoryGradeContainer {
+  background: #ffffff;
   padding: 41px 35px;
   box-sizing: border-box;
   mix-blend-mode: normal;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
   border-radius: 0px 12px 12px 12px;
 
-  .mandatoryGrade{
-    border: 1px solid #CECECE;
+  .mandatoryGrade {
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     padding: 42px 34px;
     box-sizing: border-box;
   }
 
-  .mandatoryGradeHeader{
+  .mandatoryGradeHeader {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -30,7 +30,7 @@
     }
   }
 
-  .mandatoryGradeAddr{
+  .mandatoryGradeAddr {
     display: flex;
     gap: 8px;
     justify-content: right;
@@ -115,15 +115,15 @@
     }
   }
 
-  .infoRow{
+  .infoRow {
     display: flex;
     align-items: center;
     gap: 6px;
     margin-top: 8px;
   }
 
-  .requestButton{
-    margin-top:54px;
+  .zebGradeInputLabel {
+    font-size: 15px;
+    color: #4e4e4e;
   }
 }
-

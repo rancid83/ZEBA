@@ -21,7 +21,9 @@ const LoadingZeba = () => {
       </h2>
 
       <p className={styles.subText}>
-        잠시만 기다려주세요. 최고의 경험을 위해 준비하고 있습니다.
+        잠시만 기다려주세요.
+        <br />
+        최고의 경험을 위해 준비하고 있습니다.
       </p>
 
       <div className={styles.spinner}>

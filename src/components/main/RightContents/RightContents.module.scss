@@ -1,5 +1,5 @@
-.mandatoryGradeContainer{
-  background: #FFFFFF;
+.mandatoryGradeContainer {
+  background: #ffffff;
   //border: 1px solid #CECECE;
   //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   //border-radius: 12px;
@@ -12,17 +12,15 @@
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
   border-radius: 0px 12px 12px 12px;
 
-
-  .mandatoryGrade{
-    border: 1px solid #CECECE;
+  .mandatoryGrade {
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     padding: 42px 34px;
     box-sizing: border-box;
   }
 
-
-  .mandatoryGradeHeader{
+  .mandatoryGradeHeader {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -38,7 +36,7 @@
     }
   }
 
-  .mandatoryGradeAddr{
+  .mandatoryGradeAddr {
     display: flex;
     gap: 8px;
     justify-content: right;
@@ -137,27 +135,23 @@
     }
   }
 
-  .infoRow{
+  .infoRow {
     display: flex;
     align-items: center;
     gap: 6px;
     margin-top: 8px;
   }
 
-  .requestButton{
-    margin-top:54px;
-  }
-
-  .chartContainer{
+  .chartContainer {
     margin-top: 52px;
   }
 
-  .gradeWrap{
+  .gradeWrap {
     margin-top: 71.81px;
   }
 
-  .gradeBox{
-    border: 1px solid #CECECE;
+  .gradeBox {
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     width: 229px;
@@ -166,158 +160,154 @@
     box-sizing: border-box;
   }
 
-  .gradePie{
-    border: 1px solid #CECECE;
+  .gradePie {
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     width: 255px;
     height: 354px;
   }
 
-  .gradeLabel{
-    > div{
+  .gradeLabel {
+    > div {
       text-align: center;
-      span:first-child{
+      span:first-child {
         font-size: 17px;
-        color: #4E4E4E;
+        color: #4e4e4e;
       }
-      span:last-child{
+      span:last-child {
         font-size: 14px;
-        color: #7E7E7E;
+        color: #7e7e7e;
       }
     }
   }
 
-  .gradeValue{
+  .gradeValue {
     text-align: center;
   }
 
-  .gradeFlex{
+  .gradeFlex {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 11px;
   }
 
-  .gradeFlexText{
+  .gradeFlexText {
     padding: 10px 16px 0 24px;
 
-    > span{
+    > span {
       font-size: 14px;
-        color: #7E7E7E;
+      color: #7e7e7e;
     }
-    > span:nth-child(2){
+    > span:nth-child(2) {
       font-size: 19px;
-      color: #2A4E51;
+      color: #2a4e51;
       font-weight: bold;
-      > span{
+      > span {
         font-size: 14px;
-        color: #7E7E7E;
+        color: #7e7e7e;
         font-weight: normal;
-        margin-left:5px;
+        margin-left: 5px;
       }
     }
   }
 
-  .gradeText{
+  .gradeText {
     display: block;
     font-weight: bold;
-    font-size:29px;
-    color: #2A4E51;
+    font-size: 29px;
+    color: #2a4e51;
   }
 
-  .won{
+  .won {
     font-size: 14px;
-    color: #7E7E7E;
+    color: #7e7e7e;
     margin-left: 2px;
   }
 
-  .zebGrade{
+  .zebGrade {
     border-radius: 18px;
     background: #007676;
-    padding:1.5px 14px;
-    color:#fff;
+    padding: 1.5px 14px;
+    color: #fff;
   }
 
-  .zebGradeNum{
+  .zebGradeNum {
     color: #007676;
     font-weight: bold;
-    font-size:19px;
+    font-size: 19px;
     margin-left: 5px;
   }
 
-  .zebGradeText{
-    margin:16px 0;
+  .zebGradeText {
+    margin: 16px 0;
   }
 
-  .consumeText{
+  .consumeText {
     font-size: 14px;
   }
 
-  .creatorText{
-    color: #7E7E7E;
-    font-size:14px;
+  .creatorText {
+    color: #7e7e7e;
+    font-size: 14px;
     margin-top: 15px;
-    > div{
-      > span{
-        color: #2A4E51;
+    > div {
+      > span {
+        color: #2a4e51;
         font-size: 19px;
         font-weight: bold;
       }
     }
   }
 
-  .energyDetailCollapse{
+  .energyDetailCollapse {
     box-sizing: border-box;
-    background: #FFFFFF;
-    border: 1px solid #CECECE;
+    background: #ffffff;
+    border: 1px solid #cecece;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     margin-top: 17px;
-
   }
 
-
-
-  .collapseTitle{
+  .collapseTitle {
     position: relative;
-    font-size:15px;
+    font-size: 15px;
     line-height: 24px;
-    color: #4E4E4E;
-    > div{
+    color: #4e4e4e;
+    > div {
       position: absolute;
-      top:50%;
-      left:50%;
-      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       opacity: 0.5;
-      font-size:13px;
+      font-size: 13px;
     }
   }
 
-  .detailDescription{
-    color: #7E7E7E;
+  .detailDescription {
+    color: #7e7e7e;
     font-size: 14px;
     margin-top: 45px;
   }
 
-  .EnergyDetailTitle{
-    padding-left:42px;
+  .EnergyDetailTitle {
+    padding-left: 42px;
     box-sizing: border-box;
   }
 
-  .zebGradeTextSub{
-    margin-top:3px;
-    color: #7E7E7E;
+  .zebGradeTextSub {
+    margin-top: 3px;
+    color: #7e7e7e;
     font-size: 14px;
     align-items: center;
-    gap:5px;
-    > span:nth-child(2){
+    gap: 5px;
+    > span:nth-child(2) {
       text-align: right;
       flex: 1;
       font-size: 19px;
-      color: #2A4E51;
-        font-weight: bold;
+      color: #2a4e51;
+      font-weight: bold;
     }
   }
-
 }

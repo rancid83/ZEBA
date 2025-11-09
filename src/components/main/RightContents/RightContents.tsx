@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useStore } from '@/store';
 
 const SectionRight = () => {
+  const { pageStep } = useStore();
   return (
     <ConfigProvider
       theme={{
@@ -21,9 +22,8 @@ const SectionRight = () => {
         },
       }}
     >
-      <MandatoryZEBLevel />
+      {pageStep < 2 ? <MandatoryZEBLevel /> : <StandardModelPerformanceEdit />}
       <EnergySelfSufficiency />
-      <StandardModelPerformanceEdit />
     </ConfigProvider>
   );
 };

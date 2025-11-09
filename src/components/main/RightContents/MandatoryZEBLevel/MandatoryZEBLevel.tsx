@@ -3,7 +3,8 @@ import styles from './MandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';
 import GoogleMaps from '@/components/main/RightContents/MandatoryZEBLevel/Google.Maps';
 import { useStore } from '@/store';
-import React from 'react';
+import React, { useEffect } from 'react';
+import loading from '@/app/[lang]/loading';
 
 const MandatoryZEBLevel = (props: any) => {
   return (
@@ -29,66 +30,245 @@ const MandatoryGrade = () => {
     updateGradeData,
     updateGradeBuildingData,
     updateGradeDataPercent,
+    pageStep,
   } = useStore();
 
   const handleRequestAnalysis = () => {
     setLoading(true);
-    updateGradeData(0, {
-      creator: 8.1,
-      consume: 185.8,
-      grade: 4.2,
-      zebGrade: 5,
-    });
 
-    updateGradeData(1, {
-      creator: 33.8,
-      consume: 129.0,
-      grade: 20.8,
-      zebGrade: 5,
-    });
+    //임시
+    if (pageStep === 0) {
+      updateGradeData(0, {
+        creator: 8.1,
+        consume: 185.8,
+        grade: 4.2,
+        zebGrade: 5,
+      });
 
-    updateGradeBuildingData(0, {
-      zebGrade: 0,
-      grade: 294922,
-      renewable: 13543,
-      active: 179810,
-      passive: 101569,
-      increase: 0,
-      benefit: 0,
-    });
+      updateGradeData(1, {
+        creator: 33.8,
+        consume: 129.0,
+        grade: 20.8,
+        zebGrade: 5,
+      });
 
-    updateGradeBuildingData(1, {
-      zebGrade: 5,
-      grade: 387938,
-      renewable: 46636,
-      active: 227056,
-      passive: 114246,
-      increase: 93016,
-      benefit: 0,
-    });
+      updateGradeBuildingData(0, {
+        zebGrade: 0,
+        grade: 294922,
+        renewable: 13543,
+        active: 179810,
+        passive: 101569,
+        increase: 0,
+        benefit: 0,
+      });
 
-    updateGradeDataPercent(0, {
-      renewable: (13543 / 387938) * 100,
-      active: (179810 / 387938) * 100,
-      passive: (101569 / 387938) * 100,
-      totalMoney: 387938,
-    });
+      updateGradeBuildingData(1, {
+        zebGrade: 5,
+        grade: 387938,
+        renewable: 46636,
+        active: 227056,
+        passive: 114246,
+        increase: 93016,
+        benefit: 0,
+      });
 
-    updateGradeDataPercent(1, {
-      renewable: (46636 / 387938) * 100,
-      active: (227056 / 387938) * 100,
-      passive: (114246 / 387938) * 100,
-      totalMoney: 387938,
-    });
+      updateGradeDataPercent(0, {
+        renewable: (13543 / 387938) * 100,
+        active: (179810 / 387938) * 100,
+        passive: (101569 / 387938) * 100,
+        totalMoney: 387938,
+      });
+
+      updateGradeDataPercent(1, {
+        renewable: (46636 / 387938) * 100,
+        active: (227056 / 387938) * 100,
+        passive: (114246 / 387938) * 100,
+        totalMoney: 387938,
+      });
+    }
+
+    if (pageStep === 1) {
+      updateGradeData(0, {
+        creator: 8.1,
+        consume: 185.8,
+        grade: 4.2,
+        zebGrade: 5,
+      });
+
+      updateGradeData(1, {
+        creator: 33.8,
+        consume: 129.0,
+        grade: 20.8,
+        zebGrade: 5,
+      });
+
+      updateGradeData(2, {
+        creator: 33.8,
+        consume: 129.0,
+        grade: 20.8,
+        zebGrade: 5,
+      });
+
+      updateGradeBuildingData(0, {
+        zebGrade: 0,
+        grade: 294922,
+        renewable: 13543,
+        active: 179810,
+        passive: 101569,
+        increase: 0,
+        benefit: 0,
+      });
+
+      updateGradeBuildingData(1, {
+        zebGrade: 5,
+        grade: 387938,
+        renewable: 46636,
+        active: 227056,
+        passive: 114246,
+        increase: 93016,
+        benefit: 0,
+      });
+
+      updateGradeBuildingData(2, {
+        zebGrade: 5,
+        grade: 387938,
+        renewable: 46636,
+        active: 227056,
+        passive: 114246,
+        increase: 93016,
+        benefit: 0,
+      });
+
+      updateGradeDataPercent(0, {
+        renewable: (13543 / 387938) * 100,
+        active: (179810 / 387938) * 100,
+        passive: (101569 / 387938) * 100,
+        totalMoney: 387938,
+      });
+
+      updateGradeDataPercent(1, {
+        renewable: (46636 / 387938) * 100,
+        active: (227056 / 387938) * 100,
+        passive: (114246 / 387938) * 100,
+        totalMoney: 387938,
+      });
+
+      updateGradeDataPercent(2, {
+        renewable: (46636 / 387938) * 100,
+        active: (227056 / 387938) * 100,
+        passive: (114246 / 387938) * 100,
+        totalMoney: 387938,
+      });
+    }
+
+    if (pageStep === 2) {
+      updateGradeData(0, {
+        creator: 8.1,
+        consume: 185.8,
+        grade: 4.2,
+        zebGrade: 5,
+      });
+
+      updateGradeData(1, {
+        creator: 33.8,
+        consume: 129.0,
+        grade: 20.8,
+        zebGrade: 5,
+      });
+
+      updateGradeData(2, {
+        creator: 33.8,
+        consume: 129.0,
+        grade: 20.8,
+        zebGrade: 5,
+      });
+
+      updateGradeData(3, {
+        creator: 33.8,
+        consume: 129.0,
+        grade: 20.8,
+        zebGrade: 5,
+      });
+
+      updateGradeBuildingData(0, {
+        zebGrade: 0,
+        grade: 294922,
+        renewable: 13543,
+        active: 179810,
+        passive: 101569,
+        increase: 0,
+        benefit: 0,
+      });
+
+      updateGradeBuildingData(1, {
+        zebGrade: 5,
+        grade: 387938,
+        renewable: 46636,
+        active: 227056,
+        passive: 114246,
+        increase: 93016,
+        benefit: 0,
+      });
+
+      updateGradeBuildingData(2, {
+        zebGrade: 5,
+        grade: 387938,
+        renewable: 46636,
+        active: 227056,
+        passive: 114246,
+        increase: 93016,
+        benefit: 0,
+      });
+
+      updateGradeBuildingData(3, {
+        zebGrade: 5,
+        grade: 387938,
+        renewable: 46636,
+        active: 227056,
+        passive: 114246,
+        increase: 93016,
+        benefit: 0,
+      });
+
+      updateGradeDataPercent(0, {
+        renewable: (13543 / 387938) * 100,
+        active: (179810 / 387938) * 100,
+        passive: (101569 / 387938) * 100,
+        totalMoney: 387938,
+      });
+
+      updateGradeDataPercent(1, {
+        renewable: (46636 / 387938) * 100,
+        active: (227056 / 387938) * 100,
+        passive: (114246 / 387938) * 100,
+        totalMoney: 387938,
+      });
+
+      updateGradeDataPercent(2, {
+        renewable: (46636 / 387938) * 100,
+        active: (227056 / 387938) * 100,
+        passive: (114246 / 387938) * 100,
+        totalMoney: 387938,
+      });
+
+      updateGradeDataPercent(3, {
+        renewable: (46636 / 387938) * 100,
+        active: (227056 / 387938) * 100,
+        passive: (114246 / 387938) * 100,
+        totalMoney: 387938,
+      });
+    }
 
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000 * 2);
   };
+
+  useEffect(() => {}, [pageStep]);
   return (
     <>
-      <Form>
-        <div className={styles.mandatoryGradeContainer}>
+      <div className={styles.mandatoryGradeContainer}>
+        <Form disabled={pageStep === 1}>
           <div className={styles.mandatoryGrade}>
             <div className={styles.mandatoryGradeHeader}>
               <img
@@ -98,16 +278,47 @@ const MandatoryGrade = () => {
               />
               <span className={styles.title}>건축물 개요</span>
             </div>
-            <div className={styles.mandatoryGradeAddr}>
-              <Button size={'middle'}>직접 입력</Button>
-              <Button
-                size={'middle'}
-                icon={<SearchOutlined />}
-                iconPosition={'end'}
-              >
-                주소 검색
-              </Button>
-            </div>
+            {pageStep === 0 && (
+              <div className={styles.mandatoryGradeAddr}>
+                <Button size={'middle'}>직접 입력</Button>
+                <Button
+                  size={'middle'}
+                  icon={<SearchOutlined />}
+                  iconPosition={'end'}
+                >
+                  주소 검색
+                </Button>
+              </div>
+            )}
+
+            {pageStep === 1 && (
+              <Flex justify={'right'} align={'center'} gap={15}>
+                <span className={styles.zebGradeInputLabel}>
+                  ZEB 목표 등급 입력
+                </span>
+                <Form.Item
+                  name="zebGrade"
+                  style={{
+                    marginBottom: '0',
+                  }}
+                >
+                  <Select
+                    defaultValue="educational"
+                    disabled={false}
+                    style={{
+                      width: '120px',
+                    }}
+                    options={[
+                      { value: 'educational', label: 'ZEB 4등급' },
+                      { value: 'residential', label: 'ZEB 5등급' },
+                      { value: 'commercial', label: 'ZEB 6등급' },
+                      { value: 'office', label: 'ZEB 7등급' },
+                    ]}
+                  />
+                </Form.Item>
+              </Flex>
+            )}
+
             <Flex gap={40}>
               <div className={styles.mapContainer}>
                 <GoogleMaps />
@@ -229,17 +440,17 @@ const MandatoryGrade = () => {
               </div>
             </Flex>
           </div>
-          <Flex justify={'right'} className={styles.requestButton}>
-            <Button
-              type={'primary'}
-              icon={<DingtalkOutlined />}
-              onClick={handleRequestAnalysis}
-            >
-              ZEB [의무 등급] 분석 요청
-            </Button>
-          </Flex>
-        </div>
-      </Form>
+        </Form>
+        <Flex justify={'right'} className={'requestButton'}>
+          <Button
+            type={'primary'}
+            icon={<DingtalkOutlined />}
+            onClick={handleRequestAnalysis}
+          >
+            ZEB [의무 등급] 분석 요청
+          </Button>
+        </Flex>
+      </div>
     </>
   );
 };
