@@ -34,7 +34,7 @@
 
 // Header 스타일
 .styledHeader {
-  background: linear-gradient(135deg, #6C2BD9 0%, #8B47E6 100%);
+  background: linear-gradient(135deg, #6c2bd9 0%, #8b47e6 100%);
   padding: 0 24px;
   height: 64px;
   display: flex;
@@ -52,12 +52,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.logo {
-  width: 92px;
-  height: 24px;
-  object-fit: contain;
 }
 
 .navMenu {
@@ -111,4 +105,3 @@
   margin-top: 64px;
   min-height: calc(100vh - 64px);
 }
-

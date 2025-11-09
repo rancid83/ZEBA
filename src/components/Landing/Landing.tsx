@@ -8,7 +8,7 @@ import { PlayCircleOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
 
-const Landing = (props: any) => {
+const Landing = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const router = useRouter();
@@ -68,12 +68,16 @@ const Landing = (props: any) => {
             className={`${styles.header} ${isVisible ? styles.animateFadeInDown : ''}`}
           >
             {/* 로고 */}
-            <div>
+            <div className="logoContainer landingLogo">
               <img
-                src='/assets/images/logo-zeba.png'
-                alt='ZEBA'
-                className={styles.logo}
+                src="/assets/images/logo-company.png"
+                alt="ZEBA"
+                className="logoImage"
               />
+              <div className="logoText">
+                <span className="zebaText">Zeba</span>
+                <span className="tmText">TM</span>
+              </div>
             </div>
 
             {/* 네비게이션 메뉴 */}
@@ -85,15 +89,15 @@ const Landing = (props: any) => {
             </div>
 
             {/* 앱스토어 버튼들 */}
-            <Space size='small'>
+            <Space size="small">
               <img
-                src='/assets/images/icon/icon-googleplay.png'
-                alt='Google Play'
+                src="/assets/images/icon/icon-googleplay.png"
+                alt="Google Play"
                 className={styles.appStoreIcon}
               />
               <img
-                src='/assets/images/icon/icon-appstore.png'
-                alt='App Store'
+                src="/assets/images/icon/icon-appstore.png"
+                alt="App Store"
                 className={styles.appStoreIcon}
               />
             </Space>
@@ -144,18 +148,18 @@ const Landing = (props: any) => {
                       : ''
                   }`}
                 >
-                  <Space size='large'>
+                  <Space size="large">
                     <Button
-                      type='primary'
-                      size='large'
+                      type="primary"
+                      size="large"
                       className={styles.primaryButton}
                       onClick={onMoveMain}
                     >
                       ZEB 예측 시작하기
                     </Button>
                     <Button
-                      type='text'
-                      size='large'
+                      type="text"
+                      size="large"
                       icon={<PlayCircleOutlined />}
                       className={styles.secondaryButton}
                       onClick={() => setIsDemoModalOpen(true)}
@@ -187,22 +191,22 @@ const Landing = (props: any) => {
                     >
                       <div className={styles.carouselSlide}>
                         <img
-                          src='/assets/images/bg/ny.jpg'
-                          alt='ZEBA Dashboard Mockup 1'
+                          src="/assets/images/bg/ny.jpg"
+                          alt="ZEBA Dashboard Mockup 1"
                           className={styles.carouselImage}
                         />
                       </div>
                       <div className={styles.carouselSlide}>
                         <img
-                          src='/assets/images/bg/berlin.jpg'
-                          alt='ZEBA Dashboard Mockup 2'
+                          src="/assets/images/bg/berlin.jpg"
+                          alt="ZEBA Dashboard Mockup 2"
                           className={styles.carouselImage}
                         />
                       </div>
                       <div className={styles.carouselSlide}>
                         <img
-                          src='/assets/images/bg/cairo.jpg'
-                          alt='ZEBA Dashboard Mockup 3'
+                          src="/assets/images/bg/cairo.jpg"
+                          alt="ZEBA Dashboard Mockup 3"
                           className={styles.carouselImage}
                         />
                       </div>
@@ -221,17 +225,17 @@ const Landing = (props: any) => {
           onCancel={handleCloseModal}
           width={880}
           centered
-          title='ZEBA 데모 영상'
+          title="ZEBA 데모 영상"
           destroyOnHidden={true}
         >
           <div className={styles.modalVideo}>
             {isDemoModalOpen && (
               <iframe
-                key='demo-video'
-                src='https://www.youtube.com/embed/6D48nlTZATs?autoplay=1&rel=0&enablejsapi=1'
-                title='ZEBA Demo Video'
+                key="demo-video"
+                src="https://www.youtube.com/embed/6D48nlTZATs?autoplay=1&rel=0&enablejsapi=1"
+                title="ZEBA Demo Video"
                 className={styles.iframe}
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             )}

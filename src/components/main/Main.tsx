@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Layout, Button, Steps, Tabs } from 'antd';
+import { Layout, Button, Steps } from 'antd';
 import {
   UserOutlined,
   BellOutlined,
@@ -13,16 +13,22 @@ import SectionRight from '@/components/main/RightContents/RightContents';
 
 const { Header, Content } = Layout;
 
-const MainPage = (props: any) => {
+const MainPage = () => {
   return (
     <Layout>
       <Header className={styles.styledHeader}>
         <div className={styles.logoSection}>
-          <img
-            className={styles.logo}
-            src='/assets/images/logo-zeba.png'
-            alt='ZEBA'
-          />
+          <div className="logoContainer headerLogo">
+            <img
+              className="logoImage"
+              src="/assets/images/logo-company.png"
+              alt="ZEBA"
+            />
+            <div className="logoText">
+              <span className="zebaText">Zeba</span>
+              <span className="tmText">TM</span>
+            </div>
+          </div>
         </div>
 
         <div className={styles.navMenu}>
@@ -46,7 +52,7 @@ const MainPage = (props: any) => {
             <div className={styles.leftSection}>
               <Steps
                 progressDot
-                direction='vertical'
+                direction="vertical"
                 current={1}
                 items={[
                   {
