@@ -28,6 +28,8 @@ const MainPage = () => {
     setCurrent(value);
     setPageStep(value);
 
+    console.log('');
+
     switch (value) {
       case 0:
         break;
