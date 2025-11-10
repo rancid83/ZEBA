@@ -60,7 +60,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout className={styles.wrapper}>
       <Content className={styles.content}>
         {/* 전체 컨텐츠를 감싸는 컨테이너 */}
         <div className={styles.container}>

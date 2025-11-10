@@ -1,12 +1,37 @@
 'use client';
 
-import styles from './LayoutWrapper.module.scss';
 import { useStore } from '@/store';
 import LoadingAnalyzing from '@/components/LoadingAnalyzing/LoadingAnalyzing';
 import { ConfigProvider } from 'antd';
+import { useState, useEffect } from 'react';
 
 const LayoutWrapper = (props: any) => {
   const { isLoading } = useStore();
+  const [isMounted, setIsMounted] = useState(false);
+  const [screenSize, setScreenSize] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    setIsMounted(true);
+
+    const handleResize = () => {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // 초기 크기 설정
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <ConfigProvider
@@ -24,7 +49,17 @@ const LayoutWrapper = (props: any) => {
         },
       }}
     >
-      {props.children} {isLoading && <LoadingAnalyzing />}
+      <div
+        style={
+          isMounted
+            ? {
+                height: `${screenSize.height}px`,
+              }
+            : {}
+        }
+      >
+        {props.children} {isLoading && <LoadingAnalyzing />}
+      </div>
     </ConfigProvider>
   );
 };
