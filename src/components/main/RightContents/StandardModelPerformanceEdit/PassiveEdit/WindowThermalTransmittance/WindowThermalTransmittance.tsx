@@ -17,6 +17,7 @@ interface WindowThermalTransmittanceProps {
   max?: number;
   average?: number;
   step?: number;
+  start?: number;
 }
 
 const WindowThermalTransmittance = ({
@@ -25,8 +26,9 @@ const WindowThermalTransmittance = ({
   max = 100,
   average = 26,
   step = 1,
+  start = 26,
 }: WindowThermalTransmittanceProps) => {
-  const [currentValue, setCurrentValue] = useState(average);
+  const [currentValue, setCurrentValue] = useState(start);
 
   const marks: SliderSingleProps['marks'] = {
     [min]: {
@@ -111,37 +113,42 @@ const WindowThermalTransmittance = ({
   // Rail(배경)의 색상을 메모이제이션
   const railBackground = useMemo(() => {
     const standard = average;
-    const currentPercent = Math.min(Math.max(currentValue, 0), max);
-    const standardPercent = Math.min(Math.max(standard, 0), max);
+    const range = max - min;
+    const currentPercent =
+      ((Math.min(Math.max(currentValue, min), max) - min) / range) * 100;
+    const standardPercent =
+      ((Math.min(Math.max(standard, min), max) - min) / range) * 100;
 
     if (currentValue < standard) {
-      // 왼쪽으로 움직였을 때: 현재값부터 표준까지 빨간색으로 배경 변경
+      // 왼쪽으로 움직였을 때: 현재값부터 표준까지 초록색으로 배경 변경
       return `linear-gradient(to right, #d9d9d9 0%, #d9d9d9 ${currentPercent}%, #1DB5BE ${currentPercent}%, #1DB5BE ${standardPercent}%, #d9d9d9 ${standardPercent}%, #d9d9d9 100%)`;
     } else {
-      // 표준값이거나 오른쪽으로 움직였을 때: 모든 구간을 동일한 색상으로 처리하여 깜빡임 방지
-      return `linear-gradient(to right, #d9d9d9 0%, #d9d9d9 ${standardPercent}%, #d9d9d9 ${standardPercent}%, #d9d9d9 100%)`;
+      // 표준값이거나 오른쪽으로 움직였을 때: 0부터 표준까지 초록색
+      return `linear-gradient(to right, #1DB5BE 0%, #1DB5BE ${standardPercent}%, #d9d9d9 ${standardPercent}%, #d9d9d9 100%)`;
     }
-  }, [currentValue]);
+  }, [currentValue, min, max, average]);
 
   // Track(선택된 부분)의 색상을 메모이제이션
   const trackBackground = useMemo(() => {
     const standard = average;
+    const range = max - min;
+    const currentPercent =
+      ((Math.min(Math.max(currentValue, min), max) - min) / range) * 100;
+    const standardPercent =
+      ((Math.min(Math.max(standard, min), max) - min) / range) * 100;
 
     if (currentValue < standard) {
       // 왼쪽으로 움직였을 때: track은 기본색상
       return '#2A4E51';
     } else if (currentValue > standard) {
-      // 오른쪽으로 움직였을 때: 0~표준은 기본색, 표준~현재값은 노란색
-      const standardRatio = Math.min(
-        Math.max((standard / currentValue) * max, 0),
-        max,
-      );
+      // 오른쪽으로 움직였을 때: 0~표준은 기본색, 표준~현재값은 연한색
+      const standardRatio = (standardPercent / currentPercent) * 100;
       return `linear-gradient(to right, #2A4E51 0%, #2A4E51 ${standardRatio}%, #D5FAFC ${standardRatio}%, #D5FAFC 100%)`;
     } else {
       // 표준값일 때는 전체 기본색상
       return '#2A4E51';
     }
-  }, [currentValue]);
+  }, [currentValue, min, max, average]);
 
   // 슬라이더 스타일 객체를 메모이제이션하여 깜빡임 방지
   const sliderStyles = useMemo(

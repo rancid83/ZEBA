@@ -14,20 +14,76 @@ const EnergyDetail = () => {
   const { pageStep } = useStore();
 
   useEffect(() => {
-    // fetch three JSON files from public/json
     fetch('/assets/json/passive.json')
       .then((res) => res.json())
-      .then(setPassiveData)
+      .then((data) => {
+        if (pageStep === 0) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            target: '-',
+            combined: '-',
+          }));
+        }
+
+        if (pageStep === 1) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            combined: '-',
+          }));
+        }
+
+        setPassiveData(data);
+      })
       .catch(() => setPassiveData([]));
 
     fetch('/assets/json/active.json')
       .then((res) => res.json())
-      .then(setActiveData)
+      .then((data) => {
+        if (pageStep === 0) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            target: '-',
+            combined: '-',
+          }));
+        }
+
+        if (pageStep === 1) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            combined: '-',
+          }));
+        }
+
+        setActiveData(data);
+      })
       .catch(() => setActiveData([]));
 
     fetch('/assets/json/renewable.json')
       .then((res) => res.json())
-      .then(setRenewableData)
+      .then((data) => {
+        if (pageStep === 0) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            target: '-',
+            combined: '-',
+          }));
+        }
+
+        if (pageStep === 1) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            combined: '-',
+          }));
+        }
+
+        setRenewableData(data);
+      })
       .catch(() => setRenewableData([]));
   }, [pageStep]);
 
@@ -42,21 +98,25 @@ const EnergyDetail = () => {
       title: '법규 기준',
       dataIndex: 'regulation',
       key: 'regulation',
+      align: 'center',
     },
     {
       title: '의무 등급',
       dataIndex: 'mandatory',
       key: 'mandatory',
+      align: 'center',
     },
     {
       title: '목표 등급',
       dataIndex: 'target',
       key: 'target',
+      align: 'center',
     },
     {
       title: '성능 조합 등급',
       dataIndex: 'combined',
       key: 'combined',
+      align: 'center',
     },
   ];
 

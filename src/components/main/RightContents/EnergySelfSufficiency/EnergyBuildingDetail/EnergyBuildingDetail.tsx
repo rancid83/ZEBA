@@ -3,29 +3,90 @@
 import React, { useEffect, useState } from 'react';
 import { Collapse, Flex, Table, TableProps } from 'antd';
 import styles from './EnergyBuildingDetail.module.scss';
+import { useStore } from '@/store';
 
 const EnergyBuildingDetail = () => {
   const [passiveData, setPassiveData] = useState<any[]>([]);
   const [activeData, setActiveData] = useState<any[]>([]);
   const [renewableData, setRenewableData] = useState<any[]>([]);
 
+  // useStore 사용 - hydration 이슈 확인을 위해
+  const { pageStep } = useStore();
+
   useEffect(() => {
     // fetch building-specific JSON files from public/json
     fetch('/assets/json/building-passive.json')
       .then((res) => res.json())
-      .then(setPassiveData)
+      .then((data) => {
+        if (pageStep === 0) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            target: '-',
+            combined: '-',
+          }));
+        }
+
+        if (pageStep === 1) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            combined: '-',
+          }));
+        }
+
+        setPassiveData(data);
+      })
       .catch(() => setPassiveData([]));
 
     fetch('/assets/json/building-active.json')
       .then((res) => res.json())
-      .then(setActiveData)
+      .then((data) => {
+        if (pageStep === 0) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            target: '-',
+            combined: '-',
+          }));
+        }
+
+        if (pageStep === 1) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            combined: '-',
+          }));
+        }
+
+        setActiveData(data);
+      })
       .catch(() => setActiveData([]));
 
     fetch('/assets/json/building-renewable.json')
       .then((res) => res.json())
-      .then(setRenewableData)
+      .then((data) => {
+        if (pageStep === 0) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            target: '-',
+            combined: '-',
+          }));
+        }
+
+        if (pageStep === 1) {
+          // data 배열에서 target, combined 값을 모두 '-'로 변경
+          data = data.map((item: any) => ({
+            ...item,
+            combined: '-',
+          }));
+        }
+
+        setRenewableData(data);
+      })
       .catch(() => setRenewableData([]));
-  }, []);
+  }, [pageStep]);
 
   const columns: TableProps<any>['columns'] = [
     {

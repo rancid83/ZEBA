@@ -17,18 +17,11 @@ const { Header, Content } = Layout;
 const MainPage = () => {
   const [current, setCurrent] = useState(0);
 
-  const {
-    setPageStep,
-    pageStep,
-    updateGradeBuildingData,
-    updateGradeDataPercent,
-  } = useStore();
+  const { setPageStep } = useStore();
 
   const onChange = (value: number) => {
     setCurrent(value);
     setPageStep(value);
-
-    console.log('');
 
     switch (value) {
       case 0:
