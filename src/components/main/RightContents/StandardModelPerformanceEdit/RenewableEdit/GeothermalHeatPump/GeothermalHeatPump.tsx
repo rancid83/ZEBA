@@ -17,27 +17,16 @@ const GeothermalHeatPump = (props: any) => {
         align={'center'}
         style={{ position: 'relative' }}
       >
-        <span className={styles.editTitle}>연료전지</span>
+        <span className={styles.editTitle}>GSHP(지열히트펌프)</span>
         <Rate disabled defaultValue={3} count={3} />
         <div className={styles.fuelCellRadio}>
-          <ConfigProvider
-            theme={{
-              components: {
-                Radio: {
-                  colorPrimary: '#00B2A9',
-                  fontSize: 10,
-                },
-              },
-            }}
-          >
-            <Radio.Group
-              options={optionsWithDisabled}
-              optionType="button"
-              value={'Apple'}
-              buttonStyle="solid"
-              size="small"
-            />
-          </ConfigProvider>
+          <Radio.Group
+            options={optionsWithDisabled}
+            optionType="button"
+            value={'Apple'}
+            buttonStyle="solid"
+            size="small"
+          />
         </div>
       </Flex>
       <div style={{ marginTop: '30px' }}>

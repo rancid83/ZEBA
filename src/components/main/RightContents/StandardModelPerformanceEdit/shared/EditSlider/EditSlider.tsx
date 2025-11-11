@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Flex, InputNumber, Rate, Slider, SliderSingleProps } from 'antd';
-import styles from '@/components/main/RightContents/StandardModelPerformanceEdit/PassiveEdit/WindowThermalTransmittance/WindowThermalTransmittance.module.scss';
+import styles from './EditSlider.module.scss';
 import {
   CaretDownOutlined,
   CaretUpOutlined,
@@ -18,15 +18,25 @@ interface WindowThermalTransmittanceProps {
   average?: number;
   step?: number;
   start?: number;
+  unit?: string;
+  rate?: number;
+  systemType?: string | null;
+  subDescription?: string | null;
+  type?: string;
 }
 
-const WindowThermalTransmittance = ({
+const EditSlider = ({
   title,
   min = 0,
   max = 100,
   average = 26,
   step = 1,
   start = 26,
+  unit = 'W/㎡·K',
+  rate = 3,
+  systemType = null,
+  subDescription = null,
+  type = 'template1',
 }: WindowThermalTransmittanceProps) => {
   const [currentValue, setCurrentValue] = useState(start);
 
@@ -198,11 +208,51 @@ const WindowThermalTransmittance = ({
     }
   }, [currentValue, average]);
 
+  const systemTypeColor = (systemType: string) => {
+    switch (systemType) {
+      case '냉방':
+        return '#1D4BBE';
+      case '난방':
+        return '#BE1D1D';
+      case '조명':
+        return '#F5CA2F';
+      case '급탕':
+        return '#F38130';
+      default:
+        return '#1D4BBE';
+    }
+  };
+
   return (
-    <div className={styles.editWrap}>
+    <div
+      className={`${styles.editWrap} ${type === 'template2' ? styles.editWrapTemplate2 : ''}`}
+    >
       <Flex justify="space-between" align={'center'}>
         <span className={styles.editTitle}>{title}</span>
-        <Rate disabled defaultValue={3} count={3} />
+        {type === 'template1' &&
+          (systemType ? (
+            <Flex align="center" gap={10}>
+              <div
+                style={{ background: `${systemTypeColor(systemType)}` }}
+                className={styles.typeTextWrapper}
+              >
+                {systemType}
+              </div>
+              <Rate
+                disabled
+                value={rate}
+                count={3}
+                style={{ direction: 'rtl' }}
+              />
+            </Flex>
+          ) : (
+            <Rate
+              disabled
+              value={rate}
+              count={3}
+              style={{ direction: 'rtl' }}
+            />
+          ))}
       </Flex>
       <Flex className={styles.sliderWrapper}>
         <div>
@@ -217,6 +267,14 @@ const WindowThermalTransmittance = ({
             step={step}
           />
         </div>
+
+        {subDescription && (
+          <div
+            className={`${styles.typeTextWrapper} ${styles.typeTextEfficiency}`}
+          >
+            {subDescription}
+          </div>
+        )}
         <div>
           <InputNumber
             min={min}
@@ -225,7 +283,7 @@ const WindowThermalTransmittance = ({
             value={currentValue}
             onChange={(value) => value !== null && onChangeValue(value)}
           />
-          <div className={styles.sliderNumberUnit}>[W/㎡·K]</div>
+          <div className={styles.sliderNumberUnit}>[{unit}]</div>
         </div>
       </Flex>
       <div className={styles.controller}>
@@ -257,4 +315,4 @@ const WindowThermalTransmittance = ({
   );
 };
 
-export default WindowThermalTransmittance;
+export default EditSlider;
