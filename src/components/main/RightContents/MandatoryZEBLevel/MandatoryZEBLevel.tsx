@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Flex, Form, Input, InputNumber, Select, Tabs } from 'antd';
 import styles from './MandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';

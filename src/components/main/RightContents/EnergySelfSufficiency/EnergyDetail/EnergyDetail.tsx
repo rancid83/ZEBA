@@ -1,11 +1,17 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { Collapse, Flex, Table, TableProps } from 'antd';
 import styles from './EnergyDetail.module.scss';
+import { useStore } from '@/store';
 
 const EnergyDetail = () => {
   const [passiveData, setPassiveData] = useState<any[]>([]);
   const [activeData, setActiveData] = useState<any[]>([]);
   const [renewableData, setRenewableData] = useState<any[]>([]);
+
+  // useStore 사용 - hydration 이슈 확인을 위해
+  const { pageStep } = useStore();
 
   useEffect(() => {
     // fetch three JSON files from public/json
@@ -23,7 +29,7 @@ const EnergyDetail = () => {
       .then((res) => res.json())
       .then(setRenewableData)
       .catch(() => setRenewableData([]));
-  }, []);
+  }, [pageStep]);
 
   const columns: TableProps<any>['columns'] = [
     {
@@ -60,8 +66,8 @@ const EnergyDetail = () => {
         <div className={styles.mandatoryGrade}>
           <div className={styles.mandatoryGradeHeader}>
             <img
-              src='/assets/images/icon/icon-mark.png'
-              alt='icon'
+              src="/assets/images/icon/icon-mark.png"
+              alt="icon"
               className={styles.icon}
             />
             <span className={styles.title}>성능 내역 비교</span>
@@ -75,7 +81,7 @@ const EnergyDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
-              size='small'
+              size="small"
               items={[
                 {
                   key: 'passive',
@@ -100,7 +106,7 @@ const EnergyDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
-              size='small'
+              size="small"
               items={[
                 {
                   key: 'active',
@@ -125,7 +131,7 @@ const EnergyDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
-              size='small'
+              size="small"
               items={[
                 {
                   key: 'renewable',

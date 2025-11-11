@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { Flex, InputNumber, Rate, Slider, SliderSingleProps } from 'antd';
 import styles from '@/components/main/RightContents/StandardModelPerformanceEdit/ActiveEdit/ElectricHeatPump/ElectricHeatPump.module.scss';

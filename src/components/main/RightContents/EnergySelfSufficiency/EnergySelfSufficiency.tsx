@@ -1,3 +1,5 @@
+'use client';
+
 import { Tabs } from 'antd';
 import EnergySelfSufficiencyContent from './EnergySelfSufficiencyContent/EnergySelfSufficiencyContent';
 import EnergyBuildingDetail from './EnergyBuildingDetail/EnergyBuildingDetail';
@@ -6,9 +8,9 @@ import EnergyDetail from './EnergyDetail/EnergyDetail';
 const EnergySelfSufficiency = (props: any) => {
   return (
     <Tabs
-      defaultActiveKey='1'
-      type='card'
-      size='large'
+      defaultActiveKey="1"
+      type="card"
+      size="large"
       style={{ marginTop: '51px' }}
       items={[
         {

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Divider, Flex, Form, Radio } from 'antd';
 import styles from './EnergySelfSufficiencyContent.module.scss';

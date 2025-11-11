@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { Collapse, Flex, Table, TableProps } from 'antd';
 import styles from './EnergyBuildingDetail.module.scss';
@@ -60,8 +62,8 @@ const EnergyBuildingDetail = () => {
         <div className={styles.mandatoryGrade}>
           <div className={styles.mandatoryGradeHeader}>
             <img
-              src='/assets/images/icon/icon-mark.png'
-              alt='icon'
+              src="/assets/images/icon/icon-mark.png"
+              alt="icon"
               className={styles.icon}
             />
             <span className={styles.title}>건물별 성능 내역</span>
@@ -75,7 +77,7 @@ const EnergyBuildingDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
-              size='small'
+              size="small"
               items={[
                 {
                   key: 'passive',
@@ -100,7 +102,7 @@ const EnergyBuildingDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
-              size='small'
+              size="small"
               items={[
                 {
                   key: 'active',
@@ -125,7 +127,7 @@ const EnergyBuildingDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
-              size='small'
+              size="small"
               items={[
                 {
                   key: 'renewable',
