@@ -1,8 +1,17 @@
 'use client';
 
 import styles from './GeothermalHeatPump.module.scss';
-import { ConfigProvider, Flex, Input, Radio, Rate, Table } from 'antd';
+import {
+  ConfigProvider,
+  Flex,
+  Input,
+  Radio,
+  RadioChangeEvent,
+  Rate,
+  Table,
+} from 'antd';
 import { CheckboxGroupProps } from 'antd/es/checkbox';
+import { useState } from 'react';
 
 const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
   { label: '가스', value: 'Apple', className: 'label-1' },
@@ -10,6 +19,12 @@ const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
 ];
 
 const GeothermalHeatPump = (props: any) => {
+  const [heatPumpType, setHeatPumpType] = useState('Apple');
+
+  const onChange1 = ({ target: { value } }: RadioChangeEvent) => {
+    setHeatPumpType(value);
+  };
+
   return (
     <div className={styles.editWrap}>
       <Flex
@@ -22,8 +37,9 @@ const GeothermalHeatPump = (props: any) => {
         <div className={styles.fuelCellRadio}>
           <Radio.Group
             options={optionsWithDisabled}
+            onChange={onChange1}
             optionType="button"
-            value={'Apple'}
+            value={heatPumpType}
             buttonStyle="solid"
             size="small"
           />

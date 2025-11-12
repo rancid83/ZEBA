@@ -31,7 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
+      <head>
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c39c0f6475385231e05a98c8870a877&libraries=services,clusterer"
+        ></script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
       >

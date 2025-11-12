@@ -1,19 +1,20 @@
 'use client';
 
 import styles from './FuelCell.module.scss';
-import { Flex, Radio, Rate } from 'antd';
+import { Flex, Radio, RadioChangeEvent, Rate } from 'antd';
 import { CheckboxGroupProps } from 'antd/es/checkbox';
 import EditSlider from '@/components/main/RightContents/StandardModelPerformanceEdit/shared/EditSlider/EditSlider';
+import { useState } from 'react';
 
 const thermalItems = [
   {
     type: 'template2',
     title: '',
-    start: 87.8,
-    min: 70,
+    start: 50,
+    min: 0,
     max: 100,
-    step: 0.1,
-    average: 85,
+    step: 0.01,
+    average: 50,
     rate: 1,
     systemType: '급탕',
     unit: '%',
@@ -22,11 +23,11 @@ const thermalItems = [
   {
     type: 'template2',
     title: '',
-    start: 87.8,
-    min: 70,
-    max: 100,
-    step: 0.1,
-    average: 85,
+    start: 50,
+    min: 20,
+    max: 80,
+    step: 0.01,
+    average: 50,
     rate: 1,
     systemType: '급탕',
     unit: '%',
@@ -35,11 +36,11 @@ const thermalItems = [
   {
     type: 'template2',
     title: '',
-    start: 87.8,
-    min: 70,
-    max: 100,
-    step: 0.1,
-    average: 85,
+    start: 45,
+    min: 10,
+    max: 80,
+    step: 0.01,
+    average: 45,
     rate: 1,
     systemType: '급탕',
     unit: '%',
@@ -53,6 +54,12 @@ const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
 ];
 
 const FuelCell = (props: any) => {
+  const [fuelType, setFuelType] = useState('Apple');
+
+  const onChange1 = ({ target: { value } }: RadioChangeEvent) => {
+    setFuelType(value);
+  };
+
   return (
     <div className={styles.editWrap}>
       <Flex
@@ -65,8 +72,9 @@ const FuelCell = (props: any) => {
         <div className={styles.fuelCellRadio}>
           <Radio.Group
             options={optionsWithDisabled}
+            onChange={onChange1}
             optionType="button"
-            value={'Apple'}
+            value={fuelType}
             buttonStyle="solid"
             size="small"
           />

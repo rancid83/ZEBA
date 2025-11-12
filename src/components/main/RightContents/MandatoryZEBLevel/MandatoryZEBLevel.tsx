@@ -7,6 +7,7 @@ import GoogleMaps from '@/components/main/RightContents/MandatoryZEBLevel/Google
 import { useStore } from '@/store';
 import React, { useEffect } from 'react';
 import loading from '@/app/[lang]/loading';
+import KakaoMaps from '@/components/main/RightContents/MandatoryZEBLevel/KakaoMaps';
 
 const MandatoryZEBLevel = (props: any) => {
   return (
@@ -270,7 +271,14 @@ const MandatoryGrade = () => {
   return (
     <>
       <div className={styles.mandatoryGradeContainer}>
-        <Form disabled={pageStep === 1}>
+        <Form
+          disabled={pageStep === 1}
+          initialValues={{
+            zebGrade: 'educational', //ZEB
+            category1: 'residential', //구분1
+            category2: 'residential', //구분2
+          }}
+        >
           <div className={styles.mandatoryGrade}>
             <div className={styles.mandatoryGradeHeader}>
               <img
@@ -305,16 +313,16 @@ const MandatoryGrade = () => {
                   }}
                 >
                   <Select
-                    defaultValue="educational"
                     disabled={false}
                     style={{
                       width: '120px',
                     }}
                     options={[
-                      { value: 'educational', label: 'ZEB 4등급' },
-                      { value: 'residential', label: 'ZEB 5등급' },
-                      { value: 'commercial', label: 'ZEB 6등급' },
-                      { value: 'office', label: 'ZEB 7등급' },
+                      { value: 'educational', label: 'ZEB 5등급' },
+                      { value: 'residential', label: 'ZEB 4등급' },
+                      { value: 'commercial', label: 'ZEB 3등급' },
+                      { value: 'office', label: 'ZEB 2등급' },
+                      { value: 'office2', label: 'ZEB 1등급' },
                     ]}
                   />
                 </Form.Item>
@@ -324,6 +332,7 @@ const MandatoryGrade = () => {
             <Flex gap={40}>
               <div className={styles.mapContainer}>
                 <GoogleMaps />
+                {/*<KakaoMaps />*/}
               </div>
               <div className={styles.addressContainer}>
                 <div className={styles.addressSection}>
@@ -333,7 +342,7 @@ const MandatoryGrade = () => {
                     <Form.Item name="roadName" style={{ flex: 1, margin: 0 }}>
                       <Input
                         size={'small'}
-                        placeholder="인천광역시 서구 이음로 65"
+                        placeholder="입력하세요."
                         className={styles.addressInput}
                       />
                     </Form.Item>
@@ -343,7 +352,7 @@ const MandatoryGrade = () => {
                     <Form.Item name="lotNumber" style={{ flex: 1, margin: 0 }}>
                       <Input
                         size={'small'}
-                        placeholder="인천광역시 서구 원당동 1024"
+                        placeholder="입력하세요."
                         className={styles.addressInput}
                       />
                     </Form.Item>
@@ -359,14 +368,12 @@ const MandatoryGrade = () => {
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Select
-                          placeholder="교육시설"
+                          placeholder="선택"
                           className={styles.infoSelect}
                           size="small"
                           options={[
+                            { value: 'residential', label: '선택' },
                             { value: 'educational', label: '교육시설' },
-                            { value: 'residential', label: '주거시설' },
-                            { value: 'commercial', label: '상업시설' },
-                            { value: 'office', label: '업무시설' },
                           ]}
                         />
                       </Form.Item>
@@ -378,13 +385,12 @@ const MandatoryGrade = () => {
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Select
-                          placeholder="초중고"
+                          placeholder="선택"
                           className={styles.infoSelect}
                           size="small"
                           options={[
-                            { value: 'elementary', label: '초중고' },
-                            { value: 'university', label: '대학교' },
-                            { value: 'kindergarten', label: '유치원' },
+                            { value: 'residential', label: '선택' },
+                            { value: 'educational', label: '초중고' },
                           ]}
                         />
                       </Form.Item>
@@ -399,11 +405,7 @@ const MandatoryGrade = () => {
                         name="totalArea"
                         style={{ flex: 1, margin: 0 }}
                       >
-                        <Input
-                          placeholder="17,000"
-                          className={styles.infoInput}
-                          size="small"
-                        />
+                        <Input className={styles.infoInput} size="small" />
                       </Form.Item>
                       <span className={styles.unitText}>㎡</span>
                     </div>
@@ -414,7 +416,7 @@ const MandatoryGrade = () => {
                         style={{ flex: 1, margin: 0 }}
                       >
                         <Input
-                          placeholder="3,400"
+                          disabled
                           className={styles.infoInput}
                           size="small"
                         />
@@ -431,10 +433,7 @@ const MandatoryGrade = () => {
                         name="aboveGroundFloors"
                         style={{ flex: 1, margin: 0 }}
                       >
-                        <InputNumber
-                          placeholder="5"
-                          className={styles.infoInput}
-                        />
+                        <InputNumber className={styles.infoInput} />
                       </Form.Item>
                     </div>
                   </div>

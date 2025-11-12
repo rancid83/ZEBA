@@ -1,19 +1,20 @@
 'use client';
 
-import { Radio, Select } from 'antd';
+import { Radio, RadioChangeEvent, Select } from 'antd';
 import styles from './SolarDomesticHotWaterSystem.module.scss';
 import EditSlider from '@/components/main/RightContents/StandardModelPerformanceEdit/shared/EditSlider/EditSlider';
 import { CheckboxGroupProps } from 'antd/es/checkbox';
+import { useState } from 'react';
 
 const thermalItems = [
   {
     type: 'template1',
-    title: '연료전지',
-    start: 3.12,
-    min: 1.5,
-    max: 5,
+    title: '태양열 급탕 시스템',
+    start: 1487.5,
+    min: 0,
+    max: 2975,
     step: 0.01,
-    average: 3.12,
+    average: 1487.5,
     rate: 1,
   },
 ];
@@ -24,13 +25,20 @@ const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
 ];
 
 const SolarDomesticHotWaterSystem = (props: any) => {
+  const [solarType, setSolarType] = useState('Apple');
+
+  const onChangeSolarType = ({ target: { value } }: RadioChangeEvent) => {
+    setSolarType(value);
+  };
+
   return (
     <div className={styles.wrap}>
       <div className={styles.fuelCellRadio}>
         <Radio.Group
           options={optionsWithDisabled}
+          onChange={onChangeSolarType}
           optionType="button"
-          value={'Apple'}
+          value={solarType}
           buttonStyle="solid"
           size="small"
         />
@@ -41,13 +49,15 @@ const SolarDomesticHotWaterSystem = (props: any) => {
       <div className={styles.positionSelect}>
         <span>방위</span>
         <Select
-          defaultValue="lucy"
+          defaultValue="jack"
           style={{ width: 120 }}
           options={[
-            { value: 'jack', label: '남동' },
-            { value: 'lucy', label: '남서' },
-            { value: 'Yiminghe', label: '북서' },
-            { value: 'disabled', label: '북동' },
+            { value: 'jack', label: '동' },
+            { value: 'lucy', label: '남동' },
+            { value: 'Yiminghe', label: '남' },
+            { value: 'disabled', label: '남서' },
+            { value: 'disabled2', label: '서' },
+            { value: 'disabled3', label: '수평' },
           ]}
         />
       </div>

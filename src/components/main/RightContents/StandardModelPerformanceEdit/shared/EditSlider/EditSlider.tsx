@@ -63,7 +63,7 @@ const EditSlider = ({
             <br />
             <LikeOutlined />
           </div>
-          <div style={{ marginTop: '3.5px' }}>{min}</div>
+          <div style={{ marginTop: '3.5px' }}>{min.toFixed(1)}</div>
         </div>
       ),
     },
@@ -110,7 +110,7 @@ const EditSlider = ({
             <br />
             <DislikeOutlined />
           </div>
-          <div style={{ marginTop: '3.5px' }}>{max}</div>
+          <div style={{ marginTop: '3.5px' }}>{max.toFixed(1)}</div>
         </div>
       ),
     },

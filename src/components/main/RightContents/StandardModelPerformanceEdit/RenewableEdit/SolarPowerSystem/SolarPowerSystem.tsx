@@ -14,11 +14,11 @@ const thermalItems = [
       {
         type: 'template2',
         title: '',
-        start: 87.8,
-        min: 70,
-        max: 100,
-        step: 0.1,
-        average: 85,
+        start: 297.5,
+        min: 0,
+        max: 595,
+        step: 0.01,
+        average: 297.5,
         rate: 1,
         unit: '%',
         subDescription: '설치 용량',
@@ -26,11 +26,11 @@ const thermalItems = [
       {
         type: 'template2',
         title: '',
-        start: 87.8,
-        min: 70,
-        max: 100,
-        step: 0.1,
-        average: 85,
+        start: 0.175,
+        min: 0.1,
+        max: 0.25,
+        step: 0.01,
+        average: 0.175,
         rate: 1,
         unit: '%',
         subDescription: '발전 효율',
@@ -58,10 +58,9 @@ const SolarPowerSystem = (props: any) => {
             defaultValue="lucy"
             style={{ width: 120 }}
             options={[
-              { value: 'jack', label: '45%' },
-              { value: 'lucy', label: '55%' },
-              { value: 'Yiminghe', label: '65%' },
-              { value: 'disabled', label: '75%' },
+              { value: 'jack', label: '0º (수평)' },
+              { value: 'lucy', label: '45º' },
+              { value: 'Yiminghe', label: '90º (수직)' },
             ]}
           />
         </Flex>
@@ -71,10 +70,11 @@ const SolarPowerSystem = (props: any) => {
             defaultValue="lucy"
             style={{ width: 120 }}
             options={[
-              { value: 'jack', label: '남동' },
-              { value: 'lucy', label: '남서' },
-              { value: 'Yiminghe', label: '북서' },
-              { value: 'disabled', label: '북동' },
+              { value: 'jack', label: '동' },
+              { value: 'lucy', label: '남동' },
+              { value: 'Yiminghe', label: '남' },
+              { value: 'disabled', label: '남서' },
+              { value: 'disabled2', label: '서' },
             ]}
           />
         </Flex>
