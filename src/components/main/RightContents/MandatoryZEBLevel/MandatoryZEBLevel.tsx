@@ -5,16 +5,15 @@ import {
   Flex,
   Form,
   Input,
-  InputNumber,
   Select,
   Tabs,
   Modal,
+  InputNumber,
 } from 'antd';
 import styles from './MandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';
 import { useStore } from '@/store';
 import React, { useEffect, useState } from 'react';
-import loading from '@/app/[lang]/loading';
 import KakaoMaps from '@/components/main/RightContents/MandatoryZEBLevel/KakaoMaps';
 import DaumPostcodeEmbed from 'react-daum-postcode';
 
@@ -334,6 +333,20 @@ const MandatoryGrade = () => {
             } else if (changedValues.lotNumber && !allValues.roadName) {
               setCurrentAddress(changedValues.lotNumber);
             }
+
+            // 건축면적 자동 계산 (연면적 / 지상층수)
+            if (changedValues.totalArea || changedValues.aboveGroundFloors) {
+              const totalArea = changedValues.totalArea || allValues.totalArea;
+              const floors =
+                changedValues.aboveGroundFloors || allValues.aboveGroundFloors;
+
+              if (totalArea && floors && floors > 0) {
+                const buildingArea = Math.round(totalArea / floors);
+                form.setFieldsValue({
+                  buildingArea: buildingArea,
+                });
+              }
+            }
           }}
         >
           <div className={styles.mandatoryGrade}>
@@ -465,7 +478,7 @@ const MandatoryGrade = () => {
                         name="totalArea"
                         style={{ flex: 1, margin: 0 }}
                       >
-                        <Input className={styles.infoInput} size="small" />
+                        <InputNumber className={styles.infoInput} min={1} />
                       </Form.Item>
                       <span className={styles.unitText}>㎡</span>
                     </div>
@@ -475,11 +488,7 @@ const MandatoryGrade = () => {
                         name="buildingArea"
                         style={{ flex: 1, margin: 0 }}
                       >
-                        <Input
-                          disabled
-                          className={styles.infoInput}
-                          size="small"
-                        />
+                        <Input readOnly className={styles.infoInput} />
                       </Form.Item>
                       <span className={styles.unitText}>㎡</span>
                     </div>

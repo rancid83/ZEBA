@@ -40,6 +40,15 @@ const LayoutWrapper = (props: any) => {
           Tabs: {
             horizontalMargin: '0',
           },
+          Select: {
+            optionSelectedBg: '#007676',
+            optionSelectedColor: '#ffffff',
+            optionSelectedFontWeight: 400,
+          },
+          Button: {
+            colorBorder: '#007676',
+            defaultColor: '#007676',
+          },
         },
         token: {
           colorPrimary: '#007676',

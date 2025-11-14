@@ -52,7 +52,6 @@ const KakaoMaps = ({ address }: KakaoMapsProps) => {
   // 로딩/에러 상태 처리
   if (loading) return <div>지도 로딩중...</div>;
   if (error) {
-    console.log('error', error);
     return <div>지도 로드 실패</div>;
   }
 

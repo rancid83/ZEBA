@@ -1,8 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: true,
+  reactCompiler: false,
+  experimental: {
+    optimizePackageImports: ['antd'],
+  },
+  transpilePackages: ['antd', '@ant-design/cssinjs'],
 };
 
 export default nextConfig;

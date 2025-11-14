@@ -67,7 +67,7 @@ export function BarChart(props: any) {
         },
       },
     });
-    console.log(changeOptions);
+
     setData({
       labels,
       datasets: isEnergyTap
