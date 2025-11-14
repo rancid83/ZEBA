@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Inter } from 'next/font/google';
 import './globals.scss';
+import AntdRegistry from '../lib/AntdRegistry';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,13 +36,13 @@ export default function RootLayout({
       <head>
         <script
           type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c39c0f6475385231e05a98c8870a877&libraries=services,clusterer"
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY || ''}&libraries=services,clusterer`}
         ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
       >
-        {children}
+        <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>
   );

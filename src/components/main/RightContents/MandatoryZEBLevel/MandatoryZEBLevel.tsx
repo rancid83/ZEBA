@@ -1,13 +1,22 @@
 'use client';
 
-import { Button, Flex, Form, Input, InputNumber, Select, Tabs } from 'antd';
+import {
+  Button,
+  Flex,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Tabs,
+  Modal,
+} from 'antd';
 import styles from './MandatoryZEBLevel.module.scss';
 import { DingtalkOutlined, SearchOutlined } from '@ant-design/icons';
-import GoogleMaps from '@/components/main/RightContents/MandatoryZEBLevel/Google.Maps';
 import { useStore } from '@/store';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import loading from '@/app/[lang]/loading';
 import KakaoMaps from '@/components/main/RightContents/MandatoryZEBLevel/KakaoMaps';
+import DaumPostcodeEmbed from 'react-daum-postcode';
 
 const MandatoryZEBLevel = (props: any) => {
   return (
@@ -35,6 +44,10 @@ const MandatoryGrade = () => {
     updateGradeDataPercent,
     pageStep,
   } = useStore();
+
+  const [isPostcodeModalOpen, setIsPostcodeModalOpen] = useState(false);
+  const [form] = Form.useForm();
+  const [currentAddress, setCurrentAddress] = useState('');
 
   const handleRequestAnalysis = () => {
     setLoading(true);
@@ -267,16 +280,60 @@ const MandatoryGrade = () => {
     }, 1000 * 2);
   };
 
+  const handleAddressSearch = () => {
+    setIsPostcodeModalOpen(true);
+  };
+
+  const handlePostcodeComplete = (data: any) => {
+    const roadAddress = data.roadAddress || data.autoRoadAddress;
+    const jibunAddress = data.jibunAddress || data.autoJibunAddress;
+
+    // 주소 데이터를 폼에 설정
+    form.setFieldsValue({
+      roadName: roadAddress,
+      lotNumber: jibunAddress,
+    });
+
+    // 지도 위치 업데이트를 위해 주소 상태 설정 (도로명 주소 우선)
+    setCurrentAddress(roadAddress || jibunAddress);
+
+    setIsPostcodeModalOpen(false);
+  };
+
+  const handlePostcodeClose = () => {
+    setIsPostcodeModalOpen(false);
+  };
+
+  const handleDirectInput = () => {
+    // 주소 필드 초기화
+    form.setFieldsValue({
+      roadName: '',
+      lotNumber: '',
+    });
+
+    // 지도를 기본 주소로 초기화
+    setCurrentAddress('서울특별시 강서구 공항대로 220');
+  };
+
   useEffect(() => {}, [pageStep]);
   return (
     <>
       <div className={styles.mandatoryGradeContainer}>
         <Form
+          form={form}
           disabled={pageStep === 1}
           initialValues={{
             zebGrade: 'educational', //ZEB
             category1: 'residential', //구분1
             category2: 'residential', //구분2
+          }}
+          onValuesChange={(changedValues, allValues) => {
+            // 주소 필드가 변경되었을 때 지도 위치 업데이트
+            if (changedValues.roadName) {
+              setCurrentAddress(changedValues.roadName);
+            } else if (changedValues.lotNumber && !allValues.roadName) {
+              setCurrentAddress(changedValues.lotNumber);
+            }
           }}
         >
           <div className={styles.mandatoryGrade}>
@@ -290,11 +347,14 @@ const MandatoryGrade = () => {
             </div>
             {pageStep === 0 && (
               <div className={styles.mandatoryGradeAddr}>
-                <Button size={'middle'}>직접 입력</Button>
+                <Button size={'middle'} onClick={handleDirectInput}>
+                  직접 입력
+                </Button>
                 <Button
                   size={'middle'}
                   icon={<SearchOutlined />}
                   iconPosition={'end'}
+                  onClick={handleAddressSearch}
                 >
                   주소 검색
                 </Button>
@@ -331,8 +391,8 @@ const MandatoryGrade = () => {
 
             <Flex gap={40}>
               <div className={styles.mapContainer}>
-                <GoogleMaps />
-                {/*<KakaoMaps />*/}
+                {/*<GoogleMaps />*/}
+                <KakaoMaps address={currentAddress} />
               </div>
               <div className={styles.addressContainer}>
                 <div className={styles.addressSection}>
@@ -433,7 +493,11 @@ const MandatoryGrade = () => {
                         name="aboveGroundFloors"
                         style={{ flex: 1, margin: 0 }}
                       >
-                        <InputNumber className={styles.infoInput} />
+                        <InputNumber
+                          className={styles.infoInput}
+                          min={1}
+                          max={999}
+                        />
                       </Form.Item>
                     </div>
                   </div>
@@ -452,6 +516,21 @@ const MandatoryGrade = () => {
           </Button>
         </Flex>
       </div>
+
+      <Modal
+        title="주소 검색"
+        open={isPostcodeModalOpen}
+        onCancel={handlePostcodeClose}
+        footer={null}
+        width={500}
+        destroyOnClose
+      >
+        <DaumPostcodeEmbed
+          onComplete={handlePostcodeComplete}
+          onClose={handlePostcodeClose}
+          style={{ height: '400px' }}
+        />
+      </Modal>
     </>
   );
 };
