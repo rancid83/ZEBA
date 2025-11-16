@@ -126,7 +126,7 @@ const EnergyDetail = () => {
         <div className={styles.mandatoryGrade}>
           <div className={styles.mandatoryGradeHeader}>
             <img
-              src="/assets/images/icon/icon-mark.png"
+              src="/assets/images/icon/icon-stack.png"
               alt="icon"
               className={styles.icon}
             />

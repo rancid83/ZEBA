@@ -18,7 +18,7 @@
   .mandatoryGradeHeader {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     .icon {
       width: 24px;
       height: 24px;
@@ -123,7 +123,7 @@
   }
 
   .zebGradeInputLabel {
-    font-size: 15px;
+    font-size: 13px;
     color: #4e4e4e;
   }
 }

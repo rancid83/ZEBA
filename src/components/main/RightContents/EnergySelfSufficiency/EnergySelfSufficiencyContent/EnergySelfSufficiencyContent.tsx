@@ -8,6 +8,7 @@ import { BarChart } from '@/components/chartjs/bar';
 import { Doughnut } from 'react-chartjs-2';
 import { DoughnutChart } from '@/components/chartjs/doughnut';
 import { useStore } from '@/store';
+import { DollarOutlined, LineChartOutlined } from '@ant-design/icons';
 
 const EnergySelfSufficiencyContent = (props: any) => {
   const [size, setSize] = useState('won'); // default is 'middle'
@@ -33,14 +34,17 @@ const EnergySelfSufficiencyContent = (props: any) => {
         <div className={`${styles.mandatoryGradeContainer} `}>
           <div className={styles.mandatoryGrade}>
             <div className={styles.mandatoryGradeHeader}>
-              <img
-                src="/assets/images/icon/icon-mark.png"
-                alt="icon"
-                className={styles.icon}
-              />
-              <span className={styles.title}>
-                {isEnergyTap ? '에너지 생산량 및 소요량' : '시공 비용 산출'}
-              </span>
+              {isEnergyTap ? (
+                <>
+                  <LineChartOutlined style={{ fontSize: 24 }} />
+                  <span className={styles.title}>에너지 생산량 및 소요량</span>
+                </>
+              ) : (
+                <>
+                  <DollarOutlined style={{ fontSize: 24 }} />
+                  <span className={styles.title}>시공 비용 산출</span>
+                </>
+              )}
               {!isEnergyTap && (
                 <div>
                   <Radio.Group
