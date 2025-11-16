@@ -7,6 +7,7 @@ import EditSlider from '@/components/main/RightContents/StandardModelPerformance
 
 const thermalItems = [
   {
+    id: 'windowUValue',
     type: 'template1',
     title: '창호 열관류율',
     start: 2,
@@ -17,6 +18,7 @@ const thermalItems = [
     rate: 3,
   },
   {
+    id: 'wallUValue',
     type: 'template1',
     title: '외벽 열관류율',
     start: 0.25,
@@ -27,6 +29,7 @@ const thermalItems = [
     rate: 1,
   },
   {
+    id: 'roofUValue',
     type: 'template1',
     title: '지붕 열관류율',
     start: 0.5,
@@ -37,6 +40,7 @@ const thermalItems = [
     rate: 1,
   },
   {
+    id: 'floorUValue',
     type: 'template1',
     title: '바닥 열관류율',
     start: 0.25,

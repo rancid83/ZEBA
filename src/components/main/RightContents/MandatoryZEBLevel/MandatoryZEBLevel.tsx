@@ -314,212 +314,251 @@ const MandatoryGrade = () => {
     setCurrentAddress('서울특별시 강서구 공항대로 220');
   };
 
-  useEffect(() => {}, [pageStep]);
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
   return (
-    <>
+    <Form
+      name="basic"
+      form={form}
+      disabled={pageStep === 1}
+      initialValues={{
+        zebGrade: 'educational', //ZEB GRADE
+        category1: 'residential', //구분1
+        category2: 'residential', //구분2
+      }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      onValuesChange={(changedValues, allValues) => {
+        // 주소 필드가 변경되었을 때 지도 위치 업데이트
+        if (changedValues.roadName) {
+          setCurrentAddress(changedValues.roadName);
+        } else if (changedValues.lotNumber && !allValues.roadName) {
+          setCurrentAddress(changedValues.lotNumber);
+        }
+
+        // 건축면적 자동 계산 (연면적 / 지상층수)
+        if (changedValues.bld_al_area || changedValues.bld_floor_esurf) {
+          const totalArea = changedValues.bld_al_area || allValues.bld_al_area;
+          const floors =
+            changedValues.bld_floor_esurf || allValues.bld_floor_esurf;
+
+          if (totalArea && floors && floors > 0) {
+            const buildingArea = Math.round(totalArea / floors);
+            form.setFieldsValue({
+              bld_area: buildingArea,
+            });
+          }
+        }
+      }}
+    >
       <div className={styles.mandatoryGradeContainer}>
-        <Form
-          form={form}
-          disabled={pageStep === 1}
-          initialValues={{
-            zebGrade: 'educational', //ZEB
-            category1: 'residential', //구분1
-            category2: 'residential', //구분2
-          }}
-          onValuesChange={(changedValues, allValues) => {
-            // 주소 필드가 변경되었을 때 지도 위치 업데이트
-            if (changedValues.roadName) {
-              setCurrentAddress(changedValues.roadName);
-            } else if (changedValues.lotNumber && !allValues.roadName) {
-              setCurrentAddress(changedValues.lotNumber);
-            }
-
-            // 건축면적 자동 계산 (연면적 / 지상층수)
-            if (changedValues.totalArea || changedValues.aboveGroundFloors) {
-              const totalArea = changedValues.totalArea || allValues.totalArea;
-              const floors =
-                changedValues.aboveGroundFloors || allValues.aboveGroundFloors;
-
-              if (totalArea && floors && floors > 0) {
-                const buildingArea = Math.round(totalArea / floors);
-                form.setFieldsValue({
-                  buildingArea: buildingArea,
-                });
-              }
-            }
-          }}
-        >
-          <div className={styles.mandatoryGrade}>
-            <div className={styles.mandatoryGradeHeader}>
-              <img
-                src="/assets/images/icon/icon-mark.png"
-                alt="icon"
-                className={styles.icon}
-              />
-              <span className={styles.title}>건축물 개요</span>
-            </div>
-            {pageStep === 0 && (
-              <div className={styles.mandatoryGradeAddr}>
-                <Button size={'middle'} onClick={handleDirectInput}>
-                  직접 입력
-                </Button>
-                <Button
-                  size={'middle'}
-                  icon={<SearchOutlined />}
-                  iconPosition={'end'}
-                  onClick={handleAddressSearch}
-                >
-                  주소 검색
-                </Button>
-              </div>
-            )}
-
-            {pageStep === 1 && (
-              <Flex justify={'right'} align={'center'} gap={15}>
-                <span className={styles.zebGradeInputLabel}>
-                  ZEB 목표 등급 입력
-                </span>
-                <Form.Item
-                  name="zebGrade"
-                  style={{
-                    marginBottom: '0',
-                  }}
-                >
-                  <Select
-                    disabled={false}
-                    style={{
-                      width: '120px',
-                    }}
-                    options={[
-                      { value: 'educational', label: 'ZEB 5등급' },
-                      { value: 'residential', label: 'ZEB 4등급' },
-                      { value: 'commercial', label: 'ZEB 3등급' },
-                      { value: 'office', label: 'ZEB 2등급' },
-                      { value: 'office2', label: 'ZEB 1등급' },
-                    ]}
-                  />
-                </Form.Item>
-              </Flex>
-            )}
-
-            <Flex gap={40}>
-              <div className={styles.mapContainer}>
-                {/*<GoogleMaps />*/}
-                <KakaoMaps address={currentAddress} />
-              </div>
-              <div className={styles.addressContainer}>
-                <div className={styles.addressSection}>
-                  <div className={styles.addressTitle}>주소</div>
-                  <div className={styles.inputGroup}>
-                    <div className={styles.inputLabel}>도로명</div>
-                    <Form.Item name="roadName" style={{ flex: 1, margin: 0 }}>
-                      <Input
-                        size={'small'}
-                        placeholder="입력하세요."
-                        className={styles.addressInput}
-                      />
-                    </Form.Item>
-                  </div>
-                  <div className={styles.inputGroup}>
-                    <div className={styles.inputLabel}>지번</div>
-                    <Form.Item name="lotNumber" style={{ flex: 1, margin: 0 }}>
-                      <Input
-                        size={'small'}
-                        placeholder="입력하세요."
-                        className={styles.addressInput}
-                      />
-                    </Form.Item>
-                  </div>
-                </div>
-                <div className={styles.buildingInfoContainer}>
-                  <div className={styles.buildingInfoSection}>
-                    <div className={styles.buildingInfoTitle}>용도</div>
-                    <div className={styles.infoRow}>
-                      <div className={styles.infoLabel}>구분 1</div>
-                      <Form.Item
-                        name="category1"
-                        style={{ flex: 1, margin: 0 }}
-                      >
-                        <Select
-                          placeholder="선택"
-                          className={styles.infoSelect}
-                          size="small"
-                          options={[
-                            { value: 'residential', label: '선택' },
-                            { value: 'educational', label: '교육시설' },
-                          ]}
-                        />
-                      </Form.Item>
-                    </div>
-                    <div className={styles.infoRow}>
-                      <div className={styles.infoLabel}>구분 2</div>
-                      <Form.Item
-                        name="category2"
-                        style={{ flex: 1, margin: 0 }}
-                      >
-                        <Select
-                          placeholder="선택"
-                          className={styles.infoSelect}
-                          size="small"
-                          options={[
-                            { value: 'residential', label: '선택' },
-                            { value: 'educational', label: '초중고' },
-                          ]}
-                        />
-                      </Form.Item>
-                    </div>
-                  </div>
-
-                  <div className={styles.buildingInfoSection}>
-                    <div className={styles.buildingInfoTitle}>면적</div>
-                    <div className={styles.infoRow}>
-                      <div className={styles.infoLabel}>연면적</div>
-                      <Form.Item
-                        name="totalArea"
-                        style={{ flex: 1, margin: 0 }}
-                      >
-                        <InputNumber className={styles.infoInput} min={1} />
-                      </Form.Item>
-                      <span className={styles.unitText}>㎡</span>
-                    </div>
-                    <div className={styles.infoRow}>
-                      <div className={styles.infoLabel}>건축면적</div>
-                      <Form.Item
-                        name="buildingArea"
-                        style={{ flex: 1, margin: 0 }}
-                      >
-                        <Input readOnly className={styles.infoInput} />
-                      </Form.Item>
-                      <span className={styles.unitText}>㎡</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.buildingInfoSection}>
-                    <div className={styles.buildingInfoTitle}>층수</div>
-                    <div className={styles.infoRow}>
-                      <div className={styles.infoLabel}>지상 층수</div>
-                      <Form.Item
-                        name="aboveGroundFloors"
-                        style={{ flex: 1, margin: 0 }}
-                      >
-                        <InputNumber
-                          className={styles.infoInput}
-                          min={1}
-                          max={999}
-                        />
-                      </Form.Item>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Flex>
+        <div className={styles.mandatoryGrade}>
+          <div className={styles.mandatoryGradeHeader}>
+            <img
+              src="/assets/images/icon/icon-mark.png"
+              alt="icon"
+              className={styles.icon}
+            />
+            <span className={styles.title}>건축물 개요</span>
           </div>
-        </Form>
+          {pageStep === 0 && (
+            <div className={styles.mandatoryGradeAddr}>
+              <Button size={'middle'} onClick={handleDirectInput}>
+                직접 입력
+              </Button>
+              <Button
+                size={'middle'}
+                icon={<SearchOutlined />}
+                iconPosition={'end'}
+                onClick={handleAddressSearch}
+              >
+                주소 검색
+              </Button>
+            </div>
+          )}
+
+          {pageStep === 1 && (
+            <Flex justify={'right'} align={'center'} gap={15}>
+              <span className={styles.zebGradeInputLabel}>
+                ZEB 목표 등급 입력
+              </span>
+              <Form.Item
+                name="zebGrade"
+                style={{
+                  marginBottom: '0',
+                }}
+              >
+                <Select
+                  disabled={false}
+                  style={{
+                    width: '120px',
+                  }}
+                  options={[
+                    { value: 'educational', label: 'ZEB 5등급' },
+                    { value: 'residential', label: 'ZEB 4등급' },
+                    { value: 'commercial', label: 'ZEB 3등급' },
+                    { value: 'office', label: 'ZEB 2등급' },
+                    { value: 'office2', label: 'ZEB 1등급' },
+                  ]}
+                />
+              </Form.Item>
+            </Flex>
+          )}
+
+          <Flex gap={40}>
+            <div className={styles.mapContainer}>
+              {/*<GoogleMaps />*/}
+              <KakaoMaps address={currentAddress} />
+            </div>
+            <div className={styles.addressContainer}>
+              <div className={styles.addressSection}>
+                <div className={styles.addressTitle}>주소</div>
+                <div className={styles.inputGroup}>
+                  <div className={styles.inputLabel}>도로명</div>
+                  <Form.Item
+                    name="roadName"
+                    style={{ flex: 1, margin: 0 }}
+                    rules={[{ required: true, message: '' }]}
+                    hasFeedback
+                  >
+                    <Input
+                      size={'small'}
+                      placeholder="입력하세요."
+                      className={styles.addressInput}
+                      readOnly
+                    />
+                  </Form.Item>
+                </div>
+                <div className={styles.inputGroup}>
+                  <div className={styles.inputLabel}>지번</div>
+                  <Form.Item
+                    name="lotNumber"
+                    style={{ flex: 1, margin: 0 }}
+                    rules={[{ required: true, message: '' }]}
+                    hasFeedback
+                  >
+                    <Input
+                      size={'small'}
+                      placeholder="입력하세요."
+                      className={styles.addressInput}
+                      readOnly
+                    />
+                  </Form.Item>
+                </div>
+              </div>
+              <div className={styles.buildingInfoContainer}>
+                <div className={styles.buildingInfoSection}>
+                  <div className={styles.buildingInfoTitle}>용도</div>
+                  <div className={styles.infoRow}>
+                    <div className={styles.infoLabel}>구분 1</div>
+                    <Form.Item
+                      name="bld_main_use"
+                      style={{ flex: 1, margin: 0 }}
+                      rules={[
+                        {
+                          validator: (_, value) =>
+                            value && value !== '0'
+                              ? Promise.resolve()
+                              : Promise.reject(''),
+                        },
+                      ]}
+                    >
+                      <Select
+                        placeholder="선택"
+                        className={styles.infoSelect}
+                        size="small"
+                        options={[
+                          { value: '0', label: '선택' },
+                          { value: '2', label: '교육시설' },
+                        ]}
+                      />
+                    </Form.Item>
+                  </div>
+                  <div className={styles.infoRow}>
+                    <div className={styles.infoLabel}>구분 2</div>
+                    <Form.Item
+                      name="bld_detail_use"
+                      style={{ flex: 1, margin: 0 }}
+                      rules={[
+                        {
+                          validator: (_, value) =>
+                            value && value !== '0'
+                              ? Promise.resolve()
+                              : Promise.reject(''),
+                        },
+                      ]}
+                    >
+                      <Select
+                        placeholder="선택"
+                        className={styles.infoSelect}
+                        size="small"
+                        options={[
+                          { value: '0', label: '선택' },
+                          { value: '1', label: '초중고' },
+                        ]}
+                      />
+                    </Form.Item>
+                  </div>
+                </div>
+
+                <div className={styles.buildingInfoSection}>
+                  <div className={styles.buildingInfoTitle}>면적</div>
+                  <div className={styles.infoRow}>
+                    <div className={styles.infoLabel}>연면적</div>
+                    <Form.Item
+                      name="bld_al_area"
+                      style={{ flex: 1, margin: 0 }}
+                      rules={[{ required: true, message: '' }]}
+                    >
+                      <InputNumber className={styles.infoInput} min={1} />
+                    </Form.Item>
+                    <span className={styles.unitText}>㎡</span>
+                  </div>
+                  <div className={styles.infoRow}>
+                    <div className={styles.infoLabel}>건축면적</div>
+                    <Form.Item
+                      name="bld_area"
+                      style={{ flex: 1, margin: 0 }}
+                      rules={[{ required: true, message: '' }]}
+                    >
+                      <Input readOnly className={styles.infoInput} />
+                    </Form.Item>
+                    <span className={styles.unitText}>㎡</span>
+                  </div>
+                </div>
+
+                <div className={styles.buildingInfoSection}>
+                  <div className={styles.buildingInfoTitle}>층수</div>
+                  <div className={styles.infoRow}>
+                    <div className={styles.infoLabel}>지상 층수</div>
+                    <Form.Item
+                      name="bld_floor_esurf"
+                      style={{ flex: 1, margin: 0 }}
+                      rules={[{ required: true, message: '' }]}
+                    >
+                      <InputNumber
+                        className={styles.infoInput}
+                        min={1}
+                        max={999}
+                      />
+                    </Form.Item>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Flex>
+        </div>
         <Flex justify={'right'} className={'requestButton'}>
           <Button
+            htmlType={'submit'}
             type={'primary'}
             icon={<DingtalkOutlined />}
-            onClick={handleRequestAnalysis}
+            //onClick={handleRequestAnalysis}
           >
             ZEB [의무 등급] 분석 요청
           </Button>
@@ -540,7 +579,7 @@ const MandatoryGrade = () => {
           style={{ height: '400px' }}
         />
       </Modal>
-    </>
+    </Form>
   );
 };
 

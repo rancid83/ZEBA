@@ -6,14 +6,14 @@ import EditSlider from '@/components/main/RightContents/StandardModelPerformance
 
 const thermalItems = [
   {
+    id: 'solarPowerSystem',
     type: 'template2',
     title: '태양광 발전 시스템',
     rate: 2,
-
     children: [
       {
+        id: 'installationCapacity',
         type: 'template2',
-        title: '',
         start: 297.5,
         min: 0,
         max: 595,
@@ -24,8 +24,8 @@ const thermalItems = [
         subDescription: '설치 용량',
       },
       {
+        id: 'generationEfficiency',
         type: 'template2',
-        title: '',
         start: 0.175,
         min: 0.1,
         max: 0.25,

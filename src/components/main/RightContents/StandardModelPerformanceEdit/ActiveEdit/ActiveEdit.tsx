@@ -8,6 +8,7 @@ import EditSlider from '@/components/main/RightContents/StandardModelPerformance
 
 const thermalItems = [
   {
+    id: 'ehpCooling',
     type: 'template1',
     title: 'EHP(전기히트펌프)',
     start: 4.0,
@@ -20,6 +21,7 @@ const thermalItems = [
     unit: 'COP',
   },
   {
+    id: 'ehpHeating',
     type: 'template1',
     title: 'EHP(전기히트펌프)',
     start: 3.25,
@@ -32,6 +34,7 @@ const thermalItems = [
     unit: 'COP',
   },
   {
+    id: 'ghpCooling',
     type: 'template1',
     title: 'GHP(가스히트펌프)',
     start: 1.5,
@@ -44,6 +47,7 @@ const thermalItems = [
     unit: 'COP',
   },
   {
+    id: 'ghpHeating',
     type: 'template1',
     title: 'GHP(가스히트펌프)',
     start: 1.75,
@@ -56,6 +60,7 @@ const thermalItems = [
     unit: 'COP',
   },
   {
+    id: 'lightingDensity',
     type: 'template1',
     title: '조명밀도',
     start: 7.5,
@@ -68,6 +73,7 @@ const thermalItems = [
     unit: 'W/m²',
   },
   {
+    id: 'electricBoiler',
     type: 'template1',
     title: '전기보일러',
     start: 85,
@@ -80,6 +86,7 @@ const thermalItems = [
     unit: '%',
   },
   {
+    id: 'ventilator',
     type: 'template2',
     title: '전열 교환기',
     rate: 1,
@@ -87,24 +94,20 @@ const thermalItems = [
     children: [
       {
         type: 'template2',
-        title: '',
         start: 0.6,
         min: 0.4,
         max: 0.8,
         step: 0.01,
         average: 0.6,
-        rate: 1,
         unit: '%',
       },
       {
         type: 'template2',
-        title: '',
         start: 0.65,
         min: 0.5,
         max: 0.8,
         step: 0.01,
         average: 0.65,
-        rate: 1,
         unit: '%',
       },
     ],

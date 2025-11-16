@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 
 interface WindowThermalTransmittanceProps {
-  title: string;
+  title?: string;
   min?: number;
   max?: number;
   average?: number;
