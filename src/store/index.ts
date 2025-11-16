@@ -11,23 +11,29 @@ import {
   GradeDataPercentSlice,
 } from './slices/gradeDataPercentSlice';
 import { createPageSlice, PageSlice } from './slices/pageSlice';
+import {
+  createStandardModelPerformanceSlice,
+  StandardModelPerformanceSlice,
+} from './slices/standardModelPerformanceSlice';
 
 // 모든 슬라이스를 합친 스토어 타입
 type StoreState = LoadingSlice &
   GradeSlice &
   GradeBuildingSlice &
   GradeDataPercentSlice &
-  PageSlice;
+  PageSlice &
+  StandardModelPerformanceSlice;
 
 // 통합 스토어 생성
 export const useStore = create<StoreState>()(
   devtools(
-    (set) => ({
+    (set, get) => ({
       ...createLoadingSlice(set),
       ...createGradeSlice(set),
       ...createGradeBuildingSlice(set),
       ...createGradeDataPercentSlice(set),
       ...createPageSlice(set),
+      ...createStandardModelPerformanceSlice(set, get),
     }),
     {
       name: 'zeba-store',
