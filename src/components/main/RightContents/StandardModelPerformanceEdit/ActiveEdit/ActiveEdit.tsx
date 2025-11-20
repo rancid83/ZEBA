@@ -93,6 +93,7 @@ const thermalItems = [
     systemType: '환기',
     children: [
       {
+        id: 'ventilatorChild1',
         type: 'template2',
         start: 0.6,
         min: 0.4,
@@ -100,8 +101,10 @@ const thermalItems = [
         step: 0.01,
         average: 0.6,
         unit: '%',
+        subDescription: '냉방 효율',
       },
       {
+        id: 'ventilatorChild2',
         type: 'template2',
         start: 0.65,
         min: 0.5,
@@ -109,6 +112,7 @@ const thermalItems = [
         step: 0.01,
         average: 0.65,
         unit: '%',
+        subDescription: '난방 효율',
       },
     ],
   },

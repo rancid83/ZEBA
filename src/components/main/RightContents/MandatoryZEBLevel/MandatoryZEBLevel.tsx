@@ -375,9 +375,9 @@ const MandatoryGrade = () => {
             </div>
             {pageStep === 0 && (
               <div className={styles.mandatoryGradeAddr}>
-                <Button size={'middle'} onClick={handleDirectInput}>
+                {/*                <Button size={'middle'} onClick={handleDirectInput}>
                   직접 입력
-                </Button>
+                </Button>*/}
                 <Button
                   size={'middle'}
                   icon={<SearchOutlined />}

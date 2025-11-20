@@ -16,6 +16,17 @@
   height: 160px;
 }
 
+.editWrapVentilator {
+  padding-left: 0;
+  padding-right: 0;
+  &:first-child {
+    padding-right: 27px;
+  }
+  &:last-child {
+    padding-left: 27px;
+  }
+}
+
 .editTitle {
   font-size: 15px;
   font-weight: 500;

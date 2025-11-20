@@ -326,7 +326,7 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           step: 0.01,
           average: 0.6,
           rate: null,
-          systemType: null,
+          systemType: '냉방',
           unit: '%',
           subDescription: null,
           solarOrientation: null,

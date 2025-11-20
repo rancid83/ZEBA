@@ -23,7 +23,16 @@ interface WindowThermalTransmittanceProps {
   systemType?: string | null;
   subDescription?: string | null;
   type?: string;
+  id?: string | null;
 }
+
+const reverseSliders = [
+  'windowUValue',
+  'wallUValue',
+  'roofUValue',
+  'floorUValue',
+  'lightingDensity',
+];
 
 const EditSlider = ({
   title,
@@ -37,8 +46,34 @@ const EditSlider = ({
   systemType = null,
   subDescription = null,
   type = 'template1',
+  id = null,
 }: WindowThermalTransmittanceProps) => {
   const [currentValue, setCurrentValue] = useState(start);
+
+  const isReverse = reverseSliders.includes(id || '');
+
+  const sliderDetailStyle = {
+    marker: {
+      improvement: {
+        labelColor: isReverse ? '#92E9EF' : '#007676',
+        text: isReverse ? '저하' : '개선',
+        icon: isReverse ? <DislikeOutlined /> : <LikeOutlined />,
+      },
+      degradation: {
+        labelColor: isReverse ? '#007676' : '#92E9EF',
+        text: isReverse ? '개선' : '저하',
+        icon: isReverse ? <LikeOutlined /> : <DislikeOutlined />,
+      },
+    },
+    slider: {
+      improvement: {
+        backgroundColor: isReverse ? '#D5FAFC' : '#1DB5BE',
+      },
+      degradation: {
+        backgroundColor: isReverse ? '#1DB5BE' : '#D5FAFC',
+      },
+    },
+  };
 
   const marks: SliderSingleProps['marks'] = {
     [min]: {
@@ -54,14 +89,14 @@ const EditSlider = ({
               top: '-52px',
               left: '50%',
               transform: 'translateX(-50%)',
-              color: '#92E9EF',
               whiteSpace: 'nowrap',
               lineHeight: '1.3',
+              color: sliderDetailStyle.marker.degradation.labelColor,
             }}
           >
-            개선
+            {sliderDetailStyle.marker.degradation.text}
             <br />
-            <LikeOutlined />
+            {sliderDetailStyle.marker.degradation.icon}
           </div>
           <div style={{ marginTop: '3.5px' }}>{min.toFixed(1)}</div>
         </div>
@@ -101,14 +136,14 @@ const EditSlider = ({
               top: '-52px',
               left: '50%',
               transform: 'translateX(-50%)',
-              color: '#007676',
               whiteSpace: 'nowrap',
               lineHeight: '1.3',
+              color: sliderDetailStyle.marker.improvement.labelColor,
             }}
           >
-            저하
+            {sliderDetailStyle.marker.improvement.text}
             <br />
-            <DislikeOutlined />
+            {sliderDetailStyle.marker.improvement.icon}
           </div>
           <div style={{ marginTop: '3.5px' }}>{max.toFixed(1)}</div>
         </div>
@@ -131,7 +166,7 @@ const EditSlider = ({
 
     if (currentValue < standard) {
       // 왼쪽으로 움직였을 때: 현재값부터 표준까지 초록색으로 배경 변경
-      return `linear-gradient(to right, #d9d9d9 0%, #d9d9d9 ${currentPercent}%, #1DB5BE ${currentPercent}%, #1DB5BE ${standardPercent}%, #d9d9d9 ${standardPercent}%, #d9d9d9 100%)`;
+      return `linear-gradient(to right, #d9d9d9 0%, #d9d9d9 ${currentPercent}%, ${sliderDetailStyle.slider.degradation.backgroundColor} ${currentPercent}%, ${sliderDetailStyle.slider.degradation.backgroundColor} ${standardPercent}%, #d9d9d9 ${standardPercent}%, #d9d9d9 100%)`;
     } else {
       // 표준값이거나 오른쪽으로 움직였을 때: 0부터 표준까지 초록색
       return `linear-gradient(to right, #1DB5BE 0%, #1DB5BE ${standardPercent}%, #d9d9d9 ${standardPercent}%, #d9d9d9 100%)`;
@@ -153,7 +188,7 @@ const EditSlider = ({
     } else if (currentValue > standard) {
       // 오른쪽으로 움직였을 때: 0~표준은 기본색, 표준~현재값은 연한색
       const standardRatio = (standardPercent / currentPercent) * 100;
-      return `linear-gradient(to right, #2A4E51 0%, #2A4E51 ${standardRatio}%, #D5FAFC ${standardRatio}%, #D5FAFC 100%)`;
+      return `linear-gradient(to right, #2A4E51 0%, #2A4E51 ${standardRatio}%, ${sliderDetailStyle.slider.improvement.backgroundColor} ${standardRatio}%, ${sliderDetailStyle.slider.improvement.backgroundColor} 100%)`;
     } else {
       // 표준값일 때는 전체 기본색상
       return '#2A4E51';
@@ -184,18 +219,18 @@ const EditSlider = ({
     if (currentValue < standard) {
       // 왼쪽으로 움직였을 때: 저하
       return {
-        text: '저하',
+        text: sliderDetailStyle.marker.degradation.text,
         value: difference.toFixed(2),
-        icon: <CaretDownOutlined />,
-        backgroundColor: '#92E9EF',
+        icon: <CaretUpOutlined />,
+        backgroundColor: sliderDetailStyle.marker.degradation.labelColor,
       };
     } else if (currentValue > standard) {
       // 오른쪽으로 움직였을 때: 개선
       return {
-        text: '개선',
+        text: sliderDetailStyle.marker.improvement.text,
         value: difference.toFixed(2),
-        icon: <CaretUpOutlined />,
-        backgroundColor: '#007676', // 기본 배경 유지
+        icon: <CaretDownOutlined />,
+        backgroundColor: sliderDetailStyle.marker.improvement.labelColor, // 기본 배경 유지
       };
     } else {
       // 표준값일 때
@@ -225,7 +260,7 @@ const EditSlider = ({
 
   return (
     <div
-      className={`${styles.editWrap} ${type === 'template2' ? styles.editWrapTemplate2 : ''}`}
+      className={`${styles.editWrap} ${type === 'template2' ? styles.editWrapTemplate2 : ''} ${id === 'ventilatorChild1' || id === 'ventilatorChild2' ? styles.editWrapVentilator : ''}`}
     >
       <Flex justify="space-between" align={'center'}>
         <span className={styles.editTitle}>{title}</span>
