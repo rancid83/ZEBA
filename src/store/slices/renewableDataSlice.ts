@@ -1,4 +1,3 @@
-import { StateCreator } from 'zustand';
 import { RenewableDataState, BuildingDataItem } from '../types';
 
 export interface RenewableDataSlice extends RenewableDataState {
@@ -13,9 +12,7 @@ export interface RenewableDataSlice extends RenewableDataState {
   resetRenewableDataCost: () => void;
 }
 
-export const createRenewableDataSlice: StateCreator<RenewableDataSlice> = (
-  set,
-) => ({
+export const createRenewableDataSlice = (set: any) => ({
   renewableData: [],
   renewableDataCost: [],
 
@@ -28,8 +25,8 @@ export const createRenewableDataSlice: StateCreator<RenewableDataSlice> = (
     index: number,
     updates: Partial<BuildingDataItem>,
   ) =>
-    set((state) => ({
-      renewableData: state.renewableData.map((item, i) =>
+    set((state: any) => ({
+      renewableData: state.renewableData.map((item: any, i: number) =>
         i === index ? { ...item, ...updates } : item,
       ),
     })),

@@ -3,7 +3,7 @@
 import styles from './ActiveEdit.module.scss';
 import stylesEdit from '../shared/EditSlider/EditSlider.module.scss';
 import CollapseItem from '@/components/main/RightContents/MandatoryZEBLevel/shared/CollapseItem/CollapseItem';
-import { Flex, Rate } from 'antd';
+import { Flex } from 'antd';
 import EditSlider from '@/components/main/RightContents/MandatoryZEBLevel/shared/EditSlider/EditSlider';
 import { useStore } from '@/store';
 
@@ -17,7 +17,7 @@ const allowContents = [
   'ventilator',
 ];
 
-const ActiveEdit = ({ form }: any) => {
+const ActiveEdit = () => {
   const { standardModelPerformanceData } = useStore();
   const filteredData = standardModelPerformanceData.filter(
     (data: { id: string }) => allowContents.includes(data.id),
@@ -50,29 +50,27 @@ const ActiveEdit = ({ form }: any) => {
           .filter((item) => item.type === 'template2')
           .map((item) => {
             return (
-              <div className={stylesEdit.editWrap} style={{ width: '100%' }}>
+              <div
+                key={item.id}
+                className={stylesEdit.editWrap}
+                style={{ width: '100%' }}
+              >
                 <Flex justify="space-between" align={'center'}>
                   <span className={stylesEdit.editTitle}>{item.title}</span>
                   <Flex align="center" gap={10}>
                     <div
                       style={{
-                        background: `${systemTypeColor(item.systemType)}`,
+                        background: `${systemTypeColor(item.systemType || '')}`,
                       }}
                       className={stylesEdit.typeTextWrapper}
                     >
                       {item.systemType}
                     </div>
-                    <Rate
-                      disabled
-                      count={3}
-                      value={item.rate}
-                      style={{ direction: 'rtl' }}
-                    />
                   </Flex>
                 </Flex>
                 <Flex justify="space-between" align={'center'}>
-                  {(item.children || []).map((child, index) => (
-                    <EditSlider {...child} form={form} />
+                  {(item.children || []).map((child) => (
+                    <EditSlider key={child.id} {...child} />
                   ))}
                 </Flex>
               </div>

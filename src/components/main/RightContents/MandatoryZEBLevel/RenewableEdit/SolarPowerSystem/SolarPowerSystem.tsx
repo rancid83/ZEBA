@@ -20,7 +20,7 @@ const SolarPowerSystem = () => {
         <span className={styles.editTitle}>{filteredData[0].title}</span>
         <Rate
           disabled
-          value={filteredData[0].rate}
+          value={filteredData[0].rate || 0}
           count={3}
           style={{ direction: 'rtl' }}
         />
@@ -66,7 +66,7 @@ const SolarPowerSystem = () => {
         </Flex>
       </Flex>
 
-      {filteredData[0].children.map((item) => (
+      {(filteredData[0]?.children || []).map((item) => (
         <div key={item.id} style={{ marginLeft: '-27px' }}>
           <EditSlider {...item} />
         </div>

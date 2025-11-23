@@ -1,5 +1,3 @@
-import { StateCreator } from 'zustand';
-
 interface FormData {
   // 주소 정보
   roadName: string;
@@ -42,21 +40,21 @@ const initialFormData: FormData = {
   zebGrade: '4',
 };
 
-export const createFormDataSlice: StateCreator<FormDataSlice> = (set) => ({
+export const createFormDataSlice = (set: any) => ({
   formData: initialFormData,
 
-  updateFormData: (data) =>
-    set((state) => ({
+  updateFormData: (data: Partial<FormData>) =>
+    set((state: any) => ({
       formData: { ...state.formData, ...data },
     })),
 
-  setAddressData: (roadName, lotNumber) =>
-    set((state) => ({
+  setAddressData: (roadName: string, lotNumber: string) =>
+    set((state: any) => ({
       formData: { ...state.formData, roadName, lotNumber },
     })),
 
-  setBuildingUse: (main, detail) =>
-    set((state) => ({
+  setBuildingUse: (main: string, detail: string) =>
+    set((state: any) => ({
       formData: {
         ...state.formData,
         bld_main_use: main,
@@ -64,8 +62,8 @@ export const createFormDataSlice: StateCreator<FormDataSlice> = (set) => ({
       },
     })),
 
-  setAreaData: (totalArea, buildingArea) =>
-    set((state) => ({
+  setAreaData: (totalArea: number, buildingArea: number) =>
+    set((state: any) => ({
       formData: {
         ...state.formData,
         bld_al_area: totalArea,
@@ -73,13 +71,13 @@ export const createFormDataSlice: StateCreator<FormDataSlice> = (set) => ({
       },
     })),
 
-  setFloorCount: (count) =>
-    set((state) => ({
+  setFloorCount: (count: number) =>
+    set((state: any) => ({
       formData: { ...state.formData, bld_floor_esurf: count },
     })),
 
-  setZebGrade: (grade) =>
-    set((state) => ({
+  setZebGrade: (grade: string) =>
+    set((state: any) => ({
       formData: { ...state.formData, zebGrade: grade },
     })),
 

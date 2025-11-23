@@ -1,4 +1,3 @@
-import { StateCreator } from 'zustand';
 import { BarChartState } from '../types';
 
 export interface BarChartSlice extends BarChartState {
@@ -6,7 +5,7 @@ export interface BarChartSlice extends BarChartState {
   resetChartMaxValue: () => void;
 }
 
-export const createBarChartSlice: StateCreator<BarChartSlice> = (set) => ({
+export const createBarChartSlice = (set: any) => ({
   chartMaxValue: 0,
 
   setChartMaxValue: (value: number) => set({ chartMaxValue: value }),

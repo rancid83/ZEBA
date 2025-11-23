@@ -26,7 +26,13 @@ export interface GradeBuildingDataItem {
     title: string;
     subTitle: string;
   };
+  grade: number;
   zebGrade: number;
+  renewable: number;
+  active: number;
+  passive: number;
+  increase: number;
+  benefit: number;
 }
 
 // Building Data 타입 정의 (Active, Passive, Renewable)
@@ -46,6 +52,10 @@ export interface RenewableDataState {
 // BarChart 타입 정의
 export interface BarChartState {
   chartMaxValue: number;
+}
+
+export interface ActiveDataState {
+  activeData: BuildingDataItem[];
 }
 
 export interface PassiveDataState {

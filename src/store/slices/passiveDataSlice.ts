@@ -1,4 +1,3 @@
-import { StateCreator } from 'zustand';
 import { PassiveDataState, BuildingDataItem } from '../types';
 
 export interface PassiveDataSlice extends PassiveDataState {
@@ -13,9 +12,7 @@ export interface PassiveDataSlice extends PassiveDataState {
   resetPassiveDataCost: () => void;
 }
 
-export const createPassiveDataSlice: StateCreator<PassiveDataSlice> = (
-  set,
-) => ({
+export const createPassiveDataSlice = (set: any) => ({
   passiveData: [],
   passiveDataCost: [],
 
@@ -25,8 +22,8 @@ export const createPassiveDataSlice: StateCreator<PassiveDataSlice> = (
     set({ passiveDataCost: data }),
 
   updatePassiveDataItem: (index: number, updates: Partial<BuildingDataItem>) =>
-    set((state) => ({
-      passiveData: state.passiveData.map((item, i) =>
+    set((state: any) => ({
+      passiveData: state.passiveData.map((item: any, i: number) =>
         i === index ? { ...item, ...updates } : item,
       ),
     })),

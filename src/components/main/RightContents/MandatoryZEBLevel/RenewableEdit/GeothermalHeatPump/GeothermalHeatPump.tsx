@@ -52,7 +52,7 @@ const GeothermalHeatPump = () => {
           <span className={styles.editTitle}>{filteredData[0].title}</span>
           <Rate
             disabled
-            value={filteredData[0].rate}
+            value={filteredData[0].rate || 0}
             count={3}
             style={{ direction: 'rtl' }}
           />

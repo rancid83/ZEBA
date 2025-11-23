@@ -1,4 +1,3 @@
-import { StateCreator } from 'zustand';
 import { ActiveDataState, BuildingDataItem } from '../types';
 
 export interface ActiveDataSlice extends ActiveDataState {
@@ -13,7 +12,7 @@ export interface ActiveDataSlice extends ActiveDataState {
   resetActiveDataCost: () => void;
 }
 
-export const createActiveDataSlice: StateCreator<ActiveDataSlice> = (set) => ({
+export const createActiveDataSlice = (set: any) => ({
   activeData: [],
   activeDataCost: [],
 
@@ -23,8 +22,8 @@ export const createActiveDataSlice: StateCreator<ActiveDataSlice> = (set) => ({
     set({ activeDataCost: data }),
 
   updateActiveDataItem: (index: number, updates: Partial<BuildingDataItem>) =>
-    set((state) => ({
-      activeData: state.activeData.map((item, i) =>
+    set((state: any) => ({
+      activeData: state.activeData.map((item: any, i: number) =>
         i === index ? { ...item, ...updates } : item,
       ),
     })),
