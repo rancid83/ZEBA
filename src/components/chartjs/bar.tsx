@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
+import { useStore } from '@/store';
 
 ChartJS.register(
   CategoryScale,
@@ -41,11 +42,11 @@ export function BarChart(props: any) {
       },
       y: {
         stacked: true,
-        max: 600, // y축 최대값 설정
       },
     },
   });
   const { isEnergyTap, gradeData } = props;
+  const { chartMaxValue } = useStore();
   const isEnergyTapConsume = (type: string) => {
     if (gradeData) {
       return gradeData.map((item: any) => {
@@ -63,7 +64,12 @@ export function BarChart(props: any) {
         ...changeOptions.scales,
         y: {
           ...changeOptions.scales.y,
-          max: isEnergyTap ? 600 : 1600000, // y축 최대값 설정
+          afterDataLimits: (scale: any) => {
+            // Chart.js가 자동으로 계산한 최댓값 가져오기
+            const autoMax = scale.max;
+            // 더 큰 비율로 설정 (예: 50% 여유 공간)
+            scale.max = Math.ceil(autoMax * 3.5);
+          },
         },
       },
     });

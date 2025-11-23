@@ -1,14 +1,22 @@
 'use client';
 
 import { Tabs } from 'antd';
+import { useStore } from '@/store';
 import EnergySelfSufficiencyContent from './EnergySelfSufficiencyContent/EnergySelfSufficiencyContent';
 import EnergyBuildingDetail from './EnergyBuildingDetail/EnergyBuildingDetail';
 import EnergyDetail from './EnergyDetail/EnergyDetail';
 
-const EnergySelfSufficiency = (props: any) => {
+const EnergySelfSufficiency = () => {
+  const { activeTab, setActiveTab } = useStore();
+
+  const handleTabChange = (key: string) => {
+    setActiveTab(key);
+  };
+
   return (
     <Tabs
-      defaultActiveKey="1"
+      activeKey={activeTab}
+      onChange={handleTabChange}
       type="card"
       size="large"
       style={{ marginTop: '51px' }}

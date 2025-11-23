@@ -1,54 +1,46 @@
 'use client';
 
 import styles from './GeothermalHeatPump.module.scss';
-import {
-  ConfigProvider,
-  Flex,
-  Form,
-  Input,
-  Radio,
-  RadioChangeEvent,
-  Rate,
-  Table,
-} from 'antd';
+import { Flex, Form, Input, Radio, RadioChangeEvent, Rate } from 'antd';
 import { CheckboxGroupProps } from 'antd/es/checkbox';
 import { useState } from 'react';
+import { useStore } from '@/store';
+import { ComponentId } from '@/store/slices/standardModelPerformanceSlice';
 
-const thermalItems = [
-  {
-    id: 'geothermalHeatPump',
-    title: 'GSHP(지열히트펌프)',
-    rate: 3,
-    coolingEnergyDemand: '72.49',
-    coolingCOP: '1.89',
-    coolingEnergyConsumption: '72.49',
-    heatingEnergyDemand: '109.22',
-    heatingCOP: '1.32',
-    heatingEnergyConsumption: '109.22',
-  },
-];
+const allowContents = ['geothermalHeatPump'];
 
 const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
-  { label: '가스', value: 'Apple', className: 'label-1' },
-  { label: '전기', value: 'Pear', className: 'label-2' },
+  { label: '가스', value: 'gas', className: 'label-1' },
+  { label: '전기', value: 'electric', className: 'label-2' },
 ];
 
-const GeothermalHeatPump = (props: any) => {
-  const [heatPumpType, setHeatPumpType] = useState('Apple');
+const GeothermalHeatPump = () => {
+  const { standardModelPerformanceData, updateItemData } = useStore();
+  const filteredData = standardModelPerformanceData.filter(
+    (data: { id: string }) => allowContents.includes(data.id),
+  );
+
+  // store 데이터에서 초기값 가져오기
+  const initialHeatPumpType = filteredData[0]?.heatPumpType;
+  const [heatPumpType, setHeatPumpType] = useState(initialHeatPumpType);
 
   const onChange1 = ({ target: { value } }: RadioChangeEvent) => {
     setHeatPumpType(value);
+    // store의 heatPumpType 업데이트
+    updateItemData('geothermalHeatPump' as ComponentId, {
+      heatPumpType: value,
+    });
   };
 
   return (
     <Form
       initialValues={{
-        coolingEnergyDemand: thermalItems[0].coolingEnergyDemand,
-        coolingCOP: thermalItems[0].coolingCOP,
-        coolingEnergyConsumption: thermalItems[0].coolingEnergyConsumption,
-        heatingEnergyDemand: thermalItems[0].heatingEnergyDemand,
-        heatingCOP: thermalItems[0].heatingCOP,
-        heatingEnergyConsumption: thermalItems[0].heatingEnergyConsumption,
+        coolingEnergyDemand: filteredData[0].coolingEnergyDemand,
+        coolingCOP: filteredData[0].coolingCOP,
+        coolingEnergyConsumption: filteredData[0].coolingEnergyConsumption,
+        heatingEnergyDemand: filteredData[0].heatingEnergyDemand,
+        heatingCOP: filteredData[0].heatingCOP,
+        heatingEnergyConsumption: filteredData[0].heatingEnergyConsumption,
       }}
     >
       <div className={styles.editWrap}>
@@ -57,10 +49,10 @@ const GeothermalHeatPump = (props: any) => {
           align={'center'}
           style={{ position: 'relative' }}
         >
-          <span className={styles.editTitle}>{thermalItems[0].title}</span>
+          <span className={styles.editTitle}>{filteredData[0].title}</span>
           <Rate
             disabled
-            value={thermalItems[0].rate}
+            value={filteredData[0].rate}
             count={3}
             style={{ direction: 'rtl' }}
           />
@@ -116,7 +108,13 @@ const GeothermalHeatPump = (props: any) => {
                       rules={[{ required: true, message: '' }]}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Input
+                        onChange={(e) => {
+                          updateItemData('geothermalHeatPump' as ComponentId, {
+                            coolingEnergyDemand: e.target.value,
+                          });
+                        }}
+                      />
                     </Form.Item>
                   </div>
                 </td>
@@ -127,7 +125,13 @@ const GeothermalHeatPump = (props: any) => {
                       rules={[{ required: true, message: '' }]}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Input
+                        onChange={(e) => {
+                          updateItemData('geothermalHeatPump' as ComponentId, {
+                            coolingCOP: e.target.value,
+                          });
+                        }}
+                      />
                     </Form.Item>
                   </div>
                 </td>
@@ -138,7 +142,13 @@ const GeothermalHeatPump = (props: any) => {
                       rules={[{ required: true, message: '' }]}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Input
+                        onChange={(e) => {
+                          updateItemData('geothermalHeatPump' as ComponentId, {
+                            coolingEnergyConsumption: e.target.value,
+                          });
+                        }}
+                      />
                     </Form.Item>
                   </div>
                 </td>
@@ -158,7 +168,13 @@ const GeothermalHeatPump = (props: any) => {
                       rules={[{ required: true, message: '' }]}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Input
+                        onChange={(e) => {
+                          updateItemData('geothermalHeatPump' as ComponentId, {
+                            heatingEnergyDemand: e.target.value,
+                          });
+                        }}
+                      />
                     </Form.Item>
                   </div>
                 </td>
@@ -169,7 +185,13 @@ const GeothermalHeatPump = (props: any) => {
                       rules={[{ required: true, message: '' }]}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Input
+                        onChange={(e) => {
+                          updateItemData('geothermalHeatPump' as ComponentId, {
+                            heatingCOP: e.target.value,
+                          });
+                        }}
+                      />
                     </Form.Item>
                   </div>
                 </td>
@@ -180,7 +202,13 @@ const GeothermalHeatPump = (props: any) => {
                       rules={[{ required: true, message: '' }]}
                       style={{ margin: 0 }}
                     >
-                      <Input />
+                      <Input
+                        onChange={(e) => {
+                          updateItemData('geothermalHeatPump' as ComponentId, {
+                            heatingEnergyConsumption: e.target.value,
+                          });
+                        }}
+                      />
                     </Form.Item>
                   </div>
                 </td>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { Flex, InputNumber, Rate, Slider, SliderSingleProps } from 'antd';
 import styles from './EditSlider.module.scss';
 import {
@@ -10,6 +10,8 @@ import {
   LikeOutlined,
   SyncOutlined,
 } from '@ant-design/icons';
+import { useStore } from '@/store';
+import { ComponentId } from '@/store/slices/standardModelPerformanceSlice';
 
 interface WindowThermalTransmittanceProps {
   title?: string;
@@ -49,8 +51,35 @@ const EditSlider = ({
   id = null,
 }: WindowThermalTransmittanceProps) => {
   const [currentValue, setCurrentValue] = useState(start);
+  const { updateItemData } = useStore();
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const isReverse = reverseSliders.includes(id || '');
+
+  // 디바운스된 store 업데이트 함수
+  const debouncedUpdateStore = useCallback(
+    (value: number) => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+
+      debounceTimerRef.current = setTimeout(() => {
+        if (id) {
+          updateItemData(id as ComponentId, { start: value });
+        }
+      }, 300); // 300ms 딜레이
+    },
+    [id, updateItemData],
+  );
+
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   const sliderDetailStyle = {
     marker: {
@@ -152,6 +181,7 @@ const EditSlider = ({
   };
 
   const onChangeValue = (newValue: number) => {
+    // 슬라이더 드래그 중에는 UI만 업데이트
     setCurrentValue(newValue);
   };
 
@@ -295,6 +325,15 @@ const EditSlider = ({
             marks={marks}
             value={currentValue}
             onChange={onChangeValue}
+            onChangeComplete={(value) => {
+              // 드래그 완료 시 즉시 store 업데이트
+              if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current);
+              }
+              if (id && typeof value === 'number') {
+                updateItemData(id as ComponentId, { start: value });
+              }
+            }}
             className={styles.sliderClass}
             styles={sliderStyles}
             min={min}
@@ -316,7 +355,12 @@ const EditSlider = ({
             max={max}
             step={step}
             value={currentValue}
-            onChange={(value) => value !== null && onChangeValue(value)}
+            onChange={(value) => {
+              if (value !== null) {
+                setCurrentValue(value);
+                debouncedUpdateStore(value);
+              }
+            }}
           />
           <div className={styles.sliderNumberUnit}>[{unit}]</div>
         </div>
@@ -334,7 +378,18 @@ const EditSlider = ({
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'rotate(0deg)';
             }}
-            onClick={() => setCurrentValue(average)}
+            onClick={() => {
+              // 진행 중인 디바운스 타이머 취소
+              if (debounceTimerRef.current) {
+                clearTimeout(debounceTimerRef.current);
+              }
+
+              setCurrentValue(average);
+              if (id) {
+                // 리셋은 즉시 적용
+                updateItemData(id as ComponentId, { start: average });
+              }
+            }}
           />
           <div
             className={styles.enhance}

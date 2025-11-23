@@ -6,87 +6,7 @@ import styles from './EnergyBuildingDetail.module.scss';
 import { useStore } from '@/store';
 
 const EnergyBuildingDetail = () => {
-  const [passiveData, setPassiveData] = useState<any[]>([]);
-  const [activeData, setActiveData] = useState<any[]>([]);
-  const [renewableData, setRenewableData] = useState<any[]>([]);
-
-  // useStore 사용 - hydration 이슈 확인을 위해
-  const { pageStep } = useStore();
-
-  useEffect(() => {
-    // fetch building-specific JSON files from public/json
-    fetch('/assets/json/building-passive.json')
-      .then((res) => res.json())
-      .then((data) => {
-        if (pageStep === 0) {
-          // data 배열에서 target, combined 값을 모두 '-'로 변경
-          data = data.map((item: any) => ({
-            ...item,
-            target: '-',
-            combined: '-',
-          }));
-        }
-
-        if (pageStep === 1) {
-          // data 배열에서 target, combined 값을 모두 '-'로 변경
-          data = data.map((item: any) => ({
-            ...item,
-            combined: '-',
-          }));
-        }
-
-        setPassiveData(data);
-      })
-      .catch(() => setPassiveData([]));
-
-    fetch('/assets/json/building-active.json')
-      .then((res) => res.json())
-      .then((data) => {
-        if (pageStep === 0) {
-          // data 배열에서 target, combined 값을 모두 '-'로 변경
-          data = data.map((item: any) => ({
-            ...item,
-            target: '-',
-            combined: '-',
-          }));
-        }
-
-        if (pageStep === 1) {
-          // data 배열에서 target, combined 값을 모두 '-'로 변경
-          data = data.map((item: any) => ({
-            ...item,
-            combined: '-',
-          }));
-        }
-
-        setActiveData(data);
-      })
-      .catch(() => setActiveData([]));
-
-    fetch('/assets/json/building-renewable.json')
-      .then((res) => res.json())
-      .then((data) => {
-        if (pageStep === 0) {
-          // data 배열에서 target, combined 값을 모두 '-'로 변경
-          data = data.map((item: any) => ({
-            ...item,
-            target: '-',
-            combined: '-',
-          }));
-        }
-
-        if (pageStep === 1) {
-          // data 배열에서 target, combined 값을 모두 '-'로 변경
-          data = data.map((item: any) => ({
-            ...item,
-            combined: '-',
-          }));
-        }
-
-        setRenewableData(data);
-      })
-      .catch(() => setRenewableData([]));
-  }, [pageStep]);
+  const { passiveDataCost, activeDataCost, renewableDataCost } = useStore();
 
   const columns: TableProps<any>['columns'] = [
     {
@@ -127,12 +47,12 @@ const EnergyBuildingDetail = () => {
               alt="icon"
               className={styles.icon}
             />
-            <span className={styles.title}>건물별 성능 내역</span>
+            <span className={styles.title}>시공 비용 비교</span>
           </div>
 
           <div className={styles.EnergyDetailTitle}>
             <Flex className={styles.detailDescription}>
-              <span>건물 기준의 성능 상세 항목을 표로 보여줍니다.</span>
+              <span>에너지 성능별 비용 상세 항목을 표로 보여줍니다.</span>
             </Flex>
             {/* 패시브 Collapse */}
             <Collapse
@@ -144,13 +64,13 @@ const EnergyBuildingDetail = () => {
                   key: 'passive',
                   label: (
                     <div className={styles.collapseTitle}>
-                      패시브<div>{`${passiveData.length} 항목`}</div>
+                      패시브<div>{`${passiveDataCost.length} 항목`}</div>
                     </div>
                   ),
                   children: (
                     <Table<any>
                       columns={columns}
-                      dataSource={passiveData}
+                      dataSource={passiveDataCost}
                       pagination={false}
                       rowKey={(record) => record.name}
                     />
@@ -169,13 +89,13 @@ const EnergyBuildingDetail = () => {
                   key: 'active',
                   label: (
                     <div className={styles.collapseTitle}>
-                      액티브<div>{`${activeData.length} 항목`}</div>
+                      액티브<div>{`${activeDataCost.length} 항목`}</div>
                     </div>
                   ),
                   children: (
                     <Table<any>
                       columns={columns}
-                      dataSource={activeData}
+                      dataSource={activeDataCost}
                       pagination={false}
                       rowKey={(record) => record.name}
                     />
@@ -194,13 +114,13 @@ const EnergyBuildingDetail = () => {
                   key: 'renewable',
                   label: (
                     <div className={styles.collapseTitle}>
-                      신재생<div>{`${renewableData.length} 항목`}</div>
+                      신재생<div>{`${renewableDataCost.length} 항목`}</div>
                     </div>
                   ),
                   children: (
                     <Table<any>
                       columns={columns}
-                      dataSource={renewableData}
+                      dataSource={renewableDataCost}
                       pagination={false}
                       rowKey={(record) => record.name}
                     />

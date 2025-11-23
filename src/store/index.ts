@@ -15,6 +15,22 @@ import {
   createStandardModelPerformanceSlice,
   StandardModelPerformanceSlice,
 } from './slices/standardModelPerformanceSlice';
+import {
+  createActiveDataSlice,
+  ActiveDataSlice,
+} from './slices/activeDataSlice';
+import {
+  createPassiveDataSlice,
+  PassiveDataSlice,
+} from './slices/passiveDataSlice';
+import {
+  createRenewableDataSlice,
+  RenewableDataSlice,
+} from './slices/renewableDataSlice';
+import { createBarChartSlice, BarChartSlice } from './slices/barChartSlice';
+import { createFormDataSlice, FormDataSlice } from './slices/formDataSlice';
+import { createRequestSlice, RequestSlice } from './slices/requestSlice';
+import { createEnergyTabSlice, EnergyTabSlice } from './slices/energyTabSlice';
 
 // 모든 슬라이스를 합친 스토어 타입
 type StoreState = LoadingSlice &
@@ -22,7 +38,14 @@ type StoreState = LoadingSlice &
   GradeBuildingSlice &
   GradeDataPercentSlice &
   PageSlice &
-  StandardModelPerformanceSlice;
+  StandardModelPerformanceSlice &
+  ActiveDataSlice &
+  PassiveDataSlice &
+  RenewableDataSlice &
+  BarChartSlice &
+  FormDataSlice &
+  RequestSlice &
+  EnergyTabSlice;
 
 // 통합 스토어 생성
 export const useStore = create<StoreState>()(
@@ -34,6 +57,13 @@ export const useStore = create<StoreState>()(
       ...createGradeDataPercentSlice(set),
       ...createPageSlice(set),
       ...createStandardModelPerformanceSlice(set, get),
+      ...createActiveDataSlice(set),
+      ...createPassiveDataSlice(set),
+      ...createRenewableDataSlice(set),
+      ...createBarChartSlice(set),
+      ...createFormDataSlice(set),
+      ...createRequestSlice(set),
+      ...createEnergyTabSlice(set),
     }),
     {
       name: 'zeba-store',

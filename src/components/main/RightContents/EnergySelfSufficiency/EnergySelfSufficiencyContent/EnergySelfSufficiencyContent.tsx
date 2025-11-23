@@ -159,7 +159,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         </Flex>
                         <div
                           className={styles.creatorText}
-                          style={{ marginTop: '40px' }}
+                          style={{ marginTop: '25px' }}
                         >
                           <Flex justify={'left'}>1차 에너지 생산량</Flex>
                           <Flex justify={'right'} align={'flex-end'} gap={5}>
@@ -205,7 +205,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                           <span className={styles.zebGrade}>ZEB 등급</span>
                           {''}
                           <span className={styles.zebGradeNum}>
-                            {item.zebGrade} 등급
+                            {item.zebGrade ? item.zebGrade : '-'} 등급
                           </span>
                         </Flex>
                         <Flex

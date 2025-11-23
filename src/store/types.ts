@@ -1,5 +1,3 @@
-import React from 'react';
-
 // 로딩 상태 타입만 정의
 export interface LoadingState {
   isLoading: boolean;
@@ -29,6 +27,33 @@ export interface GradeBuildingDataItem {
     subTitle: string;
   };
   zebGrade: number;
+}
+
+// Building Data 타입 정의 (Active, Passive, Renewable)
+export interface BuildingDataItem {
+  name: string;
+  regulation: string;
+  mandatory: string;
+  target: string;
+  combined: string;
+}
+
+// 각 데이터 상태 타입 정의
+export interface RenewableDataState {
+  renewableData: BuildingDataItem[];
+}
+
+// BarChart 타입 정의
+export interface BarChartState {
+  chartMaxValue: number;
+}
+
+export interface PassiveDataState {
+  passiveData: BuildingDataItem[];
+}
+
+export interface RenewableDataState {
+  renewableData: BuildingDataItem[];
   grade: number;
   renewable: number;
   active: number;

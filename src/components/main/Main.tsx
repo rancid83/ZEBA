@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Layout, Button, Steps } from 'antd';
+import { Layout, Button, Steps, Modal } from 'antd';
 import {
   UserOutlined,
   BellOutlined,
@@ -15,26 +15,31 @@ import { useStore } from '@/store';
 const { Header, Content } = Layout;
 
 const MainPage = () => {
+  const [modal, contextHolder] = Modal.useModal();
   const [current, setCurrent] = useState(0);
 
-  const { setPageStep } = useStore();
+  const { setPageStep, step1Request, step2Request, step3Request } = useStore();
 
   const onChange = (value: number) => {
+    if (value === 1 && !step1Request) {
+      modal.warning({
+        title: '알림',
+        content: '먼저 의무 등급 분석을 완료해주세요.',
+        centered: true,
+      });
+      return;
+    }
+    if (value === 2 && !step2Request) {
+      modal.warning({
+        title: '알림',
+        content: '먼저 표준 등급 분석을 완료해주세요.',
+        centered: true,
+      });
+      return;
+    }
+
     setCurrent(value);
     setPageStep(value);
-
-    switch (value) {
-      case 0:
-        break;
-      case 1:
-        // Perform actions for step 1
-        break;
-      case 2:
-        // Perform actions for step 2
-        break;
-      default:
-        break;
-    }
   };
 
   return (
@@ -99,6 +104,7 @@ const MainPage = () => {
           </div>
         </Content>
       </Layout>
+      {contextHolder}
     </Layout>
   );
 };

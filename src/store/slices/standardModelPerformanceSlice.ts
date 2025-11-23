@@ -40,19 +40,21 @@ export interface ItemData {
   subDescription?: string | null;
   solarOrientation?: string | null;
   solarCollectorType?: string | null;
+  solarTilt?: string | null;
   coolingEnergyDemand?: string | null;
   coolingCOP?: string | null;
   coolingEnergyConsumption?: string | null;
   heatingEnergyDemand?: string | null;
   heatingCOP?: string | null;
   heatingEnergyConsumption?: string | null;
+  heatPumpType?: string | null;
   fuelCellType?: string | null;
   children?: ItemData[] | null;
 }
 
 // 초기 데이터 생성 함수
-const createInitialData = (): Record<ComponentId, ItemData> => {
-  const initialItems = [
+const createInitialData = (): ItemData[] => {
+  return [
     {
       id: 'windowUValue',
       title: '창호 열관류율',
@@ -68,14 +70,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'wallUValue',
@@ -92,14 +97,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'roofUValue',
@@ -116,14 +124,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'floorUValue',
@@ -140,14 +151,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'ehpCooling',
@@ -164,14 +178,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'ehpHeating',
@@ -188,14 +205,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'ghpCooling',
@@ -212,14 +232,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'ghpHeating',
@@ -236,14 +259,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'lightingDensity',
@@ -260,14 +286,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'electricBoiler',
@@ -284,14 +313,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'ventilator',
@@ -308,13 +340,16 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
+      solarTilt: null,
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
+      value: null,
       children: [
         {
           id: 'ventilatorChild1',
@@ -331,14 +366,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           subDescription: null,
           solarOrientation: null,
           solarCollectorType: null,
+          solarTilt: null,
           coolingEnergyDemand: null,
           coolingCOP: null,
           coolingEnergyConsumption: null,
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
         {
           id: 'ventilatorChild2',
@@ -355,14 +393,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           subDescription: null,
           solarOrientation: null,
           solarCollectorType: null,
+          solarTilt: null,
           coolingEnergyDemand: null,
           coolingCOP: null,
           coolingEnergyConsumption: null,
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
       ],
     },
@@ -379,15 +420,18 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       systemType: null,
       unit: null,
       subDescription: null,
-      solarOrientation: null,
+      solarOrientation: 'south',
       solarCollectorType: null,
+      solarTilt: 'optimal',
       coolingEnergyDemand: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
+      value: null,
       children: [
         {
           id: 'installationCapacity',
@@ -403,6 +447,7 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           unit: '%',
           subDescription: '설치 용량',
           solarOrientation: null,
+          solarTilt: null,
           solarCollectorType: null,
           coolingEnergyDemand: null,
           coolingCOP: null,
@@ -410,8 +455,10 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
         {
           id: 'generationEfficiency',
@@ -428,14 +475,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           subDescription: '발전 효율',
           solarOrientation: null,
           solarCollectorType: null,
-          coolingEnergyDemand: null,
+          solarOrientation: null,
+          solarTilt: null,
           coolingCOP: null,
           coolingEnergyConsumption: null,
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
       ],
     },
@@ -454,14 +504,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: 'east',
       solarCollectorType: 'flatPlate',
-      coolingEnergyDemand: null,
+      solarOrientation: 'southeast',
+      solarTilt: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'geothermalHeatPump',
@@ -484,8 +537,10 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       heatingEnergyDemand: '109.22',
       heatingCOP: '1.32',
       heatingEnergyConsumption: '109.22',
+      heatPumpType: 'gas',
       fuelCellType: null,
       children: null,
+      value: null,
     },
     {
       id: 'fuelCell',
@@ -502,13 +557,16 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
       subDescription: null,
       solarOrientation: null,
       solarCollectorType: null,
-      coolingEnergyDemand: null,
+      solarOrientation: null,
+      solarTilt: null,
       coolingCOP: null,
       coolingEnergyConsumption: null,
       heatingEnergyDemand: null,
       heatingCOP: null,
       heatingEnergyConsumption: null,
+      heatPumpType: null,
       fuelCellType: 'pemfc',
+      value: null,
       children: [
         {
           id: 'heatProductionCapacity',
@@ -525,14 +583,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           subDescription: '열생산 능력',
           solarOrientation: null,
           solarCollectorType: null,
-          coolingEnergyDemand: null,
+          solarOrientation: null,
+          solarTilt: null,
           coolingCOP: null,
           coolingEnergyConsumption: null,
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
         {
           id: 'heatProductionEfficiency',
@@ -549,14 +610,17 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           subDescription: '열생산 효율',
           solarOrientation: null,
           solarCollectorType: null,
-          coolingEnergyDemand: null,
+          solarOrientation: null,
+          solarTilt: null,
           coolingCOP: null,
           coolingEnergyConsumption: null,
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
         {
           id: 'powerGenerationEfficiency',
@@ -573,48 +637,59 @@ const createInitialData = (): Record<ComponentId, ItemData> => {
           subDescription: '발전 효율',
           solarOrientation: null,
           solarCollectorType: null,
-          coolingEnergyDemand: null,
+          solarOrientation: null,
+          solarTilt: null,
           coolingCOP: null,
           coolingEnergyConsumption: null,
           heatingEnergyDemand: null,
           heatingCOP: null,
           heatingEnergyConsumption: null,
+          heatPumpType: null,
           fuelCellType: null,
           children: null,
+          value: null,
         },
       ],
     },
   ];
+};
 
-  // 모든 id를 수집하여 플랫 구조로 매핑
-  const data: Record<ComponentId, ItemData> = {} as Record<
-    ComponentId,
-    ItemData
-  >;
+// 헬퍼 함수들
+const findItemById = (items: ItemData[], id: ComponentId): ItemData | null => {
+  for (const item of items) {
+    if (item.id === id) {
+      return item;
+    }
+    if (item.children) {
+      const found = findItemById(item.children, id);
+      if (found) return found;
+    }
+  }
+  return null;
+};
 
-  const collectIds = (items: ItemData[]) => {
-    items.forEach((item) => {
-      // 메인 아이템 추가
-      data[item.id as ComponentId] = {
+const updateItemInArray = (
+  items: ItemData[],
+  id: ComponentId,
+  updates: Partial<ItemData>,
+): ItemData[] => {
+  return items.map((item) => {
+    if (item.id === id) {
+      return { ...item, ...updates };
+    }
+    if (item.children) {
+      return {
         ...item,
-        value: null, // 초기값은 null로 설정
+        children: updateItemInArray(item.children, id, updates),
       };
-
-      // children이 있다면 재귀적으로 처리
-      if (item.children) {
-        collectIds(item.children);
-      }
-    });
-  };
-
-  collectIds(initialItems);
-
-  return data;
+    }
+    return item;
+  });
 };
 
 // Zustand slice 인터페이스
 export interface StandardModelPerformanceSlice {
-  standardModelPerformanceData: Record<ComponentId, ItemData>;
+  standardModelPerformanceData: ItemData[];
 
   // Actions
   updateItemValue: (id: ComponentId, itemData: ItemData) => void;
@@ -623,7 +698,7 @@ export interface StandardModelPerformanceSlice {
     updates: Record<ComponentId, Partial<ItemData>>,
   ) => void;
   resetStandardModelPerformance: () => void;
-  getItemById: (id: ComponentId) => ItemData | undefined;
+  getItemById: (id: ComponentId) => ItemData | null;
 }
 
 // Zustand slice 생성 함수
@@ -634,49 +709,45 @@ export const createStandardModelPerformanceSlice = (
   standardModelPerformanceData: createInitialData(),
 
   updateItemValue: (id: ComponentId, itemData: ItemData) =>
-    set(
-      (state: {
-        standardModelPerformanceData: Record<ComponentId, ItemData>;
-      }) => {
-        if (state.standardModelPerformanceData[id]) {
-          state.standardModelPerformanceData[id] = itemData;
-        }
-      },
-    ),
+    set((state: { standardModelPerformanceData: ItemData[] }) => ({
+      ...state,
+      standardModelPerformanceData: updateItemInArray(
+        state.standardModelPerformanceData,
+        id,
+        itemData,
+      ),
+    })),
 
   updateItemData: (id: ComponentId, data: Partial<ItemData>) =>
-    set((state: { standardModelPerformanceData: { [x: string]: any } }) => {
-      if (state.standardModelPerformanceData[id]) {
-        state.standardModelPerformanceData[id] = {
-          ...state.standardModelPerformanceData[id],
-          ...data,
-        };
-      }
-    }),
+    set((state: { standardModelPerformanceData: ItemData[] }) => ({
+      ...state,
+      standardModelPerformanceData: updateItemInArray(
+        state.standardModelPerformanceData,
+        id,
+        data,
+      ),
+    })),
 
   updateMultipleItems: (updates: Record<ComponentId, Partial<ItemData>>) =>
-    set((state: { standardModelPerformanceData: { [x: string]: any } }) => {
+    set((state: { standardModelPerformanceData: ItemData[] }) => {
+      let newData = state.standardModelPerformanceData;
       Object.entries(updates).forEach(([id, data]) => {
-        if (state.standardModelPerformanceData[id as ComponentId]) {
-          state.standardModelPerformanceData[id as ComponentId] = {
-            ...state.standardModelPerformanceData[id as ComponentId],
-            ...data,
-          };
-        }
+        newData = updateItemInArray(newData, id as ComponentId, data);
       });
+      return {
+        ...state,
+        standardModelPerformanceData: newData,
+      };
     }),
 
   resetStandardModelPerformance: () =>
-    set(
-      (state: {
-        standardModelPerformanceData: Record<ComponentId, ItemData>;
-      }) => {
-        state.standardModelPerformanceData = createInitialData();
-      },
-    ),
+    set((state: { standardModelPerformanceData: ItemData[] }) => ({
+      ...state,
+      standardModelPerformanceData: createInitialData(),
+    })),
 
   getItemById: (id: ComponentId) => {
     const state = get();
-    return state.standardModelPerformanceData[id];
+    return findItemById(state.standardModelPerformanceData, id);
   },
 });

@@ -127,3 +127,28 @@
     color: #4e4e4e;
   }
 }
+
+.standardModelPerformanceEdit {
+  background: #ffffff;
+  padding: 41px 35px;
+  box-sizing: border-box;
+  mix-blend-mode: normal;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 0px 12px 12px 12px;
+}
+
+.standardModelPerformanceEditTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4e4e4e;
+}
+.standardModelPerformanceEditContentWrapper {
+  padding: 45px 0 0 38px;
+  box-sizing: border-box;
+}
+
+.standardModelPerformanceEditSubtitle {
+  font-size: 14px;
+  line-height: 24px;
+  color: #7e7e7e;
+}

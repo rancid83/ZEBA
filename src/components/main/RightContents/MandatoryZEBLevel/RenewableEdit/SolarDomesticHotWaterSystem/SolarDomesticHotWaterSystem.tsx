@@ -2,43 +2,42 @@
 
 import { Form, Radio, RadioChangeEvent, Select } from 'antd';
 import styles from './SolarDomesticHotWaterSystem.module.scss';
-import EditSlider from '@/components/main/RightContents/StandardModelPerformanceEdit/shared/EditSlider/EditSlider';
+import EditSlider from '@/components/main/RightContents/MandatoryZEBLevel/shared/EditSlider/EditSlider';
 import { CheckboxGroupProps } from 'antd/es/checkbox';
 import { useState } from 'react';
+import { useStore } from '@/store';
+import { ComponentId } from '@/store/slices/standardModelPerformanceSlice';
 
-const thermalItems = [
-  {
-    id: 'solarDomesticHotWaterSystem',
-    type: 'template1',
-    title: '태양열 급탕 시스템',
-    start: 1487.5,
-    min: 0,
-    max: 2975,
-    step: 0.01,
-    average: 1487.5,
-    rate: 1,
-    solarOrientation: 'east',
-    solarCollectorType: 'flatPlate',
-  },
-];
+const allowContents = ['solarDomesticHotWaterSystem'];
 
 const optionsWithDisabled: CheckboxGroupProps<string>['options'] = [
   { label: '평판형', value: 'flatPlate' },
   { label: '진공관형', value: 'evacuatedTube' },
 ];
 
-const SolarDomesticHotWaterSystem = (props: any) => {
-  const [solarType, setSolarType] = useState('Apple');
+const SolarDomesticHotWaterSystem = () => {
+  const { standardModelPerformanceData, updateItemData } = useStore();
+  const filteredData = standardModelPerformanceData.filter(
+    (data: { id: string }) => allowContents.includes(data.id),
+  );
+
+  const [solarType, setSolarType] = useState(
+    filteredData[0]?.solarCollectorType || 'flatPlate',
+  );
 
   const onChangeSolarType = ({ target: { value } }: RadioChangeEvent) => {
     setSolarType(value);
+    // store의 solarCollectorType 업데이트
+    updateItemData('solarDomesticHotWaterSystem' as ComponentId, {
+      solarCollectorType: value,
+    });
   };
 
   return (
     <Form
       initialValues={{
-        solarOrientation: thermalItems[0].solarOrientation,
-        solarCollectorType: thermalItems[0].solarCollectorType,
+        solarOrientation: filteredData[0].solarOrientation,
+        solarCollectorType: filteredData[0].solarCollectorType,
       }}
     >
       <div className={styles.wrap}>
@@ -55,7 +54,7 @@ const SolarDomesticHotWaterSystem = (props: any) => {
           </Form.Item>
         </div>
         <div className={styles.editSlider}>
-          <EditSlider {...thermalItems[0]} />
+          <EditSlider {...filteredData[0]} />
         </div>
         <div className={styles.positionSelect}>
           <Form.Item
@@ -65,6 +64,12 @@ const SolarDomesticHotWaterSystem = (props: any) => {
           >
             <Select
               style={{ width: 120 }}
+              onChange={(value) => {
+                // store의 solarOrientation 업데이트
+                updateItemData('solarDomesticHotWaterSystem' as ComponentId, {
+                  solarOrientation: value,
+                });
+              }}
               options={[
                 { value: 'east', label: '동' },
                 { value: 'southeast', label: '남동' },
