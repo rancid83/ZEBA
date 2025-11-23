@@ -303,4 +303,29 @@
       "combined": "-"
     }
   ]
+  ,
+  "standardById": {
+    "windowUValue": { "title": "창호 열관류율", "start": 2, "min": 0.5, "max": 3.5, "step": 0.01, "average": 2, "rate": 3, "unit": null },
+    "wallUValue": { "title": "외벽 열관류율", "start": 0.25, "min": 0.0, "max": 0.5, "step": 0.01, "average": 0.25, "rate": 1, "unit": null },
+    "roofUValue": { "title": "지붕 열관류율", "start": 0.5, "min": 0.0, "max": 1.0, "step": 0.01, "average": 0.5, "rate": 1, "unit": null },
+    "floorUValue": { "title": "바닥 열관류율", "start": 0.25, "min": 0.0, "max": 0.5, "step": 0.01, "average": 0.25, "rate": 1, "unit": null },
+    "ehpCooling": { "title": "EHP(전기히트펌프)", "start": 4.0, "min": 2.0, "max": 6.0, "step": 0.01, "average": 4.0, "rate": 1, "systemType": "냉방", "unit": "COP" },
+    "ehpHeating": { "title": "EHP(전기히트펌프)", "start": 3.25, "min": 1.5, "max": 5.0, "step": 0.01, "average": 3.25, "rate": 3, "systemType": "난방", "unit": "COP" },
+    "ghpCooling": { "title": "GHP(가스히트펌프)", "start": 1.5, "min": 1.0, "max": 2.0, "step": 0.01, "average": 1.5, "rate": 1, "systemType": "냉방", "unit": "COP" },
+    "ghpHeating": { "title": "GHP(가스히트펌프)", "start": 1.75, "min": 1.0, "max": 2.5, "step": 0.01, "average": 1.75, "rate": 1, "systemType": "난방", "unit": "COP" },
+    "lightingDensity": { "title": "조명밀도", "start": 7.5, "min": 3.0, "max": 12.0, "step": 0.01, "average": 7.5, "rate": 3, "systemType": "조명", "unit": "W/m²" },
+    "electricBoiler": { "title": "전기보일러", "start": 85, "min": 70, "max": 100, "step": 0.01, "average": 85, "rate": 1, "systemType": "급탕", "unit": "%" },
+    "ventilator": { "title": "전열 교환기", "start": null, "rate": 1, "systemType": "환기", "unit": null },
+    "ventilatorChild1": { "title": "", "start": 0.6, "min": 0.4, "max": 0.8, "step": 0.01, "average": 0.6, "systemType": "냉방", "unit": "%" },
+    "ventilatorChild2": { "title": "", "start": 0.65, "min": 0.5, "max": 0.8, "step": 0.01, "average": 0.65, "unit": "%" },
+    "solarPowerSystem": { "title": "태양광 발전 시스템", "start": null, "rate": 2, "unit": null },
+    "installationCapacity": { "title": "설치 용량", "start": 297.5, "min": 0, "max": 595, "step": 0.01, "average": 297.5, "unit": "%" },
+    "generationEfficiency": { "title": "발전 효율", "start": 0.175, "min": 0.1, "max": 0.25, "step": 0.01, "average": 0.175, "unit": "%" },
+    "solarDomesticHotWaterSystem": { "title": "태양열 급탕 시스템", "start": 1487.5, "min": 0, "max": 2975, "step": 0.01, "average": 1487.5, "solarOrientation": "east", "solarCollectorType": "flatPlate" },
+    "geothermalHeatPump": { "title": "GSHP(지열히트펌프)", "start": null, "rate": 3, "coolingEnergyDemand": "72.49", "coolingCOP": "1.89", "heatingEnergyDemand": "109.22", "heatingCOP": "1.32" },
+    "fuelCell": { "title": "연료전지", "start": null, "rate": 3, "fuelCellType": "pemfc" },
+    "heatProductionCapacity": { "title": "열생산 능력", "start": 50, "min": 0, "max": 100, "step": 0.01, "average": 50, "systemType": "급탕", "unit": "%" },
+    "heatProductionEfficiency": { "title": "열생산 효율", "start": 50, "min": 20, "max": 80, "step": 0.01, "average": 50, "systemType": "급탕", "unit": "%" },
+    "powerGenerationEfficiency": { "title": "발전 효율", "start": 45, "min": 10, "max": 80, "step": 0.01, "average": 45, "systemType": "급탕", "unit": "%" }
+  }
 }
