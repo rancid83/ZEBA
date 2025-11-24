@@ -117,6 +117,7 @@ const MandatoryGrade = () => {
     setStep1Request,
     setStep2Request,
     setStep3Request,
+    setStandardModelPerformanceData,
   } = useStore();
 
   const [isPostcodeModalOpen, setIsPostcodeModalOpen] = useState(false);
@@ -358,19 +359,26 @@ const MandatoryGrade = () => {
         setPassiveDataCost(passiveCost);
         setRenewableDataCost(renewableCost);
 
+        //standardById
+        if ('standardById' in dataRequest.data) {
+          setStandardModelPerformanceData(
+            dataRequest.data.standardById as any[],
+          );
+        }
+
         if (step === 'step1') {
           setStep1Request(true);
           setStep2Request(false);
           setStep3Request(false);
         }
         if (step === 'step2') {
-          setStep1Request(false);
+          setStep1Request(true);
           setStep2Request(true);
           setStep3Request(false);
         }
         if (step === 'step3') {
-          setStep1Request(false);
-          setStep2Request(false);
+          setStep1Request(true);
+          setStep2Request(true);
           setStep3Request(true);
         }
 

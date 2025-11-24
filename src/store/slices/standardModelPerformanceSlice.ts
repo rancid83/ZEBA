@@ -691,6 +691,7 @@ export interface StandardModelPerformanceSlice {
   updateMultipleItems: (
     updates: Record<ComponentId, Partial<ItemData>>,
   ) => void;
+  setStandardModelPerformanceData: (data: ItemData[]) => void;
   resetStandardModelPerformance: () => void;
   getItemById: (id: ComponentId) => ItemData | null;
 }
@@ -733,6 +734,12 @@ export const createStandardModelPerformanceSlice = (
         standardModelPerformanceData: newData,
       };
     }),
+
+  setStandardModelPerformanceData: (data: ItemData[]) =>
+    set((state: { standardModelPerformanceData: ItemData[] }) => ({
+      ...state,
+      standardModelPerformanceData: data,
+    })),
 
   resetStandardModelPerformance: () =>
     set((state: { standardModelPerformanceData: ItemData[] }) => ({
