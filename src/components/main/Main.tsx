@@ -18,7 +18,13 @@ const MainPage = () => {
   const [modal, contextHolder] = Modal.useModal();
   const [current, setCurrent] = useState(0);
 
-  const { setPageStep, step1Request, step2Request, step3Request } = useStore();
+  const {
+    setPageStep,
+    step1Request,
+    step2Request,
+    step3Request,
+    updateFormData,
+  } = useStore();
 
   const onChange = (value: number) => {
     if (value === 1 && !step1Request) {
@@ -40,6 +46,18 @@ const MainPage = () => {
 
     setCurrent(value);
     setPageStep(value);
+  };
+
+  const tempAb = () => {
+    updateFormData({
+      roadName: '서울 강서구 공항대로 220',
+      lotNumber: '서울 강서구 마곡동 800-3',
+      bld_main_use: '2',
+      bld_detail_use: '1',
+      bld_al_area: 10000,
+      bld_area: 10,
+      bld_floor_esurf: 5,
+    });
   };
 
   return (
@@ -67,7 +85,11 @@ const MainPage = () => {
         </div>
 
         <div className={styles.rightHeaderSection}>
-          <Button className={styles.iconButton} icon={<UserOutlined />} />
+          <Button
+            className={styles.iconButton}
+            icon={<UserOutlined />}
+            onClick={tempAb}
+          />
           <Button className={styles.iconButton} icon={<BellOutlined />} />
           <Button className={styles.iconButton} icon={<ShareAltOutlined />} />
           <Button className={styles.iconButton} icon={<UploadOutlined />} />
