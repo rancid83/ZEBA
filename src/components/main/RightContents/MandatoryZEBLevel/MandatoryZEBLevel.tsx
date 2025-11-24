@@ -382,7 +382,7 @@ const MandatoryGrade = () => {
           setStep3Request(true);
         }
 
-        setTimeout(() => {
+        /*        setTimeout(() => {
           setLoading(false);
           setTimeout(() => {
             modal.success({
@@ -391,10 +391,17 @@ const MandatoryGrade = () => {
               centered: true,
             });
           }, 300);
-        }, 1000 * 1.2);
+        }, 1000 * 1.2);*/
+
+        setLoading(false);
+        modal.success({
+          title: '알림',
+          content: '분석이 완료 되었습니다.',
+          centered: true,
+        });
       }
     } catch (error) {
-      setTimeout(() => {
+      /*      setTimeout(() => {
         setLoading(false);
         setTimeout(() => {
           modal.error({
@@ -404,7 +411,15 @@ const MandatoryGrade = () => {
             centered: true,
           });
         }, 300);
-      }, 1000 * 1.2);
+      }, 1000 * 1.2);*/
+
+      setLoading(false);
+      modal.error({
+        title: '분석 요청 실패',
+        content:
+          '서버 요청 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.',
+        centered: true,
+      });
 
       console.error('analyzeStep1.get error:', error);
     }
