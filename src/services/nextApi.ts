@@ -3,7 +3,6 @@ import axios from 'axios';
 // 외부 ZEB API용 axios 인스턴스
 const nextApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },

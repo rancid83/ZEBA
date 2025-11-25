@@ -3,7 +3,6 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 // axios 기본 설정
 const axiosInstance = axios.create({
   baseURL: '/api',
-  timeout: 1000 * 30,
   headers: {
     'Content-Type': 'application/json',
   },
