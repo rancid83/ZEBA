@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Bar } from 'react-chartjs-2';
 import { useEffect, useState } from 'react';
 import { useStore } from '@/store';
@@ -19,6 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  ChartDataLabels,
 );
 
 const labels = [
@@ -34,7 +36,11 @@ export function BarChart(props: any) {
     datasets: [],
   });
   const [changeOptions, setChangeOptions] = useState<any>({
-    plugins: {},
+    plugins: {
+      datalabels: {
+        display: false, // 기본 데이터 라벨 숨김
+      },
+    },
     responsive: true,
     scales: {
       x: {
@@ -60,6 +66,25 @@ export function BarChart(props: any) {
   useEffect(() => {
     setChangeOptions({
       ...changeOptions,
+      plugins: {
+        datalabels: {
+          display: true,
+          anchor: 'center',
+          align: 'center',
+          color: '#000000',
+          font: {
+            size: 14,
+            weight: '500',
+          },
+          textStrokeColor: '#FFFFFF', // 텍스트 외곽선 색상
+          textStrokeWidth: 3, // 텍스트 외곽선 두께
+          textShadowColor: 'rgba(0, 0, 0, 0.5)', // 텍스트 그림자 색상
+          textShadowBlur: 6, // 텍스트 그림자 흐림 정도
+          formatter: (value: number) => {
+            return value > 0 ? value.toLocaleString() : '';
+          },
+        },
+      },
       scales: {
         ...changeOptions.scales,
         y: {

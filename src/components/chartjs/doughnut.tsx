@@ -50,5 +50,28 @@ export function DoughnutChart(props: any) {
     setData(dataSet);
   }, [isEnergyTap, gradeData]);
 
-  return <Doughnut data={data} />;
+  return (
+    <Doughnut
+      data={data}
+      options={{
+        plugins: {
+          datalabels: {
+            display: true,
+            formatter: (value: number) => {
+              if (value === 0) return ''; // 값이 0일 경우 빈 문자열 반환
+              return Math.round(value).toLocaleString(); // 소수점 제거 및 쉼표 추가
+            },
+            color: '#000',
+            font: {
+              size: 14,
+            },
+            textStrokeColor: '#FFFFFF', // 텍스트 외곽선 색상
+            textStrokeWidth: 3, // 텍스트 외곽선 두께
+            textShadowColor: 'rgba(0, 0, 0, 0.5)', // 텍스트 그림자 색상
+            textShadowBlur: 6, // 텍스트 그림자 흐림 정도
+          },
+        },
+      }}
+    />
+  );
 }
