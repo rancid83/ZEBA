@@ -18,8 +18,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Zeba',
-  description: 'Zeba',
+  title: 'ZEBA',
+  description: 'ZEBA',
   icons: {
     icon: '/favicon.ico',
   },

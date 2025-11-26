@@ -3,7 +3,7 @@
 import styles from './Landing.module.scss';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Carousel, Layout, Modal, Space } from 'antd';
+import { Button, Carousel, ConfigProvider, Layout, Modal, Space } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 
 const { Content } = Layout;
@@ -75,7 +75,7 @@ const Landing = () => {
                 className="logoImage"
               />
               <div className="logoText">
-                <span className="zebaText">Zeba</span>
+                <span className="zebaText">ZEBA</span>
                 <span className="tmText">TM</span>
               </div>
             </div>
@@ -149,14 +149,25 @@ const Landing = () => {
                   }`}
                 >
                   <Space size="large">
-                    <Button
-                      type="primary"
-                      size="large"
-                      className={styles.primaryButton}
-                      onClick={onMoveMain}
+                    <ConfigProvider
+                      theme={{
+                        token: {
+                          colorPrimary: '#6366f1',
+                        },
+                        components: {
+                          Button: {},
+                        },
+                      }}
                     >
-                      ZEB 예측 시작하기
-                    </Button>
+                      <Button
+                        type="primary"
+                        size="large"
+                        className={styles.primaryButton}
+                        onClick={onMoveMain}
+                      >
+                        ZEB 예측 시작하기
+                      </Button>
+                    </ConfigProvider>
                     <Button
                       type="text"
                       size="large"

@@ -1,6 +1,6 @@
 'use client';
 
-import { Tabs } from 'antd';
+import { ConfigProvider, Tabs, theme } from 'antd';
 import { useStore } from '@/store';
 import EnergySelfSufficiencyContent from './EnergySelfSufficiencyContent/EnergySelfSufficiencyContent';
 import EnergyBuildingDetail from './EnergyBuildingDetail/EnergyBuildingDetail';
@@ -14,37 +14,48 @@ const EnergySelfSufficiency = () => {
   };
 
   return (
-    <Tabs
-      activeKey={activeTab}
-      onChange={handleTabChange}
-      type="card"
-      size="large"
-      style={{ marginTop: '51px' }}
-      items={[
-        {
-          label: `에너지 자립률`,
-          key: '1',
-          children: (
-            <>
-              <EnergySelfSufficiencyContent tap={1} />
-              <EnergyDetail />
-            </>
-          ),
-          style: { margin: 0 },
+    <ConfigProvider
+      theme={{
+        components: {
+          Tabs: {
+            /* here is your component tokens */
+            cardBg: '#DBDBDB',
+          },
         },
-        {
-          label: `시공 비용`,
-          key: '2',
-          children: (
-            <>
-              <EnergySelfSufficiencyContent tap={2} />
-              <EnergyBuildingDetail />
-            </>
-          ),
-          style: { margin: 0 },
-        },
-      ]}
-    />
+      }}
+    >
+      <Tabs
+        activeKey={activeTab}
+        onChange={handleTabChange}
+        type="card"
+        size="large"
+        style={{ marginTop: '51px' }}
+        items={[
+          {
+            label: `에너지 자립률`,
+            key: '1',
+            children: (
+              <>
+                <EnergySelfSufficiencyContent tap={1} />
+                <EnergyDetail />
+              </>
+            ),
+            style: { margin: 0 },
+          },
+          {
+            label: `시공 비용`,
+            key: '2',
+            children: (
+              <>
+                <EnergySelfSufficiencyContent tap={2} />
+                <EnergyBuildingDetail />
+              </>
+            ),
+            style: { margin: 0 },
+          },
+        ]}
+      />
+    </ConfigProvider>
   );
 };
 

@@ -30,7 +30,7 @@ const MainPage = () => {
     if (value === 1 && !step1Request) {
       modal.warning({
         title: '알림',
-        content: '먼저 의무 등급 분석을 완료해주세요.',
+        content: '먼저 ZEB 사전 진단을 완료해주세요.',
         centered: true,
       });
       return;
@@ -38,7 +38,7 @@ const MainPage = () => {
     if (value === 2 && !step2Request) {
       modal.warning({
         title: '알림',
-        content: '먼저 표준 등급 분석을 완료해주세요.',
+        content: '먼저 ZEB 목표 설정을 완료해주세요.',
         centered: true,
       });
       return;
@@ -71,7 +71,7 @@ const MainPage = () => {
               alt="ZEBA"
             />
             <div className="logoText">
-              <span className="zebaText">Zeba</span>
+              <span className="zebaText">ZEBA</span>
               <span className="tmText">TM</span>
             </div>
           </div>
@@ -101,21 +101,46 @@ const MainPage = () => {
           <div className={styles.contentContainer}>
             <div className={styles.leftSection}>
               <Steps
+                className={styles.customSteps}
                 current={current}
                 onChange={onChange}
                 direction="vertical"
                 items={[
                   {
-                    title: '의무 등급 분석',
-                    description: '[ AI 성능 분석 ]',
+                    title: (
+                      <>
+                        <span className={styles.numberText}>01</span>
+                        <span style={{ marginLeft: '20px' }}>
+                          {' '}
+                          ZEB 사전 진단
+                        </span>
+                      </>
+                    ),
+                    description: '',
                   },
                   {
-                    title: '표준 등급 분석',
-                    description: '[ AI 분석 ]',
+                    title: (
+                      <>
+                        <span className={styles.numberText}>02</span>
+                        <span style={{ marginLeft: '20px' }}>
+                          {' '}
+                          ZEB 목표 설정
+                        </span>
+                      </>
+                    ),
+                    description: '',
                   },
                   {
-                    title: '성능 조합 등급 분석',
-                    description: '[ AI 성능 분석 ]',
+                    title: (
+                      <>
+                        <span className={styles.numberText}>03</span>
+                        <span style={{ marginLeft: '20px' }}>
+                          {' '}
+                          ZEB 성능 편집
+                        </span>
+                      </>
+                    ),
+                    description: '',
                   },
                 ]}
               />

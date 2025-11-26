@@ -53,7 +53,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
                   >
-                    <Radio.Button value="won">금액[만원]</Radio.Button>
+                    <Radio.Button value="won">금액[천원]</Radio.Button>
                     <Radio.Button value="percent">구성비[%]</Radio.Button>
                   </Radio.Group>
                 </div>
@@ -107,7 +107,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                               {item.totalMoney
                                 ? numberWithCommas(item.totalMoney)
                                 : '-'}
-                              <span>만원</span>
+                              <span>천원</span>
                             </span>
                           </Flex>
                           <div className={styles.descriptionText}>
@@ -195,7 +195,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                             className={styles.won}
                             style={{ marginTop: '9px' }}
                           >
-                            만원
+                            천원
                           </span>
                         </Flex>
                         <Flex
@@ -214,7 +214,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         >
                           <span>신재생 : </span>
                           <span>{numberWithCommas(item.renewable)}</span>
-                          <span className={styles.won}>만원</span>
+                          <span className={styles.won}>천원</span>
                         </Flex>
                         <Flex
                           justify={'space-between'}
@@ -222,7 +222,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         >
                           <span>액티브 : </span>
                           <span>{numberWithCommas(item.active)}</span>
-                          <span className={styles.won}>만원</span>
+                          <span className={styles.won}>천원</span>
                         </Flex>
                         <Flex
                           justify={'space-between'}
@@ -230,7 +230,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         >
                           <span>패시브 : </span>
                           <span>{numberWithCommas(item.passive)}</span>
-                          <span className={styles.won}>만원</span>
+                          <span className={styles.won}>천원</span>
                         </Flex>
                         <Flex
                           justify={'space-between'}
@@ -238,7 +238,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         >
                           <span>증액 : </span>
                           <span>{numberWithCommas(item.increase)}</span>
-                          <span className={styles.won}>만원</span>
+                          <span className={styles.won}>천원</span>
                         </Flex>
                         <Flex
                           justify={'space-between'}
@@ -246,7 +246,7 @@ const EnergySelfSufficiencyContent = (props: any) => {
                         >
                           <span>혜택 : </span>
                           <span>{numberWithCommas(item.benefit)}</span>
-                          <span className={styles.won}>만원</span>
+                          <span className={styles.won}>천원</span>
                         </Flex>
                       </div>
                     </div>

@@ -14,6 +14,12 @@ const SolarPowerSystem = () => {
     (data: { id: string }) => allowContents.includes(data.id),
   );
 
+  const solarPowerSystem = standardModelPerformanceData.find(
+    (data: { id: string }) => data.id === 'solarPowerSystem',
+  );
+
+  console.log('standardModelPerformanceData : ', standardModelPerformanceData);
+
   return (
     <div className={styles.editWrap}>
       <Flex justify="space-between" align={'center'}>
@@ -55,6 +61,7 @@ const SolarPowerSystem = () => {
                 solarOrientation: value,
               });
             }}
+            disabled={solarPowerSystem?.solarTilt === 'horizontal'}
             options={[
               { value: 'east', label: '동' },
               { value: 'southeast', label: '남동' },

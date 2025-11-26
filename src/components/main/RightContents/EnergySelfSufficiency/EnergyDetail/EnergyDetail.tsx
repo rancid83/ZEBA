@@ -6,7 +6,8 @@ import styles from './EnergyDetail.module.scss';
 import { useStore } from '@/store';
 
 const EnergyDetail = () => {
-  const { passiveData, activeData, renewableData } = useStore();
+  const { passiveData, activeData, renewableData, pageStep } = useStore();
+  const [activeKey, setActiveKey] = useState<string[]>([]);
 
   const columns: TableProps<any>['columns'] = [
     {
@@ -41,6 +42,11 @@ const EnergyDetail = () => {
     },
   ];
 
+  useEffect(() => {
+    // pageStep이 변경될 때마다 아코디언을 모두 닫음
+    setActiveKey([]);
+  }, [pageStep]);
+
   return (
     <>
       <div className={`${styles.mandatoryGradeContainer} `}>
@@ -62,6 +68,10 @@ const EnergyDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
+              activeKey={activeKey}
+              onChange={(keys) =>
+                setActiveKey(Array.isArray(keys) ? keys : [keys])
+              }
               size="small"
               items={[
                 {
@@ -87,6 +97,10 @@ const EnergyDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
+              activeKey={activeKey}
+              onChange={(keys) =>
+                setActiveKey(Array.isArray(keys) ? keys : [keys])
+              }
               size="small"
               items={[
                 {
@@ -112,6 +126,10 @@ const EnergyDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
+              activeKey={activeKey}
+              onChange={(keys) =>
+                setActiveKey(Array.isArray(keys) ? keys : [keys])
+              }
               size="small"
               items={[
                 {

@@ -94,8 +94,12 @@
   border-radius: 18px;
   font-size: 12px;
   > span {
-    font-size: 12px;
+    font-size: 11px;
     margin-right: 5px;
     font-weight: bold;
   }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -257,7 +257,7 @@ const EditSlider = ({
       return {
         text: sliderDetailStyle.marker.degradation.text,
         value: difference.toFixed(2),
-        icon: <CaretUpOutlined />,
+        icon: isReverse ? <CaretUpOutlined /> : <CaretDownOutlined />,
         backgroundColor: sliderDetailStyle.marker.degradation.labelColor,
       };
     } else if (currentValue > standard) {
@@ -265,7 +265,7 @@ const EditSlider = ({
       return {
         text: sliderDetailStyle.marker.improvement.text,
         value: difference.toFixed(2),
-        icon: <CaretDownOutlined />,
+        icon: isReverse ? <CaretDownOutlined /> : <CaretUpOutlined />,
         backgroundColor: sliderDetailStyle.marker.improvement.labelColor, // 기본 배경 유지
       };
     } else {
@@ -400,11 +400,27 @@ const EditSlider = ({
           />
           <div
             className={styles.enhance}
-            style={{ backgroundColor: enhanceData.backgroundColor }}
+            style={{
+              backgroundColor: enhanceData.backgroundColor,
+              color: enhanceData.text === '저하' ? 'unset' : '#fff',
+            }}
           >
             {enhanceData.icon}
-            <span>{enhanceData.value}</span>
-            {enhanceData.text}
+            <span
+              style={{
+                color: `${enhanceData.text === '저하' ? '#2A4E51' : '#FFFFFF'}`,
+                fontSize: '13px',
+              }}
+            >
+              {enhanceData.value}
+            </span>
+            <span
+              style={{
+                color: `${enhanceData.text === '저하' ? '#2A4E51' : '#FFFFFF'}`,
+              }}
+            >
+              {enhanceData.text}
+            </span>
           </div>
         </Flex>
       </div>

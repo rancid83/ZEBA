@@ -14,6 +14,7 @@ import styles from './MandatoryZEBLevel.module.scss';
 import {
   DingtalkOutlined,
   SearchOutlined,
+  SendOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
 import { useStore } from '@/store';
@@ -493,10 +494,10 @@ const MandatoryGrade = () => {
               <Button
                 htmlType={'submit'}
                 type={'primary'}
-                icon={<DingtalkOutlined />}
+                icon={<SendOutlined />}
                 //onClick={handleRequestAnalysis}
               >
-                ZEB [의무 등급] 분석 요청
+                ZEB 성능 편집 요청
               </Button>
             </Flex>
           </div>
@@ -544,9 +545,11 @@ const MandatoryGrade = () => {
                         width: '120px',
                       }}
                       options={[
-                        { value: '3', label: 'ZEB 3등급' },
-                        { value: '4', label: 'ZEB 4등급' },
                         { value: '5', label: 'ZEB 5등급' },
+                        { value: '4', label: 'ZEB 4등급' },
+                        { value: '3', label: 'ZEB 3등급' },
+                        { value: '2', label: 'ZEB 2등급' },
+                        { value: '1', label: 'ZEB 1등급' },
                       ]}
                     />
                   </Form.Item>
@@ -571,7 +574,6 @@ const MandatoryGrade = () => {
                       >
                         <Input
                           size={'small'}
-                          placeholder="입력하세요."
                           className={styles.addressInput}
                           readOnly
                         />
@@ -587,7 +589,6 @@ const MandatoryGrade = () => {
                       >
                         <Input
                           size={'small'}
-                          placeholder="입력하세요."
                           className={styles.addressInput}
                           readOnly
                         />
@@ -615,10 +616,7 @@ const MandatoryGrade = () => {
                             placeholder="선택"
                             className={styles.infoSelect}
                             size="small"
-                            options={[
-                              { value: '0', label: '선택' },
-                              { value: '2', label: '교육시설' },
-                            ]}
+                            options={[{ value: '2', label: '교육시설' }]}
                           />
                         </Form.Item>
                       </div>
@@ -640,10 +638,7 @@ const MandatoryGrade = () => {
                             placeholder="선택"
                             className={styles.infoSelect}
                             size="small"
-                            options={[
-                              { value: '0', label: '선택' },
-                              { value: '1', label: '초중고' },
-                            ]}
+                            options={[{ value: '1', label: '초중고' }]}
                           />
                         </Form.Item>
                       </div>
@@ -669,7 +664,7 @@ const MandatoryGrade = () => {
                           style={{ flex: 1, margin: 0 }}
                           rules={[{ required: true, message: '' }]}
                         >
-                          <Input readOnly className={styles.infoInput} />
+                          <Input className={styles.infoInput} disabled />
                         </Form.Item>
                         <span className={styles.unitText}>㎡</span>
                       </div>
@@ -701,9 +696,13 @@ const MandatoryGrade = () => {
                 htmlType={'submit'}
                 disabled={false}
                 type={'primary'}
-                icon={<DingtalkOutlined />}
+                icon={<SendOutlined />}
               >
-                ZEB [의무 등급] 분석 요청
+                {Number(pageStep) === 0
+                  ? 'ZEB 사전 진단 요청'
+                  : Number(pageStep) === 1
+                    ? 'ZEB 목표 설정 요청'
+                    : 'ZEB 성능 편집 요청'}
               </Button>
             </Flex>
           </div>

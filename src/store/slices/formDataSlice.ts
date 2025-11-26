@@ -32,8 +32,8 @@ export interface FormDataSlice {
 const initialFormData: FormData = {
   roadName: '',
   lotNumber: '',
-  bld_main_use: '0',
-  bld_detail_use: '0',
+  bld_main_use: '2',
+  bld_detail_use: '1',
   bld_al_area: null,
   bld_area: null,
   bld_floor_esurf: null,

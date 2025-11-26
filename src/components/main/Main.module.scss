@@ -35,7 +35,8 @@
 
 // Header 스타일
 .styledHeader {
-  background: linear-gradient(135deg, #6c2bd9 0%, #8b47e6 100%);
+  //background: linear-gradient(135deg, #6c2bd9 0%, #8b47e6 100%);
+  background: #4c1d95;
   padding: 0 24px;
   height: 64px;
   display: flex;
@@ -108,4 +109,16 @@
 .mainLayout {
   margin-top: 64px;
   min-height: calc(100vh - 64px);
+}
+
+:global(.ant-steps-vertical .ant-steps-item) {
+  height: 60px !important;
+}
+
+:global(.ant-steps-item-title) {
+  display: flex !important;
+}
+
+.numberText {
+  font-size: 20px;
 }

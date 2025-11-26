@@ -93,7 +93,7 @@ export function BarChart(props: any) {
             // Chart.js가 자동으로 계산한 최댓값 가져오기
             const autoMax = scale.max;
             // 더 큰 비율로 설정 (예: 50% 여유 공간)
-            scale.max = Math.ceil(autoMax * 3.5);
+            scale.max = Math.ceil(autoMax * 2);
           },
         },
       },

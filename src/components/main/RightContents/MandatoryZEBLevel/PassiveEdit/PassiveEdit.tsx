@@ -5,6 +5,7 @@ import { Flex } from 'antd';
 import CollapseItem from '@/components/main/RightContents/MandatoryZEBLevel/shared/CollapseItem/CollapseItem';
 import EditSlider from '@/components/main/RightContents/MandatoryZEBLevel/shared/EditSlider/EditSlider';
 import { useStore } from '@/store';
+import { useEffect, useState } from 'react';
 
 const allowContents = [
   'windowUValue',

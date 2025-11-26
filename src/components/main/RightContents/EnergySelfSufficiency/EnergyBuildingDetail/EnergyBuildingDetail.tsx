@@ -6,7 +6,9 @@ import styles from './EnergyBuildingDetail.module.scss';
 import { useStore } from '@/store';
 
 const EnergyBuildingDetail = () => {
-  const { passiveDataCost, activeDataCost, renewableDataCost } = useStore();
+  const [activeKey, setActiveKey] = useState<string[]>([]);
+  const { passiveDataCost, activeDataCost, renewableDataCost, pageStep } =
+    useStore();
 
   const columns: TableProps<any>['columns'] = [
     {
@@ -37,13 +39,18 @@ const EnergyBuildingDetail = () => {
     },
   ];
 
+  useEffect(() => {
+    // pageStep이 변경될 때마다 아코디언을 모두 닫음
+    setActiveKey([]);
+  }, [pageStep]);
+
   return (
     <>
       <div className={`${styles.mandatoryGradeContainer} `}>
         <div className={styles.mandatoryGrade}>
           <div className={styles.mandatoryGradeHeader}>
             <img
-              src="/assets/images/icon/icon-mark.png"
+              src="/assets/images/icon/icon-stack.png"
               alt="icon"
               className={styles.icon}
             />
@@ -58,6 +65,7 @@ const EnergyBuildingDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
+              activeKey={activeKey}
               size="small"
               items={[
                 {
@@ -83,6 +91,7 @@ const EnergyBuildingDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
+              activeKey={activeKey}
               size="small"
               items={[
                 {
@@ -108,6 +117,7 @@ const EnergyBuildingDetail = () => {
             <Collapse
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
+              activeKey={activeKey}
               size="small"
               items={[
                 {
