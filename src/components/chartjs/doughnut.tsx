@@ -59,7 +59,7 @@ export function DoughnutChart(props: any) {
             display: true,
             formatter: (value: number) => {
               if (value === 0) return ''; // 값이 0일 경우 빈 문자열 반환
-              return Math.round(value).toLocaleString(); // 소수점 제거 및 쉼표 추가
+              return `${Math.round(value).toLocaleString()}%`; // 소수점 제거 및 쉼표 추가
             },
             color: '#000',
             font: {

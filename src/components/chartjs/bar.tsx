@@ -81,7 +81,7 @@ export function BarChart(props: any) {
           textShadowColor: 'rgba(0, 0, 0, 0.5)', // 텍스트 그림자 색상
           textShadowBlur: 6, // 텍스트 그림자 흐림 정도
           formatter: (value: number) => {
-            return value > 0 ? value.toLocaleString() : '';
+            return value > 0 ? value.toLocaleString() + ` ${props.unit}` : '';
           },
         },
       },

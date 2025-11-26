@@ -62,13 +62,18 @@ const EnergySelfSufficiencyContent = (props: any) => {
             <div className={styles.chartContainer}>
               {isEnergyTap ? (
                 <div>
-                  <BarChart isEnergyTap={isEnergyTap} gradeData={gradeData} />
+                  <BarChart
+                    isEnergyTap={isEnergyTap}
+                    gradeData={gradeData}
+                    unit={'kWh/㎡·y'}
+                  />
                 </div>
               ) : size === 'won' ? (
                 <div>
                   <BarChart
                     isEnergyTap={isEnergyTap}
                     gradeData={gradeBuildingData}
+                    unit={'천원'}
                   />
                 </div>
               ) : (
