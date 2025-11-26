@@ -122,3 +122,7 @@
 .numberText {
   font-size: 20px;
 }
+
+:global(.ant-steps-icon) {
+  color: transparent !important; // 숫자만 투명하게
+}
