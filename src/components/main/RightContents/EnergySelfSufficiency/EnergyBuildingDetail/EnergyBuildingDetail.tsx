@@ -66,6 +66,9 @@ const EnergyBuildingDetail = () => {
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
               activeKey={activeKey}
+              onChange={(keys) =>
+                setActiveKey(Array.isArray(keys) ? keys : [keys])
+              }
               size="small"
               items={[
                 {
@@ -92,6 +95,9 @@ const EnergyBuildingDetail = () => {
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
               activeKey={activeKey}
+              onChange={(keys) =>
+                setActiveKey(Array.isArray(keys) ? keys : [keys])
+              }
               size="small"
               items={[
                 {
@@ -118,6 +124,9 @@ const EnergyBuildingDetail = () => {
               className={styles.energyDetailCollapse}
               expandIconPosition={'end'}
               activeKey={activeKey}
+              onChange={(keys) =>
+                setActiveKey(Array.isArray(keys) ? keys : [keys])
+              }
               size="small"
               items={[
                 {

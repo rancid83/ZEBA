@@ -15,13 +15,13 @@ import { ComponentId } from '@/store/slices/standardModelPerformanceSlice';
 
 interface WindowThermalTransmittanceProps {
   title?: string | null;
-  min?: number | null;
-  max?: number | null;
-  average?: number | null;
-  step?: number | null;
-  start?: number | null;
+  min?: number;
+  max?: number;
+  average?: number;
+  step?: number;
+  start?: number;
   unit?: string | null;
-  rate?: number | null;
+  rate?: number;
   systemType?: string | null;
   subDescription?: string | null;
   type?: string | null;
@@ -39,10 +39,10 @@ const reverseSliders = [
 const EditSlider = ({
   title,
   min = 0,
-  max = 100,
-  average = 26,
+  max = 0,
+  average = 0,
   step = 1,
-  start = 26,
+  start = 0,
   unit = 'W/㎡·K',
   rate = 3,
   systemType = null,
@@ -50,7 +50,7 @@ const EditSlider = ({
   type = 'template1',
   id = null,
 }: WindowThermalTransmittanceProps) => {
-  const [currentValue, setCurrentValue] = useState(start || 26);
+  const [currentValue, setCurrentValue] = useState(start);
   const { updateItemData } = useStore();
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -105,13 +105,15 @@ const EditSlider = ({
   };
 
   const marks: SliderSingleProps['marks'] = {
-    [min || 0]: {
+    [min]: {
       style: {
         color: '#4E4E4E',
         position: 'relative',
       },
       label: (
-        <div style={{ textAlign: 'center', position: 'relative' }}>
+        <div
+          style={{ textAlign: 'center', position: 'relative', zIndex: 10000 }}
+        >
           <div
             style={{
               position: 'absolute',
@@ -127,13 +129,13 @@ const EditSlider = ({
             <br />
             {sliderDetailStyle.marker.degradation.icon}
           </div>
-          <div style={{ marginTop: '3.5px' }}>{(min || 0).toFixed(1)}</div>
+          <div style={{ marginTop: '3.5px' }}>{min}</div>
         </div>
       ),
     },
-    [average || 26]: {
+    [average]: {
       label: (
-        <div style={{ textAlign: 'center', position: 'relative' }}>
+        <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <div
             style={{
               position: 'absolute',
@@ -143,17 +145,18 @@ const EditSlider = ({
               color: '#2A4E51',
               whiteSpace: 'nowrap',
               lineHeight: '1.3',
+              zIndex: 1,
             }}
           >
             표준
             <br />
             <CaretDownOutlined />
           </div>
-          <div style={{ marginTop: '3.5px' }}></div>
+          <div style={{ marginTop: '3.5px' }}>{min === average ? min : ''}</div>
         </div>
       ),
     },
-    [max || 100]: {
+    [max]: {
       style: {
         color: '#4E4E4E',
       },
@@ -174,7 +177,7 @@ const EditSlider = ({
             <br />
             {sliderDetailStyle.marker.improvement.icon}
           </div>
-          <div style={{ marginTop: '3.5px' }}>{(max || 100).toFixed(1)}</div>
+          <div style={{ marginTop: '3.5px' }}>{max.toFixed(1)}</div>
         </div>
       ),
     },
@@ -187,9 +190,9 @@ const EditSlider = ({
 
   // Rail(배경)의 색상을 메모이제이션
   const railBackground = useMemo(() => {
-    const standard = average || 26;
-    const minVal = min || 0;
-    const maxVal = max || 100;
+    const standard = average;
+    const minVal = min;
+    const maxVal = max;
     const range = maxVal - minVal;
     const currentPercent =
       ((Math.min(Math.max(currentValue, minVal), maxVal) - minVal) / range) *
@@ -208,9 +211,9 @@ const EditSlider = ({
 
   // Track(선택된 부분)의 색상을 메모이제이션
   const trackBackground = useMemo(() => {
-    const standard = average || 26;
-    const minVal = min || 0;
-    const maxVal = max || 100;
+    const standard = average;
+    const minVal = min;
+    const maxVal = max;
     const range = maxVal - minVal;
     const currentPercent =
       ((Math.min(Math.max(currentValue, minVal), maxVal) - minVal) / range) *
@@ -249,7 +252,7 @@ const EditSlider = ({
 
   // 개선/저하 섹션의 동적 값들을 계산
   const enhanceData = useMemo(() => {
-    const standard = average || 26;
+    const standard = average;
     const difference = Math.abs(currentValue - standard);
 
     if (currentValue < standard) {
@@ -311,7 +314,7 @@ const EditSlider = ({
               </div>
               <Rate
                 disabled
-                value={rate || 0}
+                value={rate}
                 count={3}
                 style={{ direction: 'rtl' }}
               />
@@ -319,7 +322,7 @@ const EditSlider = ({
           ) : (
             <Rate
               disabled
-              value={rate || 0}
+              value={rate}
               count={3}
               style={{ direction: 'rtl' }}
             />
@@ -342,8 +345,8 @@ const EditSlider = ({
             }}
             className={styles.sliderClass}
             styles={sliderStyles}
-            min={min || 0}
-            max={max || 100}
+            min={min}
+            max={max}
             step={step || 1}
           />
         </div>
@@ -357,8 +360,8 @@ const EditSlider = ({
         )}
         <div>
           <InputNumber
-            min={min || 0}
-            max={max || 100}
+            min={min}
+            max={max}
             step={step || 1}
             value={currentValue}
             onChange={(value) => {
@@ -390,7 +393,7 @@ const EditSlider = ({
                 clearTimeout(debounceTimerRef.current);
               }
 
-              const resetValue = average || 26;
+              const resetValue = average;
               setCurrentValue(resetValue);
               if (id) {
                 // 리셋은 즉시 적용
