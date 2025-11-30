@@ -39,6 +39,7 @@ const LayoutWrapper = (props: any) => {
         components: {
           Tabs: {
             horizontalMargin: '0',
+            cardPaddingLG: '8px 57px',
           },
           Select: {
             optionSelectedBg: '#007676',

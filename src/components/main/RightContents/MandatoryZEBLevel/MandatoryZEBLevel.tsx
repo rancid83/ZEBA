@@ -361,7 +361,7 @@ const MandatoryGrade = () => {
         setRenewableDataCost(renewableCost);
 
         //standardById
-        if ('standardById' in dataRequest.data) {
+        if (pageStep === 1 && 'standardById' in dataRequest.data) {
           setStandardModelPerformanceData(
             dataRequest.data.standardById as any[],
           );
@@ -548,8 +548,6 @@ const MandatoryGrade = () => {
                         { value: '5', label: 'ZEB 5등급' },
                         { value: '4', label: 'ZEB 4등급' },
                         { value: '3', label: 'ZEB 3등급' },
-                        { value: '2', label: 'ZEB 2등급' },
-                        { value: '1', label: 'ZEB 1등급' },
                       ]}
                     />
                   </Form.Item>
