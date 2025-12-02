@@ -548,6 +548,7 @@ const MandatoryGrade = () => {
                         { value: '5', label: 'ZEB 5등급' },
                         { value: '4', label: 'ZEB 4등급' },
                         { value: '3', label: 'ZEB 3등급' },
+                        { value: '2', label: 'ZEB 2등급' },
                       ]}
                     />
                   </Form.Item>
