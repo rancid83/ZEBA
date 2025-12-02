@@ -23,7 +23,7 @@ const getDefaultGradeBuildingData = () => [
   },
   {
     label: {
-      title: '의무 등급',
+      title: 'ZEB 사전 진단',
       subTitle: '에너지 자립률',
     },
     zebGrade: 0,
@@ -36,7 +36,7 @@ const getDefaultGradeBuildingData = () => [
   },
   {
     label: {
-      title: '목표 등급',
+      title: 'ZEB 목표 설정',
       subTitle: '시공 비용 합계',
     },
     zebGrade: 0,
@@ -49,7 +49,7 @@ const getDefaultGradeBuildingData = () => [
   },
   {
     label: {
-      title: '성능 조합 등급',
+      title: 'ZEB 성능 편집',
       subTitle: '시공 비용 합계',
     },
     zebGrade: 0,

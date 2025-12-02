@@ -23,17 +23,17 @@ const EnergyBuildingDetail = () => {
       key: 'regulation',
     },
     {
-      title: '의무 등급',
+      title: 'ZEB 사전 진단',
       dataIndex: 'mandatory',
       key: 'mandatory',
     },
     {
-      title: '목표 등급',
+      title: 'ZEB 목표 설정',
       dataIndex: 'target',
       key: 'target',
     },
     {
-      title: '성능 조합 등급',
+      title: 'ZEB 성능 편집',
       dataIndex: 'combined',
       key: 'combined',
     },

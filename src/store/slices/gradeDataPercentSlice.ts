@@ -23,38 +23,38 @@ const getDefaultGradeDataPercent = () => [
   },
   {
     label: {
-      title: '의무 등급',
+      title: 'ZEB 사전 진단',
       subTitle: '비용 구성 비율',
     },
     data: [],
     totalMoney: 0,
     description: {
       description: '[STEP-1]',
-      subDescription: '의무 등급',
+      subDescription: 'ZEB 사전 진단',
     },
   },
   {
     label: {
-      title: '목표 등급',
+      title: 'ZEB 목표 설정',
       subTitle: '비용 구성 비율',
     },
     data: [],
     totalMoney: 0,
     description: {
       description: '[STEP-2]',
-      subDescription: '목표 등급',
+      subDescription: 'ZEB 목표 설정',
     },
   },
   {
     label: {
-      title: '성능 조합 등급',
+      title: 'ZEB 성능 편집',
       subTitle: '비용 구성 비율',
     },
     data: [],
     totalMoney: 0,
     description: {
       description: '[STEP-3]',
-      subDescription: '성능 조합 등급',
+      subDescription: 'ZEB 성능 편집',
     },
   },
 ];

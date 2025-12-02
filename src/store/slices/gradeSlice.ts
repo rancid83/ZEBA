@@ -21,7 +21,7 @@ const getDefaultGradeData = () => [
   },
   {
     label: {
-      title: '의무 등급',
+      title: 'ZEB 사전 진단',
       subTitle: '에너지 자립률',
     },
     grade: 0,
@@ -31,7 +31,7 @@ const getDefaultGradeData = () => [
   },
   {
     label: {
-      title: '목표 등급',
+      title: 'ZEB 목표 설정',
       subTitle: '에너지 자립률',
     },
     grade: 0,
@@ -41,7 +41,7 @@ const getDefaultGradeData = () => [
   },
   {
     label: {
-      title: '성능 조합 등급',
+      title: 'ZEB 성능 편집',
       subTitle: '에너지 자립률',
     },
     grade: 0,

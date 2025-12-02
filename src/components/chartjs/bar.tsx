@@ -25,9 +25,9 @@ ChartJS.register(
 
 const labels = [
   '지자체 에너지 절약 법규 기준',
-  '[STEP-1] 의무 등급',
-  '[STEP-2] 목표 등급',
-  '[STEP-3] 성능 조합 등급',
+  '[STEP-1] ZEB 사전 진단',
+  '[STEP-2] ZEB 목표 설정',
+  '[STEP-3] ZEB 성능 편집',
 ];
 
 export function BarChart(props: any) {

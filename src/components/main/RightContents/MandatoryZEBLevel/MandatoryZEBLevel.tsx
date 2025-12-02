@@ -38,7 +38,7 @@ const MandatoryZEBLevel = (props: any) => {
         pageStep < 2
           ? [
               {
-                label: `ZEB 의무 등급`,
+                label: `ZEB 사전 진단`,
                 key: '1',
                 children: <MandatoryGrade />,
                 style: { margin: 0 },
