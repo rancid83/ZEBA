@@ -243,7 +243,7 @@ const Landing = () => {
             {isDemoModalOpen && (
               <iframe
                 key="demo-video"
-                src="https://www.youtube.com/embed/6D48nlTZATs?autoplay=1&rel=0&enablejsapi=1"
+                src="https://www.youtube.com/embed/xWlJ5zaWeLI?autoplay=1&rel=0&enablejsapi=1"
                 title="ZEBA Demo Video"
                 className={styles.iframe}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
