@@ -8,6 +8,7 @@ import {
   ShareAltOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
+import { useRouter } from 'next/navigation';
 import styles from './Main.module.scss';
 import SectionRight from '@/components/main/RightContents/RightContents';
 import { useStore } from '@/store';
@@ -15,6 +16,7 @@ import { useStore } from '@/store';
 const { Header, Content } = Layout;
 
 const MainPage = () => {
+  const router = useRouter();
   const [modal, contextHolder] = Modal.useModal();
   const [current, setCurrent] = useState(0);
 
@@ -60,20 +62,24 @@ const MainPage = () => {
     });
   };
 
+  const handleLogoClick = () => {
+    router.push('/');
+  };
+
   return (
     <Layout>
       <Header className={styles.styledHeader}>
         <div className={styles.logoSection}>
-          <div className="logoContainer headerLogo">
+          <div 
+            className="logoContainer headerLogo"
+            onClick={handleLogoClick}
+            style={{ cursor: 'pointer' }}
+          >
             <img
               className="logoImage"
-              src="/assets/images/logo-company.png"
+              src="/assets/images/zeba_logo.png"
               alt="ZEBA"
             />
-            <div className="logoText">
-              <span className="zebaText">ZEBA</span>
-              <span className="tmText">TM</span>
-            </div>
           </div>
         </div>
 
