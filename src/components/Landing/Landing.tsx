@@ -70,14 +70,10 @@ const Landing = () => {
             {/* 로고 */}
             <div className="logoContainer landingLogo">
               <img
-                src="/assets/images/logo-company.png"
+                src="/assets/images/zeba_logo.png"
                 alt="ZEBA"
                 className="logoImage"
               />
-              <div className="logoText">
-                <span className="zebaText">ZEBA</span>
-                <span className="tmText">TM</span>
-              </div>
             </div>
 
             {/* 네비게이션 메뉴 */}
@@ -202,22 +198,36 @@ const Landing = () => {
                     >
                       <div className={styles.carouselSlide}>
                         <img
-                          src="/assets/images/bg/ny.jpg"
+                          src="/assets/images/slide1.jpg"
                           alt="ZEBA Dashboard Mockup 1"
                           className={styles.carouselImage}
                         />
                       </div>
                       <div className={styles.carouselSlide}>
                         <img
-                          src="/assets/images/bg/berlin.jpg"
+                          src="/assets/images/slide2.jpg"
                           alt="ZEBA Dashboard Mockup 2"
                           className={styles.carouselImage}
                         />
                       </div>
                       <div className={styles.carouselSlide}>
                         <img
-                          src="/assets/images/bg/cairo.jpg"
+                          src="/assets/images/slide3.jpg"
                           alt="ZEBA Dashboard Mockup 3"
+                          className={styles.carouselImage}
+                        />
+                      </div>
+                      <div className={styles.carouselSlide}>
+                        <img
+                          src="/assets/images/slide4.jpg"
+                          alt="ZEBA Dashboard Mockup 4"
+                          className={styles.carouselImage}
+                        />
+                      </div>
+                      <div className={styles.carouselSlide}>
+                        <img
+                          src="/assets/images/slide5.jpg"
+                          alt="ZEBA Dashboard Mockup 5"
                           className={styles.carouselImage}
                         />
                       </div>
