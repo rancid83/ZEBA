@@ -9,7 +9,7 @@ const LoadingZeba = () => {
         <div className={styles.pulseRing}></div>
         <div className={styles.pulseRing2}></div>
         <img
-          src="/assets/images/logo-company.png"
+          src="/assets/images/zeba_logo.png"
           alt="Company Logo"
           className={styles.logo}
         />
