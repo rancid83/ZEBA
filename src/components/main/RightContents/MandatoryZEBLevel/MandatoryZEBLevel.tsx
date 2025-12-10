@@ -36,7 +36,7 @@ const MandatoryZEBLevel = (props: any) => {
       case 1:
         return 'ZEB 목표 설정';
       case 2:
-        return 'ZEB 성능 조합';
+        return 'ZEB 성능 편집';
       default:
         return 'ZEB 사전 진단';
     }
