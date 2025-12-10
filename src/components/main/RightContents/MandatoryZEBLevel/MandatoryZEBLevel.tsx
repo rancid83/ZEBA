@@ -698,7 +698,7 @@ const MandatoryGrade = () => {
                 icon={<SendOutlined />}
               >
                 {Number(pageStep) === 0
-                  ? 'ZEB 분석 요청'
+                  ? 'ZEB 사전 진단 요청'
                   : Number(pageStep) === 1
                     ? 'ZEB 분석 요청'
                     : 'ZEB 분석 요청'}
