@@ -29,67 +29,32 @@ import RenewableEdit from '@/components/main/RightContents/MandatoryZEBLevel/Ren
 
 const MandatoryZEBLevel = (props: any) => {
   const { pageStep } = useStore();
+  const getTabLabel = () => {
+    switch (pageStep) {
+      case 0:
+        return 'ZEB 사전 진단';
+      case 1:
+        return 'ZEB 목표 설정';
+      case 2:
+        return 'ZEB 성능 조합';
+      default:
+        return 'ZEB 사전 진단';
+    }
+  };
+
   return (
     <Tabs
       defaultActiveKey="1"
       type="card"
       size="large"
-      items={
-        pageStep < 2
-          ? [
-              {
-                label: `ZEB 사전 진단`,
-                key: '1',
-                children: <MandatoryGrade />,
-                style: { margin: 0 },
-              },
-            ]
-          : [
-              {
-                label: `ZEB 성능 조합`,
-                key: '1',
-                /* children: (
-                  <div className={styles.standardModelPerformanceEdit}>
-                    <Flex
-                      className={styles.standardModelPerformanceEditTitle}
-                      gap={10}
-                    >
-                      <SettingOutlined />
-                      <span>표준 모델 성능 편집</span>
-                    </Flex>
-                    <div
-                      className={
-                        styles.standardModelPerformanceEditContentWrapper
-                      }
-                    >
-                      <div
-                        className={styles.standardModelPerformanceEditSubtitle}
-                      >
-                        <span>
-                          ZEB 등급에 영향을 미치는 기술 SPEC을 편집하여 분석이
-                          가능합니다.
-                        </span>
-                        <PassiveEdit />
-                        <ActiveEdit />
-                        <RenewableEdit />
-                      </div>
-                    </div>
-                    <Flex justify={'right'} className={'requestButton'}>
-                      <Button
-                        type={'primary'}
-                        icon={<DingtalkOutlined />}
-                        onClick={handleRequestAnalysis}
-                      >
-                        ZEB [의무 등급] 분석 요청
-                      </Button>
-                    </Flex>
-                  </div>
-                ),
-                style: { margin: 0 },*/
-                children: <MandatoryGrade />,
-              },
-            ]
-      }
+      items={[
+        {
+          label: getTabLabel(),
+          key: '1',
+          children: <MandatoryGrade />,
+          style: { margin: 0 },
+        },
+      ]}
     />
   );
 };
