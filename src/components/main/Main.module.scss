@@ -125,3 +125,7 @@
 :global(.ant-steps-icon) {
   color: transparent !important; // 숫자만 투명하게
 }
+
+:global(.ant-steps-item-title) {
+  align-items: center;
+}
